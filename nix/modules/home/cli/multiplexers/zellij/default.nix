@@ -136,8 +136,8 @@ in
 
           bind "c" { NewTab; SwitchToMode "Normal"; }
           bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
-          bind "n" { GoToNextTab; }
-          bind "p" { GoToPreviousTab; }
+          bind "n" { GoToNextTab; SwitchToMode "Normal"; }
+          bind "p" { GoToPreviousTab; SwitchToMode "Normal"; }
         }
         renametab {
           bind "Ctrl c" "Enter" { SwitchToMode "Normal"; }
