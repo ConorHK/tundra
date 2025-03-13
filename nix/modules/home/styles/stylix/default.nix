@@ -9,10 +9,6 @@ let
 in
 with lib;
 {
-  imports = with inputs; [
-    stylix.homeManagerModules.stylix
-  ];
-
   options.styles.stylix = {
     enableHome = mkOption {
       default = false;

@@ -8,7 +8,6 @@
   ];
 
   config = {
-    # styles.stylix.enableHome = lib.mkForce false;
     home = {
       sessionVariables = {
         BROWSER = "firefox";
@@ -20,10 +19,11 @@
       user = "mustang";
       port = 22;
     };
-  };
-  config.cli.programs.git = {
-    defaultBranch = "main";
-    email = "dev@conorknowles.com";
+    cli.programs.git = {
+      defaultBranch = "main";
+      email = "dev@conorknowles.com";
+    };
+    styles.stylix.enableHome = false;
   };
 
 }

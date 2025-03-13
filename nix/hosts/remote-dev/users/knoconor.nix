@@ -1,12 +1,12 @@
-{ flake, lib, ... }:
+{ flake, lib, inputs, ... }:
 with lib;
 {
   imports = [
     flake.homeModules.common-role
     flake.homeModules.development-role
     flake.homeModules.work-role
+    inputs.stylix.homeManagerModules.stylix
   ];
-
   home = {
     sessionVariables = {
       HOSTROLE = "dev";
