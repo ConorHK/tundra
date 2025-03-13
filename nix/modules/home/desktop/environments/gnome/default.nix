@@ -35,7 +35,6 @@ in
       "org/gnome/shell" = {
         disable-user-extensions = false;
         enabled-extensions = [
-          "launch-new-instance@gnome-shell-extensions.gcampax.github.com"
           "search-light@icedman.github.com"
         ];
         favourite-apps = [
