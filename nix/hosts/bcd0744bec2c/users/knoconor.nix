@@ -17,7 +17,7 @@ with lib;
       defaultBranch = "mainline";
       email = "knoconor@amazon.com";
     };
-    cli.multiplexers.zellij.enableAutoStart = false;
+    cli.multiplexers.zellij.enable = mkForce false;
     home = {
       stateVersion = "25.05";
     };
