@@ -18,19 +18,11 @@ in
   };
 
   config = mkIf cfg.enable {
-    # for autologin support
-    systemd.services."getty@tty1".enable = false;
-    systemd.services."autovt@tty1".enable = false;
-
     services = {
       xserver = {
         enable = true;
         displayManager = {
           gdm.enable = true;
-          autoLogin = {
-            enable = true;
-            user = config.user.name;
-          };
         };
         desktopManager.gnome = {
           enable = true;

@@ -13,8 +13,10 @@
     wl-clipboard
   ];
 
+  security.yubikey.enable = true;
   imports = [
     flake.nixosModules.desktop
     flake.nixosModules.hardware
+    flake.nixosModules.security
   ];
 }
