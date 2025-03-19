@@ -45,6 +45,8 @@ with lib;
     neededForUsers = true;
   };
 
+  security.hardening.enable = true;
+
   user = {
     name = "conor";
     extraOptions = {

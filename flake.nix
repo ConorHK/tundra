@@ -57,6 +57,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+   nix-mineral = {
+    url = "github:cynicsketch/nix-mineral/v0.1.6-alpha";
+    flake = false;
+   };
+
   };
 
   outputs =

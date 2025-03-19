@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./hardening
     ./sops
     ./yubikey
   ];
