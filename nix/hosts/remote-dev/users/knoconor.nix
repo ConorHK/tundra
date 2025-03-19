@@ -16,6 +16,8 @@ with lib;
   };
   system.xdg.enable = true;
 
+  cli.multiplexers.zellij.enableAutoStart = true;
+
   # nixpkgs = {
   #   config = {
   #     allowUnfree = mkDefault true;
