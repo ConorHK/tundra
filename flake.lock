@@ -738,6 +738,23 @@
         "type": "github"
       }
     },
+    "nix-mineral": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1722545506,
+        "narHash": "sha256-3RnP8mfFhV+hOfkTk35zd1nYiUliaoGw0VFq9pd9ykM=",
+        "owner": "cynicsketch",
+        "repo": "nix-mineral",
+        "rev": "cfaf4cf15c7e6dc7f882c471056b57ea9ea0ee61",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cynicsketch",
+        "ref": "v0.1.6-alpha",
+        "repo": "nix-mineral",
+        "type": "github"
+      }
+    },
     "nixCats": {
       "locked": {
         "lastModified": 1742355177,
@@ -1062,6 +1079,7 @@
         "impermanence": "impermanence",
         "lanzaboote": "lanzaboote",
         "nix-index-database": "nix-index-database",
+        "nix-mineral": "nix-mineral",
         "nixcord": "nixcord",
         "nixos-facter-modules": "nixos-facter-modules",
         "nixpkgs": "nixpkgs_7",

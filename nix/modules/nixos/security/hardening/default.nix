@@ -26,7 +26,7 @@ in
       desktop.allow-multilib.enable = true;
       desktop.allow-unprivileged-userns.enable = true;
       desktop.home-exec.enable = true;
-      usbguard-gnome-integr.ation.enable = true;
+      usbguard-gnome-integration.enable = true;
       desktop.yama-relaxed.enable = true;
       security.disable-intelme-kmodules.enable = true;
     };
