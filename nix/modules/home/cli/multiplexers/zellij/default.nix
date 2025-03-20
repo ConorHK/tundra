@@ -153,6 +153,10 @@ in
         resize {
           bind "Esc" { SwitchToMode "Normal"; }
           bind "Enter" { SwitchToMode "Normal"; }
+          bind "Left" "h" { Resize "Increase Left"; }
+          bind "Right" "l" { Resize "Increase Right"; }
+          bind "Up" "k" { Resize "Increase Up"; }
+          bind "Down" "j" { Resize "Increase Down"; }
         }
         move {
           bind "Esc" { SwitchToMode "Normal"; }
