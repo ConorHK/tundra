@@ -1,5 +1,4 @@
-{ flake, lib, inputs, ... }:
-with lib;
+{ flake, inputs, ... }:
 {
   imports = [
     flake.homeModules.common-role
@@ -20,10 +19,10 @@ with lib;
 
   programs.zsh = {
   initExtraFirst = ''
-      . "$HOME/.local/share/amazon-q/shell/zshrc.pre.zsh"
+      . "$HOME/.local/share/amazon-q/shell/zprofile.pre.zsh"
     '';
   initExtra = ''
-      . "$HOME/.local/share/amazon-q/shell/zshrc.post.zsh"
+      . "$HOME/.local/share/amazon-q/shell/zprofile.post.zsh"
     '';
   };
 }
