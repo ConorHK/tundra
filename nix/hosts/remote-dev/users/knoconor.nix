@@ -18,10 +18,12 @@ with lib;
 
   cli.multiplexers.zellij.enableAutoStart = true;
 
-  # nixpkgs = {
-  #   config = {
-  #     allowUnfree = mkDefault true;
-  #     allowUnfreePredicate = _: true;
-  #   };
-  # };
+  programs.zsh = {
+  initExtraFirst = ''
+      . "$HOME/.local/share/amazon-q/shell/zshrc.pre.zsh"
+    '';
+  initExtra = ''
+      . "$HOME/.local/share/amazon-q/shell/zshrc.post.zsh"
+    '';
+  };
 }
