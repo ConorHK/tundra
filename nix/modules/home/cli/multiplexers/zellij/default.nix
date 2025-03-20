@@ -62,6 +62,7 @@ in
     xdg.configFile."zellij/config.kdl".text = ''
       default_shell "zsh"
       default_layout "compact"
+      show_startup_tips false
 
       pane_viewport_serialization true
       scrollback_lines_to_serialize 5000
