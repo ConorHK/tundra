@@ -20,7 +20,8 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       gnome-tweaks
-      gnomeExtensions.search-light
+      gnomeExtensions.pop-shell
+      pop-launcher
     ];
 
     xdg = {
@@ -35,7 +36,7 @@ in
       "org/gnome/shell" = {
         disable-user-extensions = false;
         enabled-extensions = [
-          "search-light@icedman.github.com"
+          "pop-shell@system76.com"
         ];
         favourite-apps = [
           "firefox.desktop"
@@ -44,6 +45,10 @@ in
       };
       "org/gnome/desktop/interface" = {
         enable-hot-corners = false;
+      };
+      "org/gnome/shell/extensions/pop-shell" = {
+        tile-by-default = true;
+        activate-launcher = [ "<Super>space" ];
       };
       "org/gnome/desktop/wm/keybindings" = {
         close = [ "<Shift><Super>q" ];
@@ -56,9 +61,6 @@ in
       "org/gnome/mutter" = {
         edge-tiling = true;
         dynamic-workspaces = true;
-      };
-      "org/gnome/shell/extensions/search-light" = {
-        shortcut-search = [ "<Super>Space" ];
       };
       "org/gnome/desktop/wm/keybindings" = {
         switch-input-source = [ ];

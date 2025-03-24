@@ -33,6 +33,10 @@ in
       };
       udev.packages = with pkgs; [ gnome-settings-daemon ];
     };
+    # environment.systemPackage = with pkgs; 
+    #   [
+    #     gnomeExtensions.pop-shell 
+    #   ];
     environment.gnome.excludePackages = with pkgs; [
       gnome-photos
       gnome-tour
