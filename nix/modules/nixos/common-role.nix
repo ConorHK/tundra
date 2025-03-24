@@ -16,7 +16,7 @@ with lib;
     inputs.home-manager.nixosModules.default
   ];
 
-  environment.defaultPackages = mkForce [];
+  environment.defaultPackages = mkForce [ ];
   home-manager = {
     extraSpecialArgs.inputs = inputs;
     useGlobalPkgs = true;

@@ -50,10 +50,11 @@ in
       sesh
     ];
 
-
-    programs.zsh.initExtra = mkIf cfg.enableAutoStart (mkOrder 200 ''
-      ${sesh}/bin/sesh
-    '');
+    programs.zsh.initExtra = mkIf cfg.enableAutoStart (
+      mkOrder 200 ''
+        ${sesh}/bin/sesh
+      ''
+    );
 
     programs.zellij = {
       enableZshIntegration = false;

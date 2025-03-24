@@ -18,10 +18,10 @@
   cli.multiplexers.zellij.enableAutoStart = true;
 
   programs.zsh = {
-  initExtraFirst = ''
+    initExtraFirst = ''
       . "$HOME/.local/share/amazon-q/shell/zprofile.pre.zsh"
     '';
-  initExtra = ''
+    initExtra = ''
       . "$HOME/.local/share/amazon-q/shell/zprofile.post.zsh"
     '';
   };
