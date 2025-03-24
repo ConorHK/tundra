@@ -69,13 +69,13 @@ with lib;
         };
 
         serif = {
-          name = "Noto Serif";
-          package = pkgs.noto-fonts;
+          name = "SFProDisplay Nerd Font";
+          package = perSystem.apple-fonts.sf-pro-nerd;
         };
 
         sansSerif = {
-          name = "Noto Sans";
-          package = pkgs.noto-fonts;
+          name = "SFProDisplay Nerd Font";
+          package = perSystem.apple-fonts.sf-pro-nerd;
         };
 
         monospace = {
