@@ -33,10 +33,10 @@ in
       };
       udev.packages = with pkgs; [ gnome-settings-daemon ];
     };
-    # environment.systemPackage = with pkgs; 
-    #   [
-    #     gnomeExtensions.pop-shell 
-    #   ];
+
+    services.gnome.gnome-keyring.enable = true;
+    security.pam.services.gdm.enableGnomeKeyring = true;
+
     environment.gnome.excludePackages = with pkgs; [
       gnome-photos
       gnome-tour
