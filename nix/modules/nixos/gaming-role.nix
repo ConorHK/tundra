@@ -41,6 +41,7 @@
     winetricks
     wineWowPackages.waylandFull
     adwsteamgtk
+    heroic
   ];
 
   services.udev.packages = with pkgs; [
