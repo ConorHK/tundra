@@ -41,6 +41,7 @@ with lib;
       bbra = "bbr apollo-pkg";
       bbdev = "brazil-build develop";
       bb = "brazil-build";
+      mcurl = "curl -L --cookie ~/.midway/cookie --cookie-jar ~/.midway/cookie";
     };
   };
 
