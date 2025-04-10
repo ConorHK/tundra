@@ -1,8 +1,9 @@
-{ flake, ... }:
+{ flake, inputs, ... }:
 {
   imports = [
     flake.homeModules.common-role
     flake.homeModules.development-role
+    inputs.stylix.homeManagerModules.stylix
   ];
 
   config = {
