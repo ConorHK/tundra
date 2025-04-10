@@ -48,6 +48,7 @@ in
     home.packages = [
       pkgs.fzf
       sesh
+      pkgs.zellij
     ];
 
     programs.zsh.initExtra = mkIf cfg.enableAutoStart (
@@ -56,10 +57,6 @@ in
       ''
     );
 
-    programs.zellij = {
-      enableZshIntegration = false;
-      enable = true;
-    };
     xdg.configFile."zellij/config.kdl".text = ''
       default_shell "zsh"
       default_layout "compact"
