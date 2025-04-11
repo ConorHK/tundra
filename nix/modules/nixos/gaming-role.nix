@@ -47,4 +47,8 @@
   services.udev.packages = with pkgs; [
     game-devices-udev-rules
   ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "dotnet-runtime-7.0.20"
+  ];
 }

@@ -46,17 +46,38 @@ in
       "org/gnome/desktop/interface" = {
         enable-hot-corners = false;
       };
-      "org/gnome/shell/extensions/pop-shell" = {
-        tile-by-default = true;
-        activate-launcher = [ "<Super>space" ];
-      };
       "org/gnome/mutter" = {
         edge-tiling = true;
         dynamic-workspaces = true;
       };
       "org/gnome/desktop/wm/keybindings" = {
-        switch-input-source = [ ];
-        switch-input-source-backward = [ ];
+        activate-window-menu = ["disabled"];
+        toggle-message-tray = ["disabled"];
+        close = "['<Super>q', '<Alt>F4']";
+        maximize = ["disabled"];
+        minimize = "['<Super>comma']";
+        move-to-monitor-down = ["disabled"];
+        move-to-monitor-left = ["disabled"];
+        move-to-monitor-right = ["disabled"];
+        move-to-monitor-up = ["disabled"];
+        move-to-workspace-down = ["disabled"];
+        move-to-workspace-up = ["disabled"];
+        switch-to-workspace-left = ["<Super>bracketleft"];
+        switch-to-workspace-right = ["<Super>bracketright"];
+        switch-input-source = ["disabled"];
+        switch-input-source-backward = ["disabled"];
+        toggle-maximized = ["<Super>Up"];
+        unmaximize = ["disabled"];
+      };
+      "org/gnome/desktop/wm/preferences" = {
+        button-layout = "close,minimize,maximize:appmenu";
+        num-workspaces = 10;
+      };
+      "org/gnome/shell/extensions/pop-shell" = {
+        focus-right = ["disabled"];
+        tile-by-default = true;
+        tile-enter = ["disabled"];
+        activate-launcher = [ "<Super>space" ];
       };
       "org/gnome/desktop/peripherals/mouse".accel-profile = "flat";
     };
