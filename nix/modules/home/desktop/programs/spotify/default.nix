@@ -2,13 +2,11 @@
   inputs,
   config,
   lib,
-  perSystem,
   ...
 }:
 with lib;
 let
   cfg = config.desktop.programs.spotify;
-  spicePkgs = perSystem.spicetify-nix;
 in
 {
   imports = [
@@ -25,7 +23,6 @@ in
   config = mkIf cfg.enable {
     programs.spicetify = {
       enable = true;
-      theme = mkForce spicePkgs.themes.text;
     };
   };
 }
