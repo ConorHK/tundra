@@ -93,7 +93,11 @@ in
           [ "$IN_NIX_SHELL" ] && echo "''${color_prompt}in nix shell "
         }
 
-        PROMPT='%B$(ssh_prompt)%b$(nix_prompt)%B%F{15}%(5~|%-1|%3~|%4~) %b$(git_prompt) ''${color_prompt}──── ─''${color_normal} '
+        aws_prompt() {
+          [ "$AWS_PROFILE" ] && echo "''${color_prompt}in ''${AWS_PROFILE_SHORT:-aws} shell "
+        }
+
+        PROMPT='%B$(ssh_prompt)%b$(nix_prompt)$(aws_prompt)%B%F{15}%(5~|%-1|%3~|%4~) %b$(git_prompt) ''${color_prompt}──── ─''${color_normal} '
       '';
 
       shellAliases = {
