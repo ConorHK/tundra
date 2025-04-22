@@ -20,8 +20,7 @@ with lib;
       { config.facter.reportPath = ./facter.json; }
 
       flake.nixosModules.common-role
-      flake.nixosModules.desktop-role
-      flake.nixosModules.gaming-role
+      # flake.nixosModules.desktop-role
     ];
 
   hardware = {
