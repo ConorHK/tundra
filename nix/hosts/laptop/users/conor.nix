@@ -23,7 +23,7 @@ with lib.hm.gvariant;
       defaultBranch = "main";
       email = "dev@conorknowles.com";
     };
-    styles.stylix.enableHome = false;
+    styles.stylix.enableHome = true;
 
     dconf.settings = {
       "org/gnome/desktop/input-sources" = {

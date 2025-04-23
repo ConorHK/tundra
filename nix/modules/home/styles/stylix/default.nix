@@ -20,6 +20,11 @@ with lib;
     stylix = {
       enable = true;
       autoEnable = true;
+      targets = {
+        firefox = mkIf config.desktop.programs.firefox.enable {
+          profileNames = [ "default" ];
+        };
+      };
       base16Scheme = {
         base00 = "#1c1c1c";
         base01 = "#262626";

@@ -16,7 +16,7 @@ in
     };
     keyboard = mkOption {
       default = "us";
-      type = with types; string;
+      type = with types; str;
       description = "set default keyboard locale";
     };
   };
