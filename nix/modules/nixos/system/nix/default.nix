@@ -18,8 +18,8 @@ in
 
   config = mkIf cfg.enable {
     nix = {
-      allowedUsers = [ "@wheel" ];
       settings = {
+        allowed-users = [ "@wheel" ];
         trusted-users = [
           "@wheel"
           "root"
