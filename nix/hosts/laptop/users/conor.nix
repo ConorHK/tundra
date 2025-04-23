@@ -1,4 +1,4 @@
-{ flake, lib,... }:
+{ flake, lib, ... }:
 with lib.hm.gvariant;
 {
   imports = [
@@ -28,8 +28,14 @@ with lib.hm.gvariant;
     dconf.settings = {
       "org/gnome/desktop/input-sources" = {
         sources = [
-          (mkTuple ["xkb" "ie"])
-          (mkTuple ["xkb" "us"])
+          (mkTuple [
+            "xkb"
+            "ie"
+          ])
+          (mkTuple [
+            "xkb"
+            "us"
+          ])
         ];
       };
     };

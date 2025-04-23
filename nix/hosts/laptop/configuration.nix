@@ -9,19 +9,19 @@
 
 with lib;
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
 
-      ./disks.nix
-      inputs.disko.nixosModules.disko
+    ./disks.nix
+    inputs.disko.nixosModules.disko
 
-      inputs.nixos-facter-modules.nixosModules.facter
-      { config.facter.reportPath = ./facter.json; }
+    inputs.nixos-facter-modules.nixosModules.facter
+    { config.facter.reportPath = ./facter.json; }
 
-      flake.nixosModules.common-role
-      flake.nixosModules.desktop-role
-    ];
+    flake.nixosModules.common-role
+    flake.nixosModules.desktop-role
+  ];
 
   hardware = {
     bluetooth = {

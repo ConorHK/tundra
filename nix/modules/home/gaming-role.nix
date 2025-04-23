@@ -82,6 +82,6 @@
   home.packages = with pkgs; [
     lutris
     bottles
-    vintagestory  # TODO: move
+    vintagestory # TODO: move
   ];
 }
