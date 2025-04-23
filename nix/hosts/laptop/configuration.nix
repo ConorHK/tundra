@@ -20,7 +20,7 @@ with lib;
       { config.facter.reportPath = ./facter.json; }
 
       flake.nixosModules.common-role
-      # flake.nixosModules.desktop-role
+      flake.nixosModules.desktop-role
     ];
 
   hardware = {
@@ -32,7 +32,6 @@ with lib;
   system.impermanence.enable = false;
   system.boot = {
     plymouth = true;
-    secureBoot = true;
   };
 
   # sops.secrets."passwords/${config.networking.hostName}/${config.user.name}" = {
@@ -48,7 +47,7 @@ with lib;
     };
   };
 
-  networking.hostName = "desktop";
+  networking.hostName = "laptop";
 
   boot = {
     supportedFilesystems = mkForce [ "btrfs" ];
