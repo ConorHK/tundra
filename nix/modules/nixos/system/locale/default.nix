@@ -31,13 +31,11 @@ in
         LC_TIME = "en_IE.UTF-8";
       };
     };
-    time.timeZone = "Europe/London";
+    time.timeZone = "Europe/Dublin";
 
-    # Configure keymap in X11
     services.xserver = {
-      xkb.layout = "us";
+      xkb.layout = mkDefault "us";
     };
-    # Configure console keymap
-    console.keyMap = "us";
+    console.keyMap = mkDefault "us";
   };
 }

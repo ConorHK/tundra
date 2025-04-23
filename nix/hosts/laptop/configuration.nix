@@ -53,5 +53,13 @@ with lib;
     supportedFilesystems = mkForce [ "btrfs" ];
     kernelPackages = pkgs.linuxPackages_latest;
   };
+
+  services.xserver = {
+    xkb.layout = "gb";
+  };
+  console = {
+    useXkbConfig = true;
+  };
+
   system.stateVersion = "25.05";
 }
