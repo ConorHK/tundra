@@ -15,7 +15,7 @@ with lib.hm.gvariant;
       stateVersion = "25.05";
     };
     cli.programs.ssh.extraHosts.server = {
-      hostname = "goosebox.org";
+      hostname = "server.goat-lionfish.ts.net";
       user = "mustang";
       port = 22;
     };
