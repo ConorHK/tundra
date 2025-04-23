@@ -1,4 +1,5 @@
-{ flake, ... }:
+{ flake, lib,... }:
+with lib.hm.gvariant;
 {
   imports = [
     flake.homeModules.common-role
@@ -23,6 +24,15 @@
       email = "dev@conorknowles.com";
     };
     styles.stylix.enableHome = false;
+
+    dconf.settings = {
+      "org/gnome/desktop/input-sources" = {
+        sources = [
+          (mkTuple ["xkb" "ie"])
+          (mkTuple ["xkb" "us"])
+        ];
+      };
+    };
   };
 
 }
