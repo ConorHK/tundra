@@ -14,6 +14,11 @@ in
       type = with types; bool;
       description = "enable system locale configuration";
     };
+    keyboard = mkOption {
+      default = "us";
+      type = with types; string;
+      description = "set default keyboard locale";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -34,8 +39,8 @@ in
     time.timeZone = "Europe/Dublin";
 
     services.xserver = {
-      xkb.layout = mkDefault "us";
+      xkb.layout = cfg.keyboard;
     };
-    console.keyMap = mkDefault "us";
+    console.useXkbConfig = true;
   };
 }

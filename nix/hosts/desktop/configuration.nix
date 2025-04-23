@@ -27,6 +27,11 @@ with lib;
     flake.nixosModules.gaming-role
   ];
 
+  common-role = {
+    enable = true;
+    styling = true;
+  };
+
   hardware = {
     bluetooth = {
       enable = true;
@@ -34,7 +39,6 @@ with lib;
     logitechMouse.enable = true;
   };
 
-  system.impermanence.enable = false;
   system.boot = {
     plymouth = true;
     secureBoot = true;

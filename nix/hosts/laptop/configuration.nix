@@ -23,15 +23,16 @@ with lib;
     flake.nixosModules.desktop-role
   ];
 
-  hardware = {
-    bluetooth = {
-      enable = true;
-    };
+  common-role = {
+    enable = true;
+    styling = true;
   };
 
-  system.impermanence.enable = false;
-  system.boot = {
-    plymouth = true;
+  hardware.bluetooth.enable = true;
+
+  system = {
+    boot.plymouth = true;
+    locale.keyboard = "gb";
   };
 
   # sops.secrets."passwords/${config.networking.hostName}/${config.user.name}" = {
@@ -42,7 +43,7 @@ with lib;
   user = {
     name = "conor";
     extraOptions = {
-      description = "admin";
+      description = "Conor";
       uid = 1000;
     };
   };
@@ -52,13 +53,6 @@ with lib;
   boot = {
     supportedFilesystems = mkForce [ "btrfs" ];
     kernelPackages = pkgs.linuxPackages_latest;
-  };
-
-  services.xserver = {
-    xkb.layout = "gb";
-  };
-  console = {
-    useXkbConfig = true;
   };
 
   system.stateVersion = "25.05";

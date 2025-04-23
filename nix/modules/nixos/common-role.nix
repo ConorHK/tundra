@@ -1,9 +1,13 @@
 {
+  config,
   inputs,
   flake,
   lib,
   ...
 }:
+let
+  cfg = config.common-role;
+in
 with lib;
 {
   imports = [
@@ -16,29 +20,44 @@ with lib;
     inputs.home-manager.nixosModules.default
   ];
 
-  environment.defaultPackages = mkForce [ ];
-  home-manager = {
-    extraSpecialArgs.inputs = inputs;
-    useGlobalPkgs = true;
-    useUserPackages = true;
-  };
-  nixpkgs.config.allowUnfree = true;
-
-  security = {
-    sudo = {
-      wheelNeedsPassword = false;
-      execWheelOnly = true;
+  options.common-role = {
+    enable = mkOption {
+      default = false;
+      type = with types; bool;
+      description = "enable common role";
     };
-    sops.enable = true;
+    styling = mkOption {
+      default = false;
+      type = with types; bool;
+      description = "enable nixos styling";
+    };
   };
 
-  system = {
-    nix.enable = true;
-    boot.enable = true;
-    locale.enable = true;
-    tailscale.enable = true;
-  };
+  config = mkIf cfg.enable {
+    environment.defaultPackages = mkForce [ ];
+    home-manager = {
+      extraSpecialArgs.inputs = inputs;
+      useGlobalPkgs = true;
+      useUserPackages = true;
+    };
+    nixpkgs.config.allowUnfree = true;
 
-  hardware.networking.enable = true;
-  styles.stylix.enableNixOs = true;
+    security = {
+      sudo = {
+        wheelNeedsPassword = false;
+        execWheelOnly = true;
+      };
+      sops.enable = true;
+    };
+
+    system = {
+      nix.enable = true;
+      boot.enable = true;
+      locale.enable = true;
+      tailscale.enable = true;
+    };
+
+    hardware.networking.enable = true;
+    styles.stylix.enableNixOs = optionals cfg.styling true;
+  };
 }
