@@ -40,6 +40,7 @@ with lib;
   #   neededForUsers = true;
   # };
 
+  users.mutableUsers = true;
   user = {
     name = "conor";
     extraOptions = {
