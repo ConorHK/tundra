@@ -5,6 +5,8 @@
 }:
 let
   cfg = config.styles.stylix;
+  haveDesktop = builtins.hasAttr "desktop" config;
+  wantFirefox = haveDesktop && config.desktop.programs.firefox.enable;
 in
 with lib;
 {
@@ -21,7 +23,7 @@ with lib;
       enable = true;
       autoEnable = true;
       targets = {
-        firefox = mkIf config.desktop.programs.firefox.enable {
+        firefox = mkIf wantFirefox {
           profileNames = [ "default" ];
         };
       };
