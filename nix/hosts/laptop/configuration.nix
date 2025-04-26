@@ -31,7 +31,6 @@ with lib;
   hardware.bluetooth.enable = true;
 
   system = {
-    boot.plymouth = true;
     locale.keyboard = "gb";
   };
 
