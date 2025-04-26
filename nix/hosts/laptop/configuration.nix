@@ -32,6 +32,7 @@ with lib;
 
   system = {
     locale.keyboard = "gb";
+    boot.secureBoot = true;
   };
 
   # sops.secrets."passwords/${config.networking.hostName}/${config.user.name}" = {
