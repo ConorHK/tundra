@@ -6,6 +6,7 @@
   ];
 
   config = {
+    roles.home.development.enable = true;
     cli.programs.ssh = {
       extraHosts.fuji = {
         hostname = "fuji";
