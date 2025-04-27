@@ -2,12 +2,14 @@
 with lib.hm.gvariant;
 {
   imports = [
-    flake.homeModules.common-role
-    flake.homeModules.development-role
-    flake.homeModules.desktop-role
+    flake.homeModules.roles
   ];
 
   config = {
+    roles.home = {
+      development.enable = true;
+      desktop.enable = true;
+    };
     home = {
       sessionVariables = {
         BROWSER = "firefox";

@@ -6,7 +6,7 @@
   ...
 }:
 let
-  cfg = config.common-role;
+  cfg = config.roles.nixos.common;
 in
 with lib;
 {
@@ -20,7 +20,7 @@ with lib;
     inputs.home-manager.nixosModules.default
   ];
 
-  options.common-role = {
+  options.roles.nixos.common = {
     enable = mkOption {
       default = false;
       type = with types; bool;

@@ -1,8 +1,7 @@
 { flake, inputs, ... }:
 {
   imports = [
-    flake.homeModules.common-role
-    flake.homeModules.development-role
+    flake.homeModules.roles
     inputs.stylix.homeManagerModules.stylix
   ];
 
@@ -13,8 +12,6 @@
       };
       stateVersion = "25.05";
     };
-
-    cli.multiplexers.zellij.enableAutoStart = false;
     cli.programs.ssh = {
       extraHosts.fuji = {
         hostname = "fuji";

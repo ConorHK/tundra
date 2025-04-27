@@ -23,9 +23,9 @@ with lib;
     flake.nixosModules.desktop-role
   ];
 
-  common-role = {
-    enable = true;
-    styling = true;
+  roles.nixos = {
+    common.enable = true;
+    common.styling = true;
   };
 
   hardware.bluetooth.enable = true;

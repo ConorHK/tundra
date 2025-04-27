@@ -1,11 +1,15 @@
 { flake, inputs, ... }:
 {
   imports = [
-    flake.homeModules.common-role
-    flake.homeModules.development-role
-    flake.homeModules.work-role
+    flake.homeModules.roles
     inputs.stylix.homeManagerModules.stylix
   ];
+
+  roles.home = {
+    development.enable = true;
+    work.enable = true;
+  };
+
   home = {
     sessionVariables = {
       HOSTROLE = "dev";

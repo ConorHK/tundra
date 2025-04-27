@@ -7,12 +7,14 @@
 with lib;
 {
   imports = [
-    flake.homeModules.common-role
-    flake.homeModules.development-role
+    flake.homeModules.roles
     inputs.stylix.homeManagerModules.stylix
   ];
 
   config = {
+
+    roles.home.development.enable = true;
+
     cli.programs.git = {
       defaultBranch = "mainline";
       email = "knoconor@amazon.com";

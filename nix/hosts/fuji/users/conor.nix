@@ -1,7 +1,7 @@
 { flake, ... }:
 {
   imports = [
-    flake.homeModules.common-role
+    flake.homeModules.roles
   ];
 
   config = {

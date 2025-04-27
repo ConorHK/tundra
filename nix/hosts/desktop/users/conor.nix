@@ -1,13 +1,17 @@
 { flake, ... }:
 {
   imports = [
-    flake.homeModules.common-role
-    flake.homeModules.development-role
-    flake.homeModules.desktop-role
-    flake.homeModules.gaming-role
+    flake.homeModules.roles
   ];
 
   config = {
+
+    roles.home = {
+      development.enable = true;
+      desktop.enable = true;
+      gaming.enable = true;
+    };
+
     home = {
       sessionVariables = {
         BROWSER = "firefox";

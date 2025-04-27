@@ -27,9 +27,9 @@ with lib;
     flake.nixosModules.gaming-role
   ];
 
-  common-role = {
-    enable = true;
-    styling = true;
+  roles.nixos = {
+    common.enable = true;
+    common.styling = true;
   };
 
   hardware = {
