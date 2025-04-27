@@ -10,7 +10,7 @@ with lib.hm.gvariant;
       development.enable = true;
       desktop.enable = true;
     };
-
+    wayland.windowManager.hyprland.settings.input.keyboard = "gb";
     cli.programs.ssh.extraHosts.server = {
       hostname = "server.goat-lionfish.ts.net";
       user = "mustang";

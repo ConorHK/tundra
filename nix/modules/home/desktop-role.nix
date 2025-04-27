@@ -23,7 +23,7 @@ with lib;
   };
   config = mkIf cfg.enable {
     desktop = {
-      environment.gnome.enable = true;
+      environment.hyprland.enable = true;
       programs = {
         alacritty.enable = true;
         firefox.enable = true;
