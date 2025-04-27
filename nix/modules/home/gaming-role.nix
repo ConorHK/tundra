@@ -96,11 +96,6 @@ with lib;
     home.packages = with pkgs; [
       lutris
       bottles
-      vintagestory # TODO: move
-    ];
-
-    nixpkgs.config.permittedInsecurePackages = [
-      "dotnet-runtime-7.0.20"
     ];
   };
 }
