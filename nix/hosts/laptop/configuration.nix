@@ -1,5 +1,4 @@
 {
-  config,
   inputs,
   flake,
   lib,
@@ -19,14 +18,10 @@ with lib;
     inputs.nixos-facter-modules.nixosModules.facter
     { config.facter.reportPath = ./facter.json; }
 
-    flake.nixosModules.common-role
-    flake.nixosModules.desktop-role
+    flake.nixosModules.roles
   ];
 
-  roles.nixos = {
-    common.enable = true;
-    common.styling = true;
-  };
+  roles.nixos.desktop.enable = true;
 
   hardware.bluetooth.enable = true;
 

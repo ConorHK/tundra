@@ -28,8 +28,8 @@ with lib;
   ];
 
   roles.nixos = {
-    common.enable = true;
-    common.styling = true;
+    desktop.enable = true;
+    gaming.enable = true;
   };
 
   hardware = {

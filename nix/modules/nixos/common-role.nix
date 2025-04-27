@@ -22,14 +22,9 @@ with lib;
 
   options.roles.nixos.common = {
     enable = mkOption {
-      default = false;
+      default = true;
       type = with types; bool;
       description = "enable common role";
-    };
-    styling = mkOption {
-      default = false;
-      type = with types; bool;
-      description = "enable nixos styling";
     };
   };
 
@@ -58,6 +53,6 @@ with lib;
     };
 
     hardware.networking.enable = true;
-    styles.stylix.enableNixOs = optionals cfg.styling true;
+    styles.stylix.enableNixOs = mkDefault true;
   };
 }
