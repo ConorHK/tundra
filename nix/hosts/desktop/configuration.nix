@@ -14,17 +14,13 @@
 with lib;
 {
   imports = [
-    ./hardware-configuration.nix
-
-    ./disks.nix
     inputs.disko.nixosModules.disko
+    ./disks.nix
 
     inputs.nixos-facter-modules.nixosModules.facter
     { config.facter.reportPath = ./facter.json; }
 
-    flake.nixosModules.common-role
-    flake.nixosModules.desktop-role
-    flake.nixosModules.gaming-role
+    flake.nixosModules.roles
   ];
 
   roles.nixos = {
