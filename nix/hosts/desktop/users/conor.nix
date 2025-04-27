@@ -12,12 +12,6 @@
       gaming.enable = true;
     };
 
-    home = {
-      sessionVariables = {
-        BROWSER = "firefox";
-      };
-      stateVersion = "25.05";
-    };
     cli.programs.ssh.extraHosts.server = {
       hostname = "goosebox.org";
       user = "mustang";

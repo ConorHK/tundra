@@ -10,12 +10,7 @@ with lib.hm.gvariant;
       development.enable = true;
       desktop.enable = true;
     };
-    home = {
-      sessionVariables = {
-        BROWSER = "firefox";
-      };
-      stateVersion = "25.05";
-    };
+
     cli.programs.ssh.extraHosts.server = {
       hostname = "server.goat-lionfish.ts.net";
       user = "mustang";

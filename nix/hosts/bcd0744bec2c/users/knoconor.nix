@@ -20,11 +20,7 @@ with lib;
       email = "knoconor@amazon.com";
     };
     cli.multiplexers.zellij.enable = mkForce false;
-    home = {
-      stateVersion = "25.05";
-    };
     cli.programs.ssh.enable = mkForce false;
-    # nix.settings.use-xdg-base-directories = false;
     system.xdg.enableUserDirectories = false;
   };
 }

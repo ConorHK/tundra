@@ -10,13 +10,7 @@
     work.enable = true;
   };
 
-  home = {
-    sessionVariables = {
-      HOSTROLE = "dev";
-      BROWSER = "echo"; # print URLs
-    };
-    stateVersion = "25.05";
-  };
+  home.sessionVariables.HOSTROLE = "dev";
   system.xdg.enable = true;
 
   cli.multiplexers.zellij.enableAutoStart = true;

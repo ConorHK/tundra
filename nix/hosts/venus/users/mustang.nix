@@ -6,12 +6,6 @@
   ];
 
   config = {
-    home = {
-      sessionVariables = {
-        BROWSER = "echo";
-      };
-      stateVersion = "25.05";
-    };
     cli.programs.ssh = {
       extraHosts.fuji = {
         hostname = "fuji";

@@ -27,7 +27,14 @@ with lib;
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ home-manager ];
+    home = {
+      packages = with pkgs; [ home-manager ];
+      sessionVariables = {
+        BROWSER = mkDefault "echo";
+      };
+      stateVersion = "25.05";
+    };
+
     nix = {
       settings = {
         auto-optimise-store = mkDefault true;
