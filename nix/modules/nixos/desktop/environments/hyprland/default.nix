@@ -18,9 +18,20 @@ in
     };
   };
   config = mkIf cfg.enable {
-    programs.hyprland.enable = true;
-    environment.systemPackages = [
-      pkgs.kitty  # TODO: remove possibly
-    ];
+    programs.hyprland = {
+      enable = true;
+      xwayland.enable = true;
+      withUWSM = false;
+    };
+    desktop.programs = {
+      greetd.enable = true;
+      xdgportal.enable = true;
+    };
+    environment = {
+      systemPackages = [
+        pkgs.kitty  # TODO: remove possibly
+      ];
+      sessionVariables.NIXOS_OZONE_WL = "1";
+    };
   };
 }

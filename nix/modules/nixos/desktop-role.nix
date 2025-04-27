@@ -23,7 +23,7 @@ with lib;
     };
   };
   config = mkIf cfg.enable {
-    desktop.environment.gnome.enable = true;
+    desktop.environment.hyprland.enable = true;
     hardware.audio.enable = true;
 
     environment.systemPackages = with pkgs; [
