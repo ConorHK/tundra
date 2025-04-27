@@ -38,7 +38,7 @@ in
       description = "enable zellij multiplexer";
     };
     enableAutoStart = mkOption {
-      default = true;
+      default = false;
       type = with types; bool;
       description = "enable zellij to start in any ZSH shell";
     };
@@ -62,7 +62,7 @@ in
       default_layout "compact"
       show_startup_tips false
 
-      pane_viewport_serialization true
+      pane_viewport_serialization false
       scrollback_lines_to_serialize 5000
 
       ui {
