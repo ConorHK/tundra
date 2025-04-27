@@ -1,5 +1,4 @@
 {
-  inputs,
   config,
   lib,
   ...
@@ -22,7 +21,8 @@ in
       vintagestory
     ];
 
-    nixpkgs.config.permittedInsecurePackages = [  # TODO: this wont work
+    nixpkgs.config.permittedInsecurePackages = [
+      # TODO: this wont work
       "dotnet-runtime-7.0.20"
     ];
   };

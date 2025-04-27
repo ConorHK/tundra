@@ -33,7 +33,7 @@ with lib;
         auto-optimise-store = mkDefault true;
         experimental-features = [
           "nix-command"
-            "flakes"
+          "flakes"
         ];
         use-xdg-base-directories = mkDefault true;
         warn-dirty = mkDefault false;
