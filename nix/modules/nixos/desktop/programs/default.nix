@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    ./gnome
-    ./hyprland
+    ./greetd
+    ./xdgportal
   ];
 }

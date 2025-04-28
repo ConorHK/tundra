@@ -15,15 +15,24 @@ with lib;
     flake.nixosModules.hardware
     flake.nixosModules.security
   ];
-  options.roles.nixos.desktop = {
+  options.roles.nixos.desktop = with types; {
     enable = mkOption {
       default = false;
-      type = with types; bool;
+      type = bool;
       description = "enable desktop role";
+    };
+    windowManager = mkOption {
+      default = "gnome";
+      type = str;
+      description = "window manager to use";
     };
   };
   config = mkIf cfg.enable {
-    desktop.environment.gnome.enable = true;
+    desktop = {
+      environment.gnome.enable = cfg.windowManager == "gnome";
+      environment.hyprland.enable = cfg.windowManager == "hyprland";
+    };
+
     hardware.audio.enable = true;
 
     environment.systemPackages = with pkgs; [
