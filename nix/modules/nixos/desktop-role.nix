@@ -28,7 +28,11 @@ with lib;
     };
   };
   config = mkIf cfg.enable {
-    desktop.environment."${cfg.windowManager}".enable = true;
+    desktop = {
+      environment.gnome.enable = cfg.windowManager == "gnome";
+      environment.hyprland.enable = cfg.windowManager == "hyprland";
+    };
+
     hardware.audio.enable = true;
 
     environment.systemPackages = with pkgs; [

@@ -31,7 +31,6 @@ in
       };
     };
 
-
     xdg = {
       mime.enable = true;
       systemDirs.data = [

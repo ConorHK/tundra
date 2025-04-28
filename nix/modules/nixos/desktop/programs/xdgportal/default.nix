@@ -5,7 +5,7 @@
   ...
 }:
 with lib;
-let 
+let
   cfg = config.desktop.programs.xdgportal;
 in
 {
@@ -21,9 +21,9 @@ in
     xdg.portal = {
       enable = true;
       extraPortals = with pkgs; [
-       xdg-desktop-portal-gtk
-       xdg-desktop-portal-hyprland
-      ];  # TODO: generalize
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-hyprland
+      ]; # TODO: generalize
     };
   };
 }

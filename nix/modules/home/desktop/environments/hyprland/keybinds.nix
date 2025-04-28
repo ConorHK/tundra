@@ -1,9 +1,8 @@
-
 {
   config,
   lib,
   pkgs,
-  ... 
+  ...
 }:
 with lib;
 let
@@ -57,7 +56,8 @@ in
         "SUPER_SHIFT, 9, movetoworkspacesilent,09"
         "SUPER_SHIFT, 0, movetoworkspacesilent,10"
       ];
-      binde = [  # repeat
+      binde = [
+        # repeat
       ];
     };
   };

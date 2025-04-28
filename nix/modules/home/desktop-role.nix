@@ -27,7 +27,8 @@ with lib;
   };
   config = mkIf cfg.enable {
     desktop = {
-      environment."${cfg.windowManager}".enable = true;
+      environment.gnome.enable = cfg.windowManager == "gnome";
+      environment.hyprland.enable = cfg.windowManager == "hyprland";
       programs = {
         alacritty.enable = true;
         firefox.enable = true;

@@ -1,8 +1,7 @@
-
 {
   config,
   lib,
-  ... 
+  ...
 }:
 with lib;
 let
@@ -40,12 +39,12 @@ in
       wlsunset.enable = true;
     };
     programs = {
-      kitty.enable = true;  # TODO: possibly remove
+      kitty.enable = true; # TODO: possibly remove
     };
     wayland.windowManager.hyprland = {
       enable = true;
       # set the Hyprland and XDPH packages to null to use the ones from the NixOS module
-      package = mkIf (!cfg.standalone) null; 
+      package = mkIf (!cfg.standalone) null;
       portalPackage = mkIf (!cfg.standalone) null;
       systemd = {
         variables = mkIf (!cfg.standalone) [ "--all" ];
@@ -56,8 +55,11 @@ in
       settings = {
         input.kb_layout = mkDefault "us";
         decoration.rounding = 5;
-        misc = let FULLSCREEN_ONLY = 2;
-          in {
+        misc =
+          let
+            FULLSCREEN_ONLY = 2;
+          in
+          {
             vrr = FULLSCREEN_ONLY;
             disable_hyprland_logo = true;
             disable_splash_rendering = true;

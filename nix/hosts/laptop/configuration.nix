@@ -30,7 +30,6 @@ with lib;
     boot.secureBoot = true;
   };
 
-
   # sops.secrets."passwords/${config.networking.hostName}/${config.user.name}" = {
   #   sopsFile = ../secrets.yaml;
   #   neededForUsers = true;

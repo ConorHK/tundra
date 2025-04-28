@@ -8,7 +8,7 @@ let
   cfg = config.desktop.programs.wlsunset;
 in
 {
-  options.desktop.programs.wlsunset =  {
+  options.desktop.programs.wlsunset = {
     enable = mkOption {
       default = false;
       type = with types; bool;

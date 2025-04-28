@@ -1,9 +1,8 @@
-
 {
   config,
   pkgs,
   lib,
-  ... 
+  ...
 }:
 with lib;
 let
@@ -27,11 +26,6 @@ in
       greetd.enable = true;
       xdgportal.enable = true;
     };
-    environment = {
-      systemPackages = [
-        pkgs.kitty  # TODO: remove possibly
-      ];
-      sessionVariables.NIXOS_OZONE_WL = "1";
-    };
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
   };
 }

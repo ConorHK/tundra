@@ -1,7 +1,7 @@
 {
   config,
   lib,
-  ... 
+  ...
 }:
 with lib;
 let
@@ -11,30 +11,30 @@ in
   options.desktop.environment.hyprland = with types; {
     monitors = mkOption {
       type = listOf (submodule {
-          options = {
+        options = {
           name = mkOption {
-          type = str;
-          description = "monitor name/identifier";
-          default = "";
+            type = str;
+            description = "monitor name/identifier";
+            default = "";
           };
           resolution = mkOption {
-          type = str;
-          description = "monitor resolution";
-          default = "preferred";
+            type = str;
+            description = "monitor resolution";
+            default = "preferred";
           };
           position = mkOption {
-          type = str;
-          description = "monitor position (e.g. '0,0')";
-          default = "auto";
+            type = str;
+            description = "monitor position (e.g. '0,0')";
+            default = "auto";
           };
           scale = mkOption {
-          type = str;
-          description = "monitor scaling factor";
-          default = "auto";
+            type = str;
+            description = "monitor scaling factor";
+            default = "auto";
           };
-          };
+        };
       });
-      default = [];
+      default = [ ];
       description = "Hyprland monitor configurations";
     };
   };
@@ -43,5 +43,5 @@ in
     wayland.windowManager.hyprland.settings = {
       monitor = map (m: "${m.name},${m.resolution},${m.position},${m.scale}") cfg.monitors;
     };
-};
+  };
 }

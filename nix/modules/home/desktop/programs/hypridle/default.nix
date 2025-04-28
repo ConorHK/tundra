@@ -8,7 +8,7 @@ let
   cfg = config.desktop.programs.hypridle;
 in
 {
-  options.desktop.programs.hypridle =  {
+  options.desktop.programs.hypridle = {
     enable = mkOption {
       default = false;
       type = with types; bool;
@@ -16,7 +16,7 @@ in
     };
   };
   config = mkIf cfg.enable {
-   services.hypridle = {
+    services.hypridle = {
       enable = true;
       settings = {
         general = {

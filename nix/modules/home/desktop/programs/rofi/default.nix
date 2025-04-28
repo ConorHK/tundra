@@ -9,7 +9,7 @@ let
   cfg = config.desktop.programs.rofi;
 in
 {
-  options.desktop.programs.rofi =  {
+  options.desktop.programs.rofi = {
     enable = mkOption {
       default = false;
       type = with types; bool;

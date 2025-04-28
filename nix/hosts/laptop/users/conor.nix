@@ -14,12 +14,12 @@ with lib.hm.gvariant;
       };
     };
     wayland.windowManager.hyprland.settings.input.kb_layout = "gb";
-    desktop.environment.hyprland.monitors = [ 
+    desktop.environment.hyprland.monitors = [
       {
-      name = "eDP-1";
-      resolution = "1920x1080@60";
-      scale = "1";
-      position = "0x0";
+        name = "eDP-1";
+        resolution = "1920x1080@60";
+        scale = "1";
+        position = "0x0";
       }
     ];
 

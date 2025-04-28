@@ -8,7 +8,7 @@ let
   cfg = config.desktop.programs.wlogout;
 in
 {
-  options.desktop.programs.wlogout =  {
+  options.desktop.programs.wlogout = {
     enable = mkOption {
       default = false;
       type = with types; bool;
@@ -16,7 +16,7 @@ in
     };
   };
   config = mkIf cfg.enable {
-  programs.wlogout = {
+    programs.wlogout = {
       enable = true;
       layout = [
         {
@@ -57,5 +57,5 @@ in
         }
       ];
     };
-    };
+  };
 }
