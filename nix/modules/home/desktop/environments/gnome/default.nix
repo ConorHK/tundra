@@ -24,12 +24,45 @@ in
       pop-launcher
     ];
 
+    systemd.user.targets.tray = {
+      Unit = {
+        Description = "Home Manager System Tray";
+        Requires = [ "graphical-session-pre.target" ];
+      };
+    };
+
+
     xdg = {
       mime.enable = true;
       systemDirs.data = [
         "${config.home.homeDirectory}/.nix-profile/share/applications"
         "${config.home.homeDirectory}/state/nix/profile/share/applications"
       ];
+      mimeApps = {
+        enable = true;
+        associations.added = {
+          "video/mp4" = [ "org.gnome.Totem.desktop" ];
+          "video/quicktime" = [ "org.gnome.Totem.desktop" ];
+          "video/webm" = [ "org.gnome.Totem.desktop" ];
+          "video/x-matroska" = [ "org.gnome.Totem.desktop" ];
+          "image/gif" = [ "org.gnome.Loupe.desktop" ];
+          "image/png" = [ "org.gnome.Loupe.desktop" ];
+          "image/jpg" = [ "org.gnome.Loupe.desktop" ];
+          "image/jpeg" = [ "org.gnome.Loupe.desktop" ];
+        };
+        defaultApplications = {
+          "audio/*" = [ "mpv.desktop" ];
+          "video/*" = [ "org.gnome.Totem.desktop" ];
+          "video/mp4" = [ "org.gnome.Totem.desktop" ];
+          "video/x-matroska" = [ "org.gnome.Totem.desktop" ];
+          "image/*" = [ "org.gnome.loupe.desktop" ];
+          "image/png" = [ "org.gnome.loupe.desktop" ];
+          "image/jpg" = [ "org.gnome.loupe.desktop" ];
+          "application/json" = [ "gnome-text-editor.desktop" ];
+          "application/toml" = "org.gnome.TextEditor.desktop";
+          "text/plain" = "org.gnome.TextEditor.desktop";
+        };
+      };
     };
     targets.genericLinux.enable = true;
     dconf.settings = {

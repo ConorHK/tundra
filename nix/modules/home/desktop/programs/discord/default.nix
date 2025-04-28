@@ -25,5 +25,12 @@ in
     programs.nixcord = {
       enable = true;
     };
+    xdg = {
+      mimeApps = {
+        defaultApplications = {
+          "x-scheme-handler/discord" = [ "discord.desktop" ];
+        };
+      };
+    };
   };
 }

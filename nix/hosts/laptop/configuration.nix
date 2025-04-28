@@ -18,7 +18,10 @@ with lib;
     flake.nixosModules.roles
   ];
 
-  roles.nixos.desktop.enable = true;
+  roles.nixos.desktop = {
+    enable = true;
+    windowManager = "hyprland";
+  };
 
   hardware.bluetooth.enable = true;
 
@@ -26,6 +29,7 @@ with lib;
     locale.keyboard = "gb";
     boot.secureBoot = true;
   };
+
 
   # sops.secrets."passwords/${config.networking.hostName}/${config.user.name}" = {
   #   sopsFile = ../secrets.yaml;

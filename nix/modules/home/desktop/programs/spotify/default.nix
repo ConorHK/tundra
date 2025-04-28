@@ -24,5 +24,12 @@ in
     programs.spicetify = {
       enable = true;
     };
+    xdg = {
+      mimeApps = {
+        defaultApplications = {
+          "x-scheme-handler/spotify" = [ "spotify.desktop" ];
+        };
+      };
+    };
   };
 }
