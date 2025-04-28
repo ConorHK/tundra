@@ -11,6 +11,14 @@ with lib.hm.gvariant;
       desktop.enable = true;
     };
     wayland.windowManager.hyprland.settings.input.kb_layout = "gb";
+    desktop.environment.hyprland.monitors = [ 
+      {
+      name = "eDP-1";
+      resolution = "1920x1080@60";
+      scale = "1";
+      position = "0x0";
+      }
+    ];
     cli.programs.ssh.extraHosts.server = {
       hostname = "server.goat-lionfish.ts.net";
       user = "mustang";

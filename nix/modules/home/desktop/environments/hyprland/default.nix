@@ -11,7 +11,7 @@ in
 {
   imports = [
     ./keybinds.nix
-    # ./monitors.nix
+    ./monitors.nix
   ];
   options.desktop.environment.hyprland = {
     enable = mkOption {
