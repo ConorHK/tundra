@@ -2,6 +2,7 @@
 {
   config,
   lib,
+  pkgs,
   ... 
 }:
 with lib;
@@ -12,7 +13,7 @@ in
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland.settings = {
       bind = [
-        "SUPER, Space, exec, ${config.desktops.addons.rofi.package}/bin/rofi -show drun -mode drun"
+        "SUPER, Space, exec, rofi -show drun -mode drun"
         "SUPER, Return, exec, alacritty"
         "SUPER, x, exec, ${pkgs.hyprlock}/bin/hyprlock"
         "SUPER_SHIFT, F, exec, firefox"

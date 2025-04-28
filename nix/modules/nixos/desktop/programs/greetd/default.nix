@@ -21,7 +21,7 @@ in
       enable = true;
       settings = rec {
         default_session = {
-          command = "Hyperland &> /dev/null";  # TODO: generalize
+          command = "Hyprland &> /dev/null";  # TODO: generalize
           user = config.user.name;
         };
         initial_session = default_session;

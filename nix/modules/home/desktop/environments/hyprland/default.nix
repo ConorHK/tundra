@@ -9,11 +9,20 @@ let
   cfg = config.desktop.environment.hyprland;
 in
 {
+  imports = [
+    ./keybinds.nix
+    # ./monitors.nix
+  ];
   options.desktop.environment.hyprland = {
     enable = mkOption {
       default = false;
       type = with types; bool;
       description = "enable hyprland desktop environment";
+    };
+    standalone = mkOption {
+      default = false;
+      type = with types; bool;
+      description = "use hyprland in homemanager standalone mode";
     };
   };
   config = mkIf cfg.enable {
@@ -35,7 +44,11 @@ in
     };
     wayland.windowManager.hyprland = {
       enable = true;
+      # set the Hyprland and XDPH packages to null to use the ones from the NixOS module
+      package = mkIf (!cfg.standalone) null; 
+      portalPackage = mkIf (!cfg.standalone) null;
       systemd = {
+        variables = mkIf (!cfg.standalone) [ "--all" ];
         enable = true;
         enableXdgAutostart = true;
       };
