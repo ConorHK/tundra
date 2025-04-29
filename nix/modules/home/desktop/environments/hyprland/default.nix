@@ -57,7 +57,10 @@ in
       xwayland.enable = true;
       settings = {
         input.kb_layout = mkDefault "us";
-        animation = "windows, 1, 3, default, slide";
+        animation = [
+          "windows, 1, 3, default, slide"
+          "workspaces, 0, 1, default, slidefade"
+        ];
         general = {
           gaps_in = 10;
           gaps_out = 8;
