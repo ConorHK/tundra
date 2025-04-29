@@ -11,6 +11,7 @@
     ./rofi
     ./spotify
     ./vintagestory
+    ./waybar
     ./wlogout
     ./wlsunset
   ];
