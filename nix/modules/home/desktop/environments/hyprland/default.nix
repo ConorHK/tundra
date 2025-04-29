@@ -41,6 +41,7 @@ in
       hyprlock.enable = true;
       hyprpaper.enable = true;
       rofi.enable = true;
+      waybar.enable = true;
       wlogout.enable = true;
       wlsunset.enable = true;
     };
