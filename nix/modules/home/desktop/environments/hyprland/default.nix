@@ -24,7 +24,7 @@ in
       description = "use hyprland in homemanager standalone mode";
     };
     execOnceExtras = mkOption {
-      default = [];
+      default = [ ];
       type = listOf str;
       description = "programs to execute at startup";
     };

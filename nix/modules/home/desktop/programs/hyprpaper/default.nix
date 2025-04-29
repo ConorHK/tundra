@@ -6,7 +6,8 @@
 with lib;
 let
   cfg = config.desktop.programs.hyprpaper;
-in {
+in
+{
   options.desktop.programs.hyprpaper = with types; {
     enable = mkOption {
       default = false;
@@ -26,8 +27,8 @@ in {
         ];
         wallpaper = mkDefault [
           ",tile:./wallpapers/hashwall.png"
-      ];
-    };
+        ];
+      };
     };
   };
 }
