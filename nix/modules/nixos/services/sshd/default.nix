@@ -5,10 +5,10 @@
 }:
 with lib;
 let
-  cfg = config.services.sshd;
+  cfg = config.services.sshserver;
 in
 {
-  options.cli.programs.ssh = with types; {
+  options.services.sshserver = with types; {
     enable = lib.mkOption {
       description = "enable sshd";
       default = false;
@@ -20,17 +20,9 @@ in
       enable = true;
       settings = {
         X11Forwarding = false;
-        PermitRootLogin = false;
+        PermitRootLogin = "no";
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
-        allowSftp = false;
-        extraConfig = ''
-          AllowTcpForwarding yes
-          X11Forwarding no
-          AllowAgentForwarding no
-          AllowStreamLocalForwarding no
-          AuthenticationMethods publickey
-        '';
 
       };
     };

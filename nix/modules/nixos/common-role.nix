@@ -13,6 +13,7 @@ with lib;
   imports = [
     flake.nixosModules.hardware
     flake.nixosModules.security
+    flake.nixosModules.services
     flake.nixosModules.styles
     flake.nixosModules.system
     flake.nixosModules.user

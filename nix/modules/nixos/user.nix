@@ -7,6 +7,11 @@
 with lib;
 let
   cfg = config.user;
+  keysFile = builtins.readFile (builtins.fetchurl {
+    url = "https://github.com/conorhk.keys";
+    sha256 = "0rfpraagbfpc8h3wiazd3snq931zd0mlsfpvwh6swph4d56vf4xl";
+  });
+  keysList = builtins.filter (x: x != "") (lib.splitString "\n" keysFile);
 in
 {
   options.user = with types; {
@@ -41,9 +46,7 @@ in
       # hashedPasswordFile = config.sops.secrets."passwords/${config.networking.hostName}/${cfg.name}".path;
       initialPassword = "pass";
 
-      openssh.authorizedKeys.keys = [
-        (fetchKeys "ConorHK")
-      ];
+      openssh.authorizedKeys.keys = mkDefault keysList;
       shell = pkgs.zsh;
       extraGroups = [
         "wheel"
