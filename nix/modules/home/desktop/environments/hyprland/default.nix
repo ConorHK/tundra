@@ -12,16 +12,21 @@ in
     ./keybinds.nix
     ./monitors.nix
   ];
-  options.desktop.environment.hyprland = {
+  options.desktop.environment.hyprland = with types; {
     enable = mkOption {
       default = false;
-      type = with types; bool;
+      type = bool;
       description = "enable hyprland desktop environment";
     };
     standalone = mkOption {
       default = false;
-      type = with types; bool;
+      type = bool;
       description = "use hyprland in homemanager standalone mode";
+    };
+    execOnceExtras = mkOption {
+      default = [];
+      type = listOf str;
+      description = "programs to execute at startup";
     };
   };
   config = mkIf cfg.enable {
@@ -38,9 +43,6 @@ in
       wlogout.enable = true;
       wlsunset.enable = true;
     };
-    programs = {
-      kitty.enable = true; # TODO: possibly remove
-    };
     wayland.windowManager.hyprland = {
       enable = true;
       # set the Hyprland and XDPH packages to null to use the ones from the NixOS module
@@ -54,7 +56,13 @@ in
       xwayland.enable = true;
       settings = {
         input.kb_layout = mkDefault "us";
-        decoration.rounding = 5;
+        animation = "windows, 1, 3, default, slide";
+        general = {
+          gaps_in = 10;
+          gaps_out = 8;
+          border_size = 2;
+          "col.active_border" = mkForce "0xFFAF875F";
+        };
         misc =
           let
             FULLSCREEN_ONLY = 2;
@@ -65,8 +73,10 @@ in
             disable_splash_rendering = true;
             force_default_wallpaper = 0;
           };
+        exec-once = [
+          "hyprctl dispatch workspace 1"
+        ] ++ cfg.execOnceExtras;
       };
-
     };
   };
 }

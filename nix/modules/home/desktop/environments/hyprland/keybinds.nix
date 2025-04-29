@@ -16,7 +16,7 @@ in
         "SUPER, Return, exec, alacritty"
         "SUPER, x, exec, ${pkgs.hyprlock}/bin/hyprlock"
         "SUPER_SHIFT, F, exec, firefox"
-        "SUPER_SHIFT, Q, killactive,"
+        "SUPER, Q, killactive,"
         "SUPER, F, Fullscreen,0"
         "SUPER, h, movefocus, l"
         "SUPER, l, movefocus, r"
