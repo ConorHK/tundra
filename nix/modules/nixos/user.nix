@@ -45,6 +45,7 @@ in
       group = "users";
       # hashedPasswordFile = config.sops.secrets."passwords/${config.networking.hostName}/${cfg.name}".path;
       initialPassword = "pass";
+      ignoreShellProgramCheck = true;
 
       openssh.authorizedKeys.keys = mkDefault keysList;
       shell = pkgs.zsh;
@@ -62,6 +63,6 @@ in
       ] ++ cfg.extraGroups;
     } // cfg.extraOptions;
 
-    programs.zsh.enable = true;
+    # programs.zsh.enable = true;
   };
 }
