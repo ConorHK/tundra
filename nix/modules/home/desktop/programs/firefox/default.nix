@@ -102,6 +102,7 @@ with lib;
               "browser.aboutConfig.showWarning" = false;
               "browser.compactmode.show" = true;
               "browser.cache.disk.enable" = false; # Be kind to hard drive
+              "browser.fullscreen.autohide" = false;
 
               # sidebery
               "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
@@ -141,7 +142,6 @@ with lib;
                 };
                 "Searx" = {
                   urls = [ { template = "https://priv.au/?q={searchTerms}"; } ];
-                  icon = "https://nixos.wiki/favicon.png";
                   updateInterval = 24 * 60 * 60 * 1000; # every day
                   definedAliases = [ "@searx" ];
                 };
