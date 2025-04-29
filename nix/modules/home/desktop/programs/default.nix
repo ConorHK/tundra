@@ -6,6 +6,7 @@
     ./firefox
     ./hypridle
     ./hyprlock
+    ./hyprpaper
     ./rofi
     ./spotify
     ./vintagestory

@@ -39,6 +39,7 @@ in
     desktop.programs = {
       hypridle.enable = true;
       hyprlock.enable = true;
+      hyprpaper.enable = true;
       rofi.enable = true;
       wlogout.enable = true;
       wlsunset.enable = true;

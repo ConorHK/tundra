@@ -44,7 +44,7 @@ in
         "SUPER, 7, workspace,07"
         "SUPER, 8, workspace,08"
         "SUPER, 9, workspace,09"
-        "SUPER, 10, workspace,10"
+        "SUPER, 0, workspace,10"
         "SUPER_SHIFT, 1, movetoworkspacesilent,01"
         "SUPER_SHIFT, 2, movetoworkspacesilent,02"
         "SUPER_SHIFT, 3, movetoworkspacesilent,03"
