@@ -32,12 +32,14 @@ in
           "https://hyprland.cachix.org"
           "https://nix-gaming.cachix.org"
           "https://nixpkgs-wayland.cachix.org"
+          "https://cache.nixos.org"
         ];
         trusted-public-keys = [
           "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
           "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
           "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
           "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
+          "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         ];
         auto-optimise-store = lib.mkDefault true;
         use-xdg-base-directories = true;
