@@ -30,6 +30,9 @@ in
     };
   };
   config = mkIf cfg.enable {
+    home.packages = with pkgs; [
+      feh
+    ];
     nix.settings = {
       trusted-substituters = [ "https://hyprland.cachix.org" ];
       trusted-public-keys = [

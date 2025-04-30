@@ -1,8 +1,8 @@
-{ flake, lib, ... }:
-with lib.hm.gvariant;
+{ flake, pkgs, ... }:
 {
   imports = [
     flake.homeModules.roles
+    ../hyprland
   ];
 
   config = {
@@ -21,6 +21,9 @@ with lib.hm.gvariant;
         scale = "1";
         position = "0x0";
       }
+    ];
+    home.packages = with pkgs; [
+      brightnessctl
     ];
 
     cli.programs.ssh.extraHosts.server = {
