@@ -1,11 +1,25 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 with lib;
 let
   cfg = config.desktop.programs.hypridle;
+  togglecaffeine = pkgs.writeScriptBin "caffeine" ''
+  #!/usr/bin/env sh
+
+  SERVICE="hypridle.service"
+
+  if systemctl --user is-active "$SERVICE" --quiet; then
+    systemctl --user stop "$SERVICE" --quiet
+    echo "Stopped $SERVICE"
+  else
+    systemctl --user start "$SERVICE" --quiet
+    echo "Started $SERVICE"
+  fi
+  '';
 in
 {
   options.desktop.programs.hypridle = {
@@ -16,6 +30,10 @@ in
     };
   };
   config = mkIf cfg.enable {
+    home.packages = [
+      togglecaffeine
+    ];
+    
     services.hypridle = {
       enable = true;
       settings = {
