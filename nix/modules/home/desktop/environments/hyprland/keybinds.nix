@@ -7,7 +7,7 @@
 with lib;
 let
   cfg = config.desktop.environment.hyprland;
-   resize = pkgs.writeShellScriptBin "resize" ''
+  resize = pkgs.writeShellScriptBin "resize" ''
     #!/usr/bin/env bash
 
     # Initially inspired by https://github.com/exoess

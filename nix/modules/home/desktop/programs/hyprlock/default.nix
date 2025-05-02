@@ -20,18 +20,18 @@ in
       enable = true;
       settings = {
         general = {
-    disable_loading_bar = true;
-    hide_cursor = true;
-    no_fade_in = false;
-  };
+          disable_loading_bar = true;
+          hide_cursor = true;
+          no_fade_in = false;
+        };
 
-  background = mkForce [
-    {
-      path = "screenshot";
-      blur_passes = 3;
-      blur_size = 8;
-    }
-  ];
+        background = mkForce [
+          {
+            path = "screenshot";
+            blur_passes = 3;
+            blur_size = 8;
+          }
+        ];
       };
     };
   };
