@@ -6,14 +6,11 @@
 with lib;
 let
   cfg = config.system.power;
-  hasBattery = lib.any (x: lib.strings.hasPrefix "BAT" x) (
-    builtins.attrNames (builtins.readDir "/sys/class/power_supply")
-  );
 in
 {
   options.system.power = {
     battery.enable = mkOption {
-      default = hasBattery;
+      default = false;
       description = "enable better battery support";
       type = types.bool;
     };
