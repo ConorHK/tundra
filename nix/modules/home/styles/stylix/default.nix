@@ -45,6 +45,7 @@ with lib;
         base0E = "#af8787";
         base0F = "#87afaf";
       };
+      targets.hyprpaper.enable = mkForce false;
     };
   };
 }

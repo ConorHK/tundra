@@ -1,12 +1,12 @@
 {
   config,
   lib,
+  perSystem,
   ...
 }:
 with lib;
 let
   cfg = config.desktop.programs.hyprpaper;
-  hashwall = ./wallpapers/hashwall.png;
 in
 {
   options.desktop.programs.hyprpaper = with types; {
@@ -23,8 +23,8 @@ in
       settings = {
         ipc = "on";
         splash = false;
-        preload = mkDefault [ hashwall ];
-        wallpaper = mkDefault [ hashwall ];
+        preload = mkDefault [ "${perSystem.self.wallpapers}/wallpapers/hashwall.png" ];
+        wallpaper = mkDefault [ ",tile:${perSystem.self.wallpapers}/wallpapers/hashwall.png" ];
       };
     };
   };
