@@ -22,16 +22,16 @@ in
       package = mkDefault pkgs.rofi-wayland;
       terminal = "${pkgs.alacritty}/bin/alacritty";
       extraConfig = {
-        modi = "run,drun,window";
+        modi = "drun";
         show-icons = true;
-        drun-display-format = "{icon} {name}";
+        drun-display-format = "{name}";
         location = 0;
         disable-history = false;
         hide-scrollbar = true;
-        display-drun = "   Apps ";
-        display-run = "   Run ";
-        display-window = " 﩯  Window";
-        display-Network = " 󰤨  Network";
+        display-drun = "Apps ";
+        display-run = "Run ";
+        display-window = "Window";
+        display-Network = "Network";
         sidebar-mode = true;
       };
     };
