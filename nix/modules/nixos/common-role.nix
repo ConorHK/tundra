@@ -3,6 +3,7 @@
   inputs,
   flake,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -30,7 +31,7 @@ with lib;
   };
 
   config = mkIf cfg.enable {
-    environment.defaultPackages = mkForce [ ];
+    environment.defaultPackages = mkForce [ pkgs.vim ];
     home-manager = {
       extraSpecialArgs.inputs = inputs;
       useGlobalPkgs = true;
