@@ -25,6 +25,7 @@ with lib;
       type = with types; bool;
       description = "enable plymouth boot splash";
     };
+    # sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+2+7+12 --wipe-slot=tpm2 /dev/nvme0n1p2 --tpm2-with-pin=<yes/omit>
     secureBoot = mkOption {
       default = false;
       type = with types; bool;
