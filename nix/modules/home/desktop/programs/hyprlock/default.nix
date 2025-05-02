@@ -16,6 +16,23 @@ in
     };
   };
   config = mkIf cfg.enable {
-    programs.hyprlock.enable = true;
+    programs.hyprlock = {
+      enable = true;
+      settings = {
+        general = {
+    disable_loading_bar = true;
+    hide_cursor = true;
+    no_fade_in = false;
+  };
+
+  background = mkForce [
+    {
+      path = "screenshot";
+      blur_passes = 3;
+      blur_size = 8;
+    }
+  ];
+      };
+    };
   };
 }
