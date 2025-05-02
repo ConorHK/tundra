@@ -28,7 +28,7 @@ in
       syntaxHighlighting.enable = true;
       autocd = true;
       dotDir = ".config/zsh";
-      initExtra = ''
+      initContent = ''
           ico_ahead="▲ "
           ico_behind="▼ "
           ico_diverged="↕ "

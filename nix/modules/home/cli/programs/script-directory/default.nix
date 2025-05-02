@@ -20,7 +20,7 @@ in
 
   config = mkIf cfg.enable {
     programs.zsh = {
-      initExtra = ''
+      initContent = ''
         fpath+="${inputs.script-directory}/share/zsh/site-functions"
       '';
     };

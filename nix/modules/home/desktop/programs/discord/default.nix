@@ -10,7 +10,7 @@ let
 in
 {
   imports = [
-    inputs.nixcord.homeManagerModules.nixcord
+    inputs.nixcord.homeModules.nixcord
   ];
 
   options.desktop.programs.discord = with types; {

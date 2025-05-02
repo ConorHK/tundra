@@ -19,7 +19,7 @@
     initExtraFirst = ''
       . "$HOME/.local/share/amazon-q/shell/zprofile.pre.zsh"
     '';
-    initExtra = ''
+    initContent = ''
       . "$HOME/.local/share/amazon-q/shell/zprofile.post.zsh"
     '';
   };

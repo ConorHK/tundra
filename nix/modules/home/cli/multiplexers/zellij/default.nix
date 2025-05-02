@@ -51,7 +51,7 @@ in
       pkgs.zellij
     ];
 
-    programs.zsh.initExtra = mkIf cfg.enableAutoStart (
+    programs.zsh.initContent = mkIf cfg.enableAutoStart (
       mkOrder 200 ''
         ${sesh}/bin/sesh
       ''
