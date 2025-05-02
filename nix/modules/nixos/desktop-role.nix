@@ -28,6 +28,12 @@ with lib;
     };
   };
   config = mkIf cfg.enable {
+    nix.settings = {
+      trusted-substituters = [ "https://nixpkgs-wayland.cachix.org" ];
+      trusted-public-keys = [
+        "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
+      ];
+    };
     desktop = {
       environment.gnome.enable = cfg.windowManager == "gnome";
       environment.hyprland.enable = cfg.windowManager == "hyprland";
