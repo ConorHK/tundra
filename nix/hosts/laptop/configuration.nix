@@ -28,6 +28,8 @@ with lib;
   system = {
     locale.keyboard = "gb";
     boot.secureBoot = true;
+    power.battery.enable = true;
+    stateVersion = "25.05";
   };
 
   # sops.secrets."passwords/${config.networking.hostName}/${config.user.name}" = {
@@ -50,6 +52,4 @@ with lib;
     supportedFilesystems = mkForce [ "btrfs" ];
     kernelPackages = pkgs.linuxPackages_latest;
   };
-
-  system.stateVersion = "25.05";
 }
