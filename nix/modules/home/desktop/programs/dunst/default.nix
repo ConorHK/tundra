@@ -18,6 +18,12 @@ in
   config = mkIf cfg.enable {
     services.dunst = {
       enable = true;
+      settings = {
+        global = {
+          font = mkForce "Monospace";
+          offset = "30x50";
+        };
+      };
     };
   };
 }
