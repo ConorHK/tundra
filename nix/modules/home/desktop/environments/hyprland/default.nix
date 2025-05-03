@@ -35,6 +35,7 @@ in
       feh
     ];
     desktop.programs = {
+      dunst.enable = true;
       hypridle.enable = true;
       hyprlock.enable = true;
       hyprpaper.enable = true;

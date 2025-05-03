@@ -3,6 +3,7 @@
   imports = [
     ./alacritty
     ./discord
+    ./dunst
     ./firefox
     ./hypridle
     ./hyprlock
