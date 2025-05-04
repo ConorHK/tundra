@@ -51,7 +51,7 @@ in
             on-click = "activate";
             format = "{icon}";
             format-icons = {
-              active = "o";
+              active = "•";
               default = "•";
             };
             persistent-workspaces = {
