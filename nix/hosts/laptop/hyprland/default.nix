@@ -28,6 +28,7 @@ in
       playerctl
     ];
 
+    desktop.programs.waybar.battery.enable = true;
     wayland.windowManager.hyprland.settings = {
       bindel = [
         ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"

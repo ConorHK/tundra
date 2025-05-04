@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 let
@@ -19,6 +20,12 @@ with lib;
   };
 
   config = mkIf cfg.enableHome {
+    fonts.fontconfig.enable = true;
+    home.packages = with pkgs; [
+      nerd-fonts.symbols-only
+      open-sans
+    ];
+
     stylix = {
       enable = true;
       autoEnable = true;
