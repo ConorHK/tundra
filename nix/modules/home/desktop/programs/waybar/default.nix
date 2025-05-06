@@ -19,6 +19,11 @@ in
       default = false;
       description = "enable battery module";
     };
+    outputs = mkOption {
+      type = types.nullOr types.str;
+      default = null;
+      description = "monitor outputs";
+    };
   };
   config = mkIf cfg.enable {
     programs.waybar = {
@@ -85,7 +90,7 @@ in
             format = "b:{capacity}%";
             format-charging = "c:{capacity}%";
           };
-
+          output = mkIf (cfg.outputs != null) cfg.outputs;
         }
       ];
     };

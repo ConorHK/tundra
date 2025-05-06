@@ -2,13 +2,17 @@
 {
   imports = [
     flake.homeModules.roles
+    ../hyprland
   ];
 
   config = {
 
     roles.home = {
       development.enable = true;
-      desktop.enable = true;
+      desktop = {
+        enable = true;
+        windowManager = "hyprland";
+      };
       gaming.enable = true;
     };
 
