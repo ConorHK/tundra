@@ -25,7 +25,7 @@
       defaultBranch = "main";
       email = "dev@conorknowles.com";
     };
-    styles.stylix.enableHome = false;
+    styles.stylix.enableHome = true;
   };
 
 }
