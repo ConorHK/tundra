@@ -155,6 +155,7 @@ with lib;
               darkreader
               istilldontcareaboutcookies
               sidebery
+              skip-redirect
               sponsorblock
               ublock-origin
               vimium
