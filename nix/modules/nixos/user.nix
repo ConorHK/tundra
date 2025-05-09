@@ -46,7 +46,7 @@ in
       inherit (cfg) name;
       home = "/home/${cfg.name}";
       group = "users";
-      # hashedPasswordFile = config.sops.secrets."passwords/${config.networking.hostName}/${cfg.name}".path;
+      hashedPasswordFile = config.sops.secrets."passwords/${config.networking.hostName}/${cfg.name}".path;
       initialPassword = "pass";
       ignoreShellProgramCheck = true;
 
