@@ -2,7 +2,7 @@
 {
   imports = [
     flake.homeModules.roles
-    ../hyprland
+    ./hyprland
   ];
 
   config = {
