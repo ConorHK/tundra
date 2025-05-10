@@ -45,6 +45,6 @@ with lib;
       wl-clipboard
     ];
 
-    security.yubikey.enable = false;  # TODO: need to rethink
+    security.yubikey.enable = false; # TODO: need to rethink
   };
 }
