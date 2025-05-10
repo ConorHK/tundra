@@ -2,5 +2,6 @@
 {
   imports = [
     ./sshd
+    ./uptime-kuma
   ];
 }
