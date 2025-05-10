@@ -18,7 +18,13 @@
   styles.stylix.enableNixOs = false;
   system.boot.enable = false;
 
-  services.uptimekuma.enable = true;
+  services = {
+    sshserver.enable = true;
+    uptimekuma = {
+      enable = true;
+      host = "100.96.40.127";
+    };
+  };
 
   users.users."driver".hashedPasswordFile = null;
   user = {
