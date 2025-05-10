@@ -18,9 +18,7 @@
   styles.stylix.enableNixOs = false;
   system.boot.enable = false;
 
-  services = {
-    uptimekuma.enable = true;
-  };
+  services.uptimekuma.enable = true;
 
   users.users."driver".hashedPasswordFile = null;
   user = {
