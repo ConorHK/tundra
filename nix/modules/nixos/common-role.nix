@@ -49,7 +49,7 @@ with lib;
 
     system = {
       nix.enable = true;
-      boot.enable = true;
+      boot.enable = mkDefault true;
       locale.enable = true;
       tailscale.enable = true;
     };
