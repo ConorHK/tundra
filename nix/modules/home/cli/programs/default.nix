@@ -2,7 +2,6 @@
 {
   imports = [
     ./atuin
-    ./atuin
     ./bat
     ./btop
     ./comma
