@@ -17,6 +17,7 @@
     ./networking-tools
     ./nh
     ./nix-your-shell
+    ./qmk
     ./ripgrep
     ./script-directory
     ./ssh

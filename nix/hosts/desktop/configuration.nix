@@ -69,5 +69,10 @@ with lib;
     supportedFilesystems = mkForce [ "btrfs" ];
     kernelPackages = pkgs.linuxPackages_latest;
   };
+
+  environment.systemPackages = with pkgs; [
+    qmk-udev-rules
+  ];
+
   system.stateVersion = "25.05";
 }

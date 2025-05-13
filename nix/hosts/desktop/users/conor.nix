@@ -25,6 +25,9 @@
       defaultBranch = "main";
       email = "dev@conorknowles.com";
     };
+
+    cli.programs.qmk.enable = true;
+
     styles.stylix.enableHome = true;
   };
 
