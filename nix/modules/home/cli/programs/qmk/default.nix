@@ -9,7 +9,7 @@ let
   cfg = config.cli.programs.qmk;
   qmk-flash = pkgs.writeShellScriptBin "qmk-flash" ''
     #!/usr/bin/env bash
-    
+
     cd "$HOME/repositories/elora" || exit
 
     qmk userspace-compile
@@ -60,4 +60,3 @@ in
     ];
   };
 }
-

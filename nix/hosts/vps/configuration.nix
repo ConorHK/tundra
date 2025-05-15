@@ -19,6 +19,7 @@
   system.boot.enable = false;
 
   services = {
+    fail_2_ban.enable = true;
     sshserver.enable = true;
     uptimekuma = {
       enable = true;
