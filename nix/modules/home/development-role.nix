@@ -21,7 +21,7 @@ with lib;
       multiplexers.zellij.enable = true;
 
       programs = {
-        atuin.enable = true;
+        atuin.enable = false;  # TODO: fix mis-inserts
         git.enable = true;
         gpg.enable = true;
         jq.enable = true;
