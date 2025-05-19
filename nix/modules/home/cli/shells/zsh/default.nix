@@ -96,6 +96,10 @@ in
         }
 
         PROMPT='%B$(ssh_prompt)%b$(nix_prompt)$(aws_prompt)%B%F{15}%(5~|%-1|%3~|%4~) %b$(git_prompt) ''${color_prompt}──── ─''${color_normal} '
+
+        source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+        bindkey '^[[A' history-beginning-search-backward
+        bindkey '^[[B' history-beginning-search-forward
       '';
 
       shellAliases = {
