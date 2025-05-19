@@ -7,18 +7,57 @@
 with lib;
 let
   cfg = config.cli.shells.zsh;
+  processContent =
+    content:
+    if builtins.isPath content || builtins.isString content then
+      if lib.hasSuffix ".zsh" content || lib.hasSuffix ".sh" content then
+        builtins.readFile content
+      else
+        content
+    else
+      content;
 in
 {
-  options.cli.shells.zsh = {
+  options.cli.shells.zsh = with types; {
     enable = mkOption {
       default = false;
-      type = with types; bool;
+      type = bool;
       description = "enable ZSh shell";
+    };
+    configExtras = mkOption {
+      default = { };
+      type = types.attrsOf (
+        types.submodule {
+          options = {
+            # Can be either a string or a path to a file
+            content = mkOption {
+              type = types.oneOf [
+                types.lines
+                types.path
+              ];
+              description = "The configuration content or path to a file";
+            };
+            priority = mkOption {
+              type = types.int;
+              default = 1000;
+              description = "Priority of the configuration (lower runs earlier)";
+            };
+          };
+        }
+      );
+      description = ''
+        Extra configuration to add to .zshrc
+        Content can be either direct text or a path to a file.
+        Common priority values:
+        - 500: Early initialization
+        - 550: Before completion initialization
+        - 1000: General configuration (default)
+        - 1500: Last to run configuration
+      '';
     };
   };
 
   config = mkIf cfg.enable {
-
     programs.zsh = {
       sessionVariables.__HM_SESS_VARS_SOURCED = "";
       sessionVariables.LS_COLORS = "";
@@ -28,10 +67,21 @@ in
       syntaxHighlighting.enable = true;
       autocd = true;
       dotDir = ".config/zsh";
-      initContent = let 
-        zshPrompt = builtins.readFile ./prompt.zsh;
-      in
-      lib.mkMerge [zshPrompt];
+
+      initContent =
+        let
+          zshPrompt = builtins.readFile ./prompt.zsh;
+          configExtrasList = lib.mapAttrsToList (
+            _name: value: lib.mkOrder value.priority (processContent value.content)
+          ) cfg.configExtras;
+        in
+        lib.mkMerge (
+          [
+            zshPrompt # default priority 1000
+          ]
+          ++ configExtrasList
+        );
+
       shellAliases = {
         nix = "noglob nix";
         home-manager = "noglob home-manager";

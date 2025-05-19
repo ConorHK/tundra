@@ -15,12 +15,16 @@
 
   cli.multiplexers.zellij.enableAutoStart = true;
 
-  programs.zsh = {
-    initExtraFirst = ''
-      . "$HOME/.local/share/amazon-q/shell/zprofile.pre.zsh"
-    '';
-    initContent = ''
-      . "$HOME/.local/share/amazon-q/shell/zprofile.post.zsh"
-    '';
+  cli.shells.zsh = {
+    configExtras = {
+      pre-q = {
+        content = ". \"$HOME/.local/share/amazon-q/shell/zprofile.pre.zsh\"";
+        priority = 500;
+      };
+      post-q = {
+        content = ". \"$HOME/.local/share/amazon-q/shell/zprofile.post.zsh\"";
+        priority = 1500;
+      };
+    };
   };
 }
