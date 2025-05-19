@@ -43,6 +43,7 @@ with lib;
     extraOptions = {
       description = "Conor";
       uid = 1000;
+      hashedPasswordFile = null;
     };
   };
 
