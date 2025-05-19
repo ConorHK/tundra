@@ -24,7 +24,7 @@ in
       sessionVariables.LS_COLORS = "";
       enable = true;
       enableCompletion = true;
-      autosuggestion.enable = false;
+      autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       autocd = true;
       dotDir = ".config/zsh";
