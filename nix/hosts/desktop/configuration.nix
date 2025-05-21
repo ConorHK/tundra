@@ -10,7 +10,6 @@
   pkgs,
   ...
 }:
-
 with lib;
 {
   imports = [
@@ -47,6 +46,16 @@ with lib;
     sopsFile = ../secrets.yaml;
     neededForUsers = true;
   };
+  sops.secrets."homeassistant/dim_lights" = {
+    sopsFile = ../secrets.yaml;
+    owner = "${config.user.name}";
+    mode = "0400";
+  };
+  sops.secrets."homeassistant/raise_lights" = {
+    sopsFile = ../secrets.yaml;
+    owner = "${config.user.name}";
+    mode = "0400";
+  };
 
   user = {
     name = "conor";
@@ -70,9 +79,29 @@ with lib;
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
-  environment.systemPackages = with pkgs; [
-    qmk-udev-rules
-  ];
+  environment.systemPackages =
+    with pkgs;
+    let
+      enableGameMode = pkgs.writeShellScriptBin "enable_game_mode" ''
+        #!/usr/bin/env bash
+
+        hyprctl dispatch dpms toggle DP-2
+        URL=$(cat ${config.sops.secrets."homeassistant/dim_lights".path})
+        curl -X POST $URL
+      '';
+      disableGameMode = pkgs.writeShellScriptBin "disable_game_mode" ''
+        #!/usr/bin/env bash
+
+        hyprctl dispatch dpms toggle DP-2
+        URL=$(cat ${config.sops.secrets."homeassistant/raise_lights".path})
+        curl -X POST $URL
+      '';
+    in
+    [
+      qmk-udev-rules
+      enableGameMode
+      disableGameMode
+    ];
 
   system.stateVersion = "25.05";
 }
