@@ -20,5 +20,20 @@ in
     home.packages = [
       fixMonitorPositions
     ];
+    desktop.environment.hyprland.monitors = [
+      {
+        name = "DP-1";
+        resolution = "2560x1440@144.00Hz";
+        scale = "1";
+        position = "0x0";
+      }
+      {
+        name = "DP-2";
+        resolution = "2560x1440@59.95Hz";
+        scale = "1";
+        position = "2560x0";
+      }
+    ];
+
   };
 }
