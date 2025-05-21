@@ -20,6 +20,11 @@ in
     home.packages = [
       fixMonitorPositions
     ];
+    wayland.windowManager.hyprland.settings = {
+      bind = [
+        "SUPER, g, exec, toggle_game_mode"
+      ];
+    };
     desktop.environment.hyprland.monitors = [
       {
         name = "DP-1";

@@ -43,6 +43,7 @@ with lib;
 
     environment.systemPackages = with pkgs; [
       wl-clipboard
+      libnotify
     ];
 
     security.yubikey.enable = false; # TODO: need to rethink

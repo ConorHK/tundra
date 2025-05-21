@@ -96,11 +96,27 @@ with lib;
         URL=$(cat ${config.sops.secrets."homeassistant/raise_lights".path})
         curl -X POST $URL
       '';
+      toggleGameMode = pkgs.writeShellScriptBin "toggle_game_mode" ''
+        #!/usr/bin/env bash
+
+        SENTINEL="/tmp/game_mode_enabled"
+
+        if [ ! -f "$SENTINEL" ]; then
+            enable_game_mode
+            touch "$SENTINEL"
+            notify-send "Game Mode" "Game mode enabled"
+        else
+            disable_game_mode
+            rm $SENTINEL
+            notify-send "Game Mode" "Game mode disabled"
+        fi
+      '';
     in
     [
       qmk-udev-rules
       enableGameMode
       disableGameMode
+      toggleGameMode
     ];
 
   system.stateVersion = "25.05";
