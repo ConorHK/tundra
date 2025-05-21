@@ -22,6 +22,7 @@ with lib;
   };
   config = mkIf cfg.enable {
     desktop.programs.discord.enable = true;
+    desktop.programs.heroic.enable = true;
 
     programs.mangohud = {
       enable = true;

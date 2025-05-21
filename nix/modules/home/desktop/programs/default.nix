@@ -5,6 +5,7 @@
     ./discord
     ./dunst
     ./firefox
+    ./heroic
     ./hypridle
     ./hyprlock
     ./hyprpaper
