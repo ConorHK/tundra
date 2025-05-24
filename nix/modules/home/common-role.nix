@@ -52,7 +52,7 @@ with lib;
     };
 
     cli = {
-      shells.zsh.enable = true;
+      shells.zsh.enable = mkDefault true;
       programs = {
         bat.enable = true;
         btop.enable = true;

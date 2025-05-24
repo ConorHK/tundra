@@ -7,6 +7,10 @@
 with lib;
 let
   cfg = config.cli.programs.wget;
+  shellCfg = config.cli.shells;
+  aliases = {
+    wget = "wget --hsts-file=$XDG_DATA_HOME/wget-hsts"; # Send history to a sane area
+  };
 in
 {
   options.cli.programs.wget = {
@@ -24,11 +28,8 @@ in
       ];
     };
     programs = {
-      zsh = {
-        shellAliases = {
-          wget = "wget --hsts-file=$XDG_DATA_HOME/wget-hsts"; # Send history to a sane area
-        };
-      };
+      zsh.shellAliases = mkIf shellCfg.zsh.enable aliases;
+      fish.shellAliases = mkIf shellCfg.fish.enable aliases;
     };
   };
 }

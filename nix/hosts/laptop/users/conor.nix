@@ -35,6 +35,9 @@
       defaultBranch = "main";
       email = "dev@conorknowles.com";
     };
+    cli.shells.zsh.enable = false;
+    cli.shells.fish.enable = true;
+
     styles.stylix.enableHome = true;
 
     # dconf.settings = {

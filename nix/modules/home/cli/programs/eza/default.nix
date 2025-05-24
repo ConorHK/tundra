@@ -6,6 +6,11 @@
 with lib;
 let
   cfg = config.cli.programs.eza;
+  shellCfg = config.cli.shells;
+  aliases = {
+    l = "eza -la";
+    ls = "eza";
+  };
 in
 {
   options.cli.programs.eza = {
@@ -19,10 +24,8 @@ in
   config = mkIf cfg.enable {
     programs = {
       eza.enable = true;
-      zsh.shellAliases = {
-        l = "eza -la";
-        ls = "eza";
-      };
+      zsh.shellAliases = mkIf shellCfg.zsh.enable aliases;
+      fish.shellAliases = mkIf shellCfg.fish.enable aliases;
     };
   };
 }

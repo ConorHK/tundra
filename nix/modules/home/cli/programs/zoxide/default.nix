@@ -6,6 +6,7 @@
 with lib;
 let
   cfg = config.cli.programs.zoxide;
+  shellCfg = config.cli.shells;
 in
 {
   options.cli.programs.zoxide = {
@@ -20,7 +21,8 @@ in
     programs = {
       zoxide = {
         enable = true;
-        enableZshIntegration = true;
+        enableZshIntegration = mkIf shellCfg.zsh.enable true;
+        enableFishIntegration = mkIf shellCfg.fish.enable true;
       };
     };
   };

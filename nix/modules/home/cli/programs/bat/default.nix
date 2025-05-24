@@ -6,6 +6,11 @@
 with lib;
 let
   cfg = config.cli.programs.bat;
+  shellCfg = config.cli.shells;
+  aliases = {
+    bat = "bat --style='plain,rule,header' --paging=never";
+    cat = "bat";
+  };
 in
 {
   options.cli.programs.bat = {
@@ -24,10 +29,8 @@ in
           pager = "less -FR";
         };
       };
-      zsh.shellAliases = {
-        bat = "bat --style='plain,rule,header' --paging=never";
-        cat = "bat";
-      };
+      zsh.shellAliases = mkIf shellCfg.zsh.enable aliases;
+      fish.shellAliases = mkIf shellCfg.fish.enable aliases;
     };
   };
 }

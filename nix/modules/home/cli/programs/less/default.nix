@@ -6,6 +6,7 @@
 with lib;
 let
   cfg = config.cli.programs.less;
+  shellCfg = config.cli.shells;
 in
 {
   options.cli.programs.less = {
@@ -21,11 +22,12 @@ in
       less = {
         enable = true;
       };
-      zsh = {
-        sessionVariables = {
-          LESSHISTFILE = "$XDG_CACHE_HOME/less/history";
-        };
+      zsh.sessionVariables = mkIf shellCfg.zsh.enable {
+        LESSHISTFILE = "$XDG_CACHE_HOME/less/history";
       };
+      fish.interactiveShellInit = mkIf shellCfg.fish.enable ''
+        set -x LESSHISTFILE $XDG_CACHE_HOME/less/history
+      '';
     };
   };
 }

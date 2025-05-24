@@ -6,6 +6,7 @@
 with lib;
 let
   cfg = config.cli.programs.fzf;
+  shellCfg = config.cli.shells;
 in
 {
   options.cli.programs.fzf = {
@@ -19,7 +20,7 @@ in
   config = mkIf cfg.enable {
     programs.fzf = {
       enable = true;
-      enableZshIntegration = true;
+      enableZshIntegration = mkIf shellCfg.zsh.enable true;
       defaultOptions = [
         "--height 40%"
         "--border"

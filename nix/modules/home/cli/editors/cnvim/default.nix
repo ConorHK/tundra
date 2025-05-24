@@ -7,6 +7,10 @@
 with lib;
 let
   cfg = config.cli.editors.cnvim;
+  shellCfg = config.cli.shells;
+  aliases = {
+    vim = "cnvim";
+  };
 in
 {
   imports = [ inputs.cnvim.homeModule ];
@@ -26,8 +30,9 @@ in
       packageNames = [ "cnvim" ];
     };
 
-    programs.zsh.shellAliases = {
-      vim = "cnvim";
+    programs = {
+      zsh.shellAliases = mkIf shellCfg.zsh.enable aliases;
+      fish.shellAliases = mkIf shellCfg.fish.enable aliases;
     };
   };
 }

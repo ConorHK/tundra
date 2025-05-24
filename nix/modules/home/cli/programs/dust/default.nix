@@ -7,6 +7,10 @@
 with lib;
 let
   cfg = config.cli.programs.dust;
+  shellCfg = config.cli.shells;
+  aliases = {
+    du = "dust";
+  };
 in
 {
   options.cli.programs.dust = {
@@ -22,9 +26,8 @@ in
       du-dust
     ];
     programs = {
-      zsh.shellAliases = {
-        du = "dust";
-      };
+      zsh.shellAliases = mkIf shellCfg.zsh.enable aliases;
+      fish.shellAliases = mkIf shellCfg.fish.enable aliases;
     };
   };
 }
