@@ -37,6 +37,11 @@
     };
     cli.shells.zsh.enable = false;
     cli.shells.fish.enable = true;
+    programs.fish.shellAliases = {
+      nt = "nh os test .";
+      ns = "nh os switch .";
+      nb = "nh os boot .";
+    };
 
     styles.stylix.enableHome = true;
 
