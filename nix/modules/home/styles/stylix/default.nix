@@ -29,6 +29,7 @@ with lib;
     stylix = {
       enable = true;
       autoEnable = true;
+      enableReleaseChecks = false;
       targets = {
         firefox = mkIf wantFirefox {
           profileNames = [ "default" ];

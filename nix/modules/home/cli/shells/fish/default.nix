@@ -118,7 +118,7 @@ in
 
       zsh = {
         enable = true;
-        initExtra = ''
+        initContent = ''
           if [[ $(ps -o command= -p "$PPID" | awk '{print $1}') != 'fish' ]]
           then
             exec fish -l

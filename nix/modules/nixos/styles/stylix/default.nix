@@ -52,6 +52,7 @@ with lib;
     stylix = {
       enable = true;
       autoEnable = true;
+      enableReleaseChecks = false;
       base16Scheme = {
         base00 = "#1c1c1c";
         base01 = "#262626";
