@@ -63,8 +63,8 @@ in
             style = "bright-black";
           };
           git_branch = {
-            symbol = " ";
-            format = "[$symbol$branch(:$remote_branch)]($style) ";
+            symbol = "on ";
+            format = "[$symbol](white)[$branch(:$remote_branch)]($style) ";
           };
           git_status = {
             format = "(([$conflicted](bright-red) )([$stashed](bright-green) )([$deleted](bright-red) )([$renamed](bright-yellow) )([$modified](bright-yellow) )([$staged](bright-yellow) )([$untracked](bright-blue) )[$ahead_behind](bright-green) )";
