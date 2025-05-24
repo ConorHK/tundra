@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 with lib;
@@ -30,11 +31,23 @@ in
           set fish_cursor_insert      line       blink
           set fish_cursor_replace_one underscore blink
           set fish_cursor_visual      block
-
-          # prompt
-          set --global hydro_symbol_prompt "── ─"
         '';
+        plugins = [
+          {
+            name = "fish-you-should-use";
+            src = pkgs.fishPlugins.fish-you-should-use.src;
+          }
+          {
+            name = "puffer-fish";
+            src = pkgs.fishPlugins.puffer.src;
+          }
+          {
+            name = "fifc";
+            src = pkgs.fishPlugins.fifc.src;
+          }
+        ];
       };
+
       starship = {
         enable = true;
         settings = {
@@ -114,16 +127,6 @@ in
             format = "[\${user}]($style) ";
           };
         };
-      };
-
-      zsh = {
-        enable = true;
-        initContent = ''
-          if [[ $(ps -o command= -p "$PPID" | awk '{print $1}') != 'fish' ]]
-          then
-            exec fish -l
-          fi
-        '';
       };
     };
   };

@@ -53,7 +53,7 @@ in
       ignoreShellProgramCheck = true;
 
       openssh.authorizedKeys.keys = mkDefault keysList;
-      shell = pkgs.zsh;
+      shell = mkDefault pkgs.zsh;
       extraGroups = [
         "wheel"
         "audio"

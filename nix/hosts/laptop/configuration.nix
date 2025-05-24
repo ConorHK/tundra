@@ -44,6 +44,7 @@ with lib;
       description = "Conor";
       uid = 1000;
       hashedPasswordFile = null;
+      shell = pkgs.fish;
     };
   };
 
