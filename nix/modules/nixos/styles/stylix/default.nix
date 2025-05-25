@@ -87,16 +87,6 @@ with lib;
           popups = 12;
         };
 
-        serif = {
-          name = "SFProDisplay Nerd Font";
-          package = inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd;
-        };
-
-        sansSerif = {
-          name = "SFProDisplay Nerd Font";
-          package = inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd;
-        };
-
         monospace = {
           package = inputs.self.packages.${pkgs.system}.creeper;
           name = "Creeper";

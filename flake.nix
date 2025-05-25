@@ -50,11 +50,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    apple-fonts = {
-      url = "github:lyndeno/apple-fonts.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     treefmt-nix.url = "github:numtide/treefmt-nix";
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
   };
