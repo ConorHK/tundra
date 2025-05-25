@@ -62,6 +62,7 @@ with lib;
     extraOptions = {
       description = "admin";
       uid = 1000;
+      shell = pkgs.fish;
     };
   };
 
