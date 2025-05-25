@@ -13,6 +13,7 @@
     ./gpg
     ./htop
     ./jq
+    ./jujutsu
     ./less
     ./networking-tools
     ./nh

@@ -25,6 +25,7 @@ with lib;
         git.enable = true;
         gpg.enable = true;
         jq.enable = true;
+        jujutsu.enable = true;
         networking-tools.enable = true;
         nix-your-shell.enable = true;
         ripgrep.enable = true;
