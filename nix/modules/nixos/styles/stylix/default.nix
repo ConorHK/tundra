@@ -87,6 +87,14 @@ with lib;
           popups = 12;
         };
 
+        serif = {
+          package = pkgs.ubuntu_font_family;
+          name = "Ubuntu";
+        };
+        sansSerif = {
+          package = pkgs.ubuntu_font_family;
+          name = "Ubuntu";
+        };
         monospace = {
           package = inputs.self.packages.${pkgs.system}.creeper;
           name = "Creeper";
