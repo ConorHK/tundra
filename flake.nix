@@ -73,15 +73,5 @@
         "x86_64-linux"
         "aarch64-darwin"
       ];
-      nixpkgs.overlays = [
-        (_final: prev: {
-          docbook-sgml = prev.docbook-sgml.overrideAttrs (_oldAttrs: {
-            src = prev.fetchurl {
-              url = "https://sources.voidlinux.org/ISOEnts-1986/ISOEnts.zip";
-              hash = "sha256-1clrkaqnvc1ja4lj8blr0rdlphngkcda3snm7b9jzvcn76d3br6w";
-            };
-          });
-        })
-      ];
     };
 }

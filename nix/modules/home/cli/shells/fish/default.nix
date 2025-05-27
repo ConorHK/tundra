@@ -42,11 +42,11 @@ in
         plugins = [
           {
             name = "fish-you-should-use";
-            src = pkgs.fishPlugins.fish-you-should-use.src;
+            inherit (pkgs.fishPlugins.fish-you-should-use) src;
           }
           {
             name = "puffer-fish";
-            src = pkgs.fishPlugins.puffer.src;
+            inherit (pkgs.fishPlugins.puffer) src;
           }
         ];
       };
