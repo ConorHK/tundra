@@ -17,8 +17,14 @@ in
     };
   };
   config = mkIf cfg.enable {
+    home.sessionVariables = {
+      SHELL = "${pkgs.fish}/bin/fish";
+    };
     programs = {
-      carapace.enable = true;
+      carapace = {
+        enable = true;
+        enableFishIntegration = true;
+      };
       fish = {
         enable = true;
         functions = {
@@ -31,6 +37,7 @@ in
           set fish_cursor_insert      line       blink
           set fish_cursor_replace_one underscore blink
           set fish_cursor_visual      block
+
         '';
         plugins = [
           {
@@ -40,10 +47,6 @@ in
           {
             name = "puffer-fish";
             src = pkgs.fishPlugins.puffer.src;
-          }
-          {
-            name = "fifc";
-            src = pkgs.fishPlugins.fifc.src;
           }
         ];
       };

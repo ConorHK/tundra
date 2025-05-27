@@ -21,6 +21,7 @@ in
     programs.fzf = {
       enable = true;
       enableZshIntegration = mkIf shellCfg.zsh.enable true;
+      enableFishIntegration = mkIf shellCfg.fish.enable true;
       defaultOptions = [
         "--height 40%"
         "--border"
