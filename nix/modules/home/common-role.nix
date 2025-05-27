@@ -31,6 +31,7 @@ with lib;
       packages = with pkgs; [ home-manager ];
       sessionVariables = {
         BROWSER = mkDefault "echo";
+        LS_COLORS = mkForce "";
       };
       stateVersion = "25.05";
     };
