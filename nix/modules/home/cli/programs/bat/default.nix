@@ -1,16 +1,19 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 with lib;
 let
   cfg = config.cli.programs.bat;
-  shellCfg = config.cli.shells;
-  aliases = {
-    bat = "bat --style='plain,rule,header' --paging=never";
-    cat = "bat";
-  };
+  batWithGlow = pkgs.writeShellScriptBin "bat-with-glow" ''
+    if [[ $1 == *.md ]]; then
+      PAGER='bat' ${pkgs.glow}/bin/glow -p "$1"
+    else
+      ${pkgs.bat}/bin/bat --style='plain,rule,header' --paging=never "$1"
+    fi
+  '';
 in
 {
   options.cli.programs.bat = {
@@ -18,6 +21,11 @@ in
       default = false;
       type = with types; bool;
       description = "enable better text file viewer";
+    };
+    useGlow = mkOption {
+      default = true;
+      type = with types; bool;
+      description = "use glow for better markdown preview";
     };
   };
 
@@ -29,8 +37,16 @@ in
           pager = "less -FR";
         };
       };
-      zsh.shellAliases = mkIf shellCfg.zsh.enable aliases;
-      fish.shellAliases = mkIf shellCfg.fish.enable aliases;
+    };
+    home = {
+      shellAliases = {
+        bat =
+          if cfg.useGlow then
+            "${batWithGlow}/bin/bat-with-glow"
+          else
+            "bat --style='plain,rule,header' --paging=never";
+        cat = "bat";
+      };
     };
   };
 }
