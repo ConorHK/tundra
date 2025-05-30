@@ -1,6 +1,5 @@
 {
   config,
-  flake,
   lib,
   ...
 }:
@@ -10,7 +9,7 @@ in
 with lib;
 {
   imports = [
-    flake.homeModules.desktop
+    ./desktop
   ];
   options.roles.home.desktop = with types; {
     enable = mkOption {

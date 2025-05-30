@@ -1,6 +1,5 @@
 {
   config,
-  flake,
   pkgs,
   lib,
   ...
@@ -11,7 +10,7 @@ in
 with lib;
 {
   imports = [
-    flake.homeModules.desktop
+    ./desktop
   ];
   options.roles.home.gaming = {
     enable = mkOption {

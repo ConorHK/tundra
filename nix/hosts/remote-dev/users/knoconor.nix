@@ -1,10 +1,12 @@
-{ flake, inputs, ... }:
+{ inputs, ... }:
 {
   imports = [
-    flake.homeModules.roles
+    ../../../modules/home/roles.nix
     inputs.stylix.homeModules.stylix
   ];
 
+  home.username = "knoconor";
+  home.homeDirectory = "/home/knoconor";
   roles.home = {
     development.enable = true;
     work.enable = true;

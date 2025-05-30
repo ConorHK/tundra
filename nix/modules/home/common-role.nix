@@ -1,6 +1,5 @@
 {
   inputs,
-  flake,
   lib,
   pkgs,
   config,
@@ -12,10 +11,10 @@ in
 with lib;
 {
   imports = [
-    flake.homeModules.cli
-    flake.homeModules.system
+    ./cli
+    ./system
+    ./styles
     inputs.nix-index-database.hmModules.nix-index
-    flake.homeModules.styles
   ];
 
   options.roles.home.common = {
