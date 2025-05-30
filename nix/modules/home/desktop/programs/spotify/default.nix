@@ -9,9 +9,6 @@ let
   cfg = config.desktop.programs.spotify;
 in
 {
-  imports = [
-    inputs.spicetify-nix.homeManagerModules.spicetify
-  ];
   options.desktop.programs.spotify = with types; {
     enable = mkOption {
       default = false;
@@ -21,6 +18,9 @@ in
   };
 
   config = mkIf cfg.enable {
+    imports = [
+      inputs.spicetify-nix.homeManagerModules.spicetify
+    ];
     programs.spicetify = {
       enable = true;
     };

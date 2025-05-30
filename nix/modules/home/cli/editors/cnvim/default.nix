@@ -13,7 +13,6 @@ let
   };
 in
 {
-  imports = [ inputs.cnvim.homeModule ];
   options.cli.editors.cnvim = {
     enable = mkOption {
       default = false;
@@ -23,6 +22,7 @@ in
   };
 
   config = mkIf cfg.enable {
+    imports = [ inputs.cnvim.homeModule ];
     home.sessionVariables.EDITOR = "cnvim";
 
     cnvim = {
