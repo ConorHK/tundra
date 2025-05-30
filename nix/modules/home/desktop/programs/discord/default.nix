@@ -9,10 +9,6 @@ let
   cfg = config.desktop.programs.discord;
 in
 {
-  imports = [
-    inputs.nixcord.homeModules.nixcord
-  ];
-
   options.desktop.programs.discord = with types; {
     enable = mkOption {
       default = false;
@@ -22,6 +18,9 @@ in
   };
 
   config = mkIf cfg.enable {
+    imports = [
+      inputs.nixcord.homeModules.nixcord
+    ];
     programs.nixcord = {
       enable = true;
     };
