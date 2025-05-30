@@ -21,8 +21,8 @@ in
     };
   };
 
+  imports = mkIf cfg.enable [ inputs.cnvim.homeModule ];
   config = mkIf cfg.enable {
-    imports = [ inputs.cnvim.homeModule ];
     home.sessionVariables.EDITOR = "cnvim";
 
     cnvim = {
