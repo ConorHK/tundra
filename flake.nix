@@ -99,7 +99,7 @@
             inputs.determinate.nixosModules.default
           ];
           additionalHomeModules = [
-            inputs.cnvim.homeModule
+            inputs.cnvim.homeModules.default
             inputs.nix-index-database.hmModules.nix-index
             inputs.nixcord.homeModules.nixcord
             inputs.spicetify-nix.homeManagerModules.spicetify
@@ -109,7 +109,7 @@
         laptop = flakeLib.mkNixosHost {
           hostname = "laptop";
           additionalHomeModules = [
-            inputs.cnvim.homeModule
+            inputs.cnvim.homeModules.default
             inputs.nix-index-database.hmModules.nix-index
             inputs.nixcord.homeModules.nixcord
             inputs.spicetify-nix.homeManagerModules.spicetify
@@ -128,7 +128,7 @@
           hostname = "venus";
           username = "mustang";
           additionalModules = [
-            inputs.cnvim.homeModule
+            inputs.cnvim.homeModules.default
             inputs.nix-index-database.hmModules.nix-index
           ];
         };
