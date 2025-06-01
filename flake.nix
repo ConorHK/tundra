@@ -263,7 +263,6 @@
       homeConfigurations = {
         "mustang@venus" = mkHomeConfiguration {
           system = "x86_64-linux";
-          username = "mustang";
           modules = [
             ./nix/hosts/venus/users/mustang.nix
           ];
