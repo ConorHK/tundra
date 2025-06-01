@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
     disko = {
@@ -57,13 +56,13 @@
     };
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
   };
 
   outputs =
     {
       self,
       nixpkgs,
-      home-manager,
       treefmt-nix,
       ...
     }@inputs:
@@ -72,95 +71,19 @@
         "x86_64-linux"
         "aarch64-darwin"
       ];
-      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+      flakeLib = import ./nix/lib/default.nix { inherit self inputs nixpkgs; };
 
-      pkgsFor =
-        system:
-        import nixpkgs {
-          inherit system;
-          overlays = [ ];
-          config.allowUnfree = true;
-        };
-      mkHomeConfiguration =
-        {
-          system,
-          username,
-          stateVersion,
-          modules ? [ ],
-          extraSpecialArgs ? { },
-        }:
-        inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = pkgsFor system;
-          extraSpecialArgs = extraSpecialArgs // {
-            inherit inputs;
-            inherit self;
-          };
-          modules = [
-            (mkHome { inherit username stateVersion; })
-            (
-              { pkgs, ... }:
-              {
-                nix.package = pkgs.nix;
-              }
-            )
-          ] ++ modules;
-        };
-      treefmtEval = forAllSystems (
-        system: treefmt-nix.lib.evalModule (pkgsFor system) ./nix/formatter.nix
+      treefmtEval = flakeLib.forAllSystems supportedSystems (
+        system: treefmt-nix.lib.evalModule (flakeLib.pkgsFor { inherit system; }) ./nix/formatter.nix
       );
-      mkHost =
-        {
-          system,
-          stateVersion,
-          pkgs,
-          imports ? [ ],
-          modules ? [ ],
-          specialArgs ? { },
-          specialHomeArgs ? { },
-          homes ? { },
-        }:
-        nixpkgs.lib.nixosSystem {
-          inherit system specialArgs;
-
-          modules = [
-            {
-              system.stateVersion = stateVersion;
-              nixpkgs.pkgs = pkgs;
-              inherit imports;
-            }
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = specialHomeArgs;
-              home-manager.users = homes;
-            }
-          ] ++ modules;
-        };
-
-      mkHome =
-        {
-          username,
-          homeDirectory ? if username == "root" then "/root" else "/home/${username}",
-          stateVersion,
-          imports ? [ ],
-        }:
-        {
-          home = {
-            inherit username stateVersion homeDirectory;
-          };
-          nix.registry = {
-            self.flake = self;
-            nixpkgs.flake = nixpkgs;
-          };
-          inherit imports;
-        };
     in
     {
-      packages = forAllSystems (
+      lib = flakeLib;
+
+      packages = flakeLib.forAllSystems supportedSystems (
         system:
         let
-          pkgs = pkgsFor system;
+          pkgs = flakeLib.pkgsFor { inherit system; };
         in
         {
           creeper = import ./nix/packages/creeper { inherit pkgs; };
@@ -169,142 +92,64 @@
         }
       );
 
-      # nixosModules = {
-      #   common-role = import ./nix/modules/nixos/common-role;
-      #   desktop = import ./nix/modules/nixos/desktop;
-      #   desktop-role = import ./nix/modules/nixos/desktop-role;
-      #   gaming-role = import ./nix/modules/nixos/gaming-role;
-      #   hardware = import ./nix/modules/nixos/hardware;
-      #   roles = import ./nix/modules/nixos/roles;
-      #   security = import ./nix/modules/nixos/security;
-      #   services = import ./nix/modules/nixos/services;
-      #   styles = import ./nix/modules/nixos/styles;
-      #   system = import ./nix/modules/nixos/system;
-      #   user = import ./nix/modules/nixos/user;
-      # };
-      #
-      # homeModules = {
-      #   cli = import ./nix/modules/home/cli;
-      #   system = import ./nix/modules/home/system;
-      #   desktop = import ./nix/modules/home/desktop;
-      #   styles = import ./nix/modules/home/styles;
-      #   roles = import ./nix/modules/home/roles.nix;
-      # };
-
       nixosConfigurations = {
-        desktop =
-          let
-            stateVersion = "25.05";
-            system = "x86_64-linux";
-            pkgs = pkgsFor system;
-            specialHomeArgs = inputs;
-          in
-          mkHost {
-            inherit
-              system
-              stateVersion
-              pkgs
-              specialHomeArgs
-              ;
-            imports = [
-              ./nix/hosts/desktop/configuration.nix
-            ];
-            homes = {
-              "conor" = mkHome {
-                inherit stateVersion;
-                username = "conor";
-                imports = [
-                  ./nix/hosts/desktop/users/conor.nix
-                  inputs.cnvim.homeModule
-                  inputs.nix-index-database.hmModules.nix-index
-                  inputs.nixcord.homeModules.nixcord
-                  inputs.spicetify-nix.homeManagerModules.spicetify
-                ];
-              };
-            };
-            specialArgs = { inherit inputs; };
-          };
-
-        laptop =
-          let
-            stateVersion = "25.05";
-            system = "x86_64-linux";
-            pkgs = pkgsFor system;
-            specialHomeArgs = inputs;
-          in
-          mkHost {
-            inherit
-              system
-              stateVersion
-              pkgs
-              specialHomeArgs
-              ;
-            imports = [
-              ./nix/hosts/laptop/configuration.nix
-            ];
-            homes = {
-              "conor" = mkHome {
-                inherit stateVersion;
-                username = "conor";
-                imports = [
-                  ./nix/hosts/laptop/users/conor.nix
-                  inputs.cnvim.homeModule
-                  inputs.nix-index-database.hmModules.nix-index
-                  inputs.nixcord.homeModules.nixcord
-                  inputs.spicetify-nix.homeManagerModules.spicetify
-                ];
-              };
-            };
-            specialArgs = { inherit inputs; };
-          };
-
-        vps =
-          let
-            stateVersion = "25.05";
-            system = "x86_64-linux";
-            pkgs = pkgsFor system;
-          in
-          mkHost {
-            inherit system stateVersion pkgs;
-            imports = [
-              ./nix/hosts/vps/configuration.nix
-            ];
-            specialArgs = { inherit inputs; };
-          };
-      };
-
-      homeConfigurations =
-        let
-          stateVersion = "25.05";
-        in
-        {
-          "mustang@venus" = mkHomeConfiguration {
-            inherit stateVersion;
-            username = "mustang";
-            system = "x86_64-linux";
-            modules = [
-              ./nix/hosts/venus/users/mustang.nix
-              inputs.cnvim.homeModule
-              inputs.nix-index-database.hmModules.nix-index
-            ];
-          };
+        desktop = flakeLib.mkNixosHost {
+          hostname = "desktop";
+          additionalNixosModules = [
+            inputs.determinate.nixosModules.default
+          ];
+          additionalHomeModules = [
+            inputs.cnvim.homeModule
+            inputs.nix-index-database.hmModules.nix-index
+            inputs.nixcord.homeModules.nixcord
+            inputs.spicetify-nix.homeManagerModules.spicetify
+          ];
         };
 
-      devShells = forAllSystems (
+        laptop = flakeLib.mkNixosHost {
+          hostname = "laptop";
+          additionalHomeModules = [
+            inputs.cnvim.homeModule
+            inputs.nix-index-database.hmModules.nix-index
+            inputs.nixcord.homeModules.nixcord
+            inputs.spicetify-nix.homeManagerModules.spicetify
+          ];
+        };
+
+        vps = flakeLib.mkNixosHost {
+          hostname = "vps";
+          username = "driver";
+        };
+      };
+
+      homeConfigurations = {
+        "mustang@venus" = flakeLib.mkHomeConfig {
+          pkgs = flakeLib.pkgsFor "x86_64-linux";
+          hostname = "venus";
+          username = "mustang";
+          additionalModules = [
+            inputs.cnvim.homeModule
+            inputs.nix-index-database.hmModules.nix-index
+          ];
+        };
+      };
+
+      devShells = flakeLib.forAllSystems supportedSystems (
         system:
         let
-          pkgs = pkgsFor system;
+          pkgs = flakeLib.pkgsFor { inherit system; };
         in
         {
           default = import ./nix/devshell.nix { inherit pkgs; };
         }
       );
 
-      formatter = forAllSystems (system: treefmtEval.${system}.config.build.wrapper);
+      formatter = flakeLib.forAllSystems supportedSystems (
+        system: treefmtEval.${system}.config.build.wrapper
+      );
 
-      checks = forAllSystems (system: {
+      checks = flakeLib.forAllSystems supportedSystems (system: {
         formatting = treefmtEval.${system}.config.build.check self;
       });
-
     };
 }
