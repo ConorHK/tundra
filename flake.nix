@@ -124,7 +124,7 @@
 
       homeConfigurations = {
         "mustang@venus" = flakeLib.mkHomeConfig {
-          pkgs = flakeLib.pkgsFor "x86_64-linux";
+          pkgs = flakeLib.pkgsFor { system = "x86_64-linux"; };
           hostname = "venus";
           username = "mustang";
           additionalModules = [
