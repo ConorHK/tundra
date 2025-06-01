@@ -26,12 +26,10 @@
     };
   };
 
-  users.mutableUsers = true;
   users.users."driver".hashedPasswordFile = null;
   user = {
     name = "driver";
     extraOptions = {
-      initialPassword = "2";
       description = "admin";
       uid = 1000;
     };

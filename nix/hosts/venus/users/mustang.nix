@@ -1,7 +1,7 @@
-{ flake, inputs, ... }:
+{ inputs, ... }:
 {
   imports = [
-    flake.homeModules.roles
+    ../../../modules/home/roles.nix
     inputs.stylix.homeModules.stylix
   ];
 
