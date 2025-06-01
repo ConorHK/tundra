@@ -1,7 +1,9 @@
 { pkgs, ... }:
 {
   imports = [
-    ../../../modules/home/roles.nix
+    ../../../modules/home/common-role.nix
+    ../../../modules/home/development-role.nix
+    ../../../modules/home/desktop-role.nix
     ../hyprland
   ];
 

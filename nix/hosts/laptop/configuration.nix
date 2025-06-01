@@ -14,7 +14,8 @@ with lib;
     inputs.nixos-facter-modules.nixosModules.facter
     { config.facter.reportPath = ./facter.json; }
 
-    ../../modules/nixos/roles.nix
+    ../../modules/nixos/common-role.nix
+    ../../modules/nixos/desktop-role.nix
   ];
 
   roles.nixos.desktop = {

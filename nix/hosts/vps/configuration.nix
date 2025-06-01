@@ -11,7 +11,7 @@
     inputs.nixos-facter-modules.nixosModules.facter
     { config.facter.reportPath = ./facter.json; }
 
-    ../../modules/nixos/roles.nix
+    ../../modules/nixos/common-role.nix
   ];
 
   styles.stylix.enableNixOs = false;

@@ -84,13 +84,26 @@
       mkHomeConfiguration =
         {
           system,
+          username,
+          stateVersion,
           modules ? [ ],
-          extraModules ? [ ],
+          extraSpecialArgs ? { },
         }:
         inputs.home-manager.lib.homeManagerConfiguration {
           pkgs = pkgsFor system;
-          extraSpecialArgs = { inherit inputs; };
-          modules = modules ++ extraModules;
+          extraSpecialArgs = extraSpecialArgs // {
+            inherit inputs;
+            inherit self;
+          };
+          modules = [
+            (mkHome { inherit username stateVersion; })
+            (
+              { pkgs, ... }:
+              {
+                nix.package = pkgs.nix;
+              }
+            )
+          ] ++ modules;
         };
       treefmtEval = forAllSystems (
         system: treefmt-nix.lib.evalModule (pkgsFor system) ./nix/formatter.nix
@@ -260,14 +273,22 @@
           };
       };
 
-      homeConfigurations = {
-        "mustang@venus" = mkHomeConfiguration {
-          system = "x86_64-linux";
-          modules = [
-            ./nix/hosts/venus/users/mustang.nix
-          ];
+      homeConfigurations =
+        let
+          stateVersion = "25.05";
+        in
+        {
+          "mustang@venus" = mkHomeConfiguration {
+            inherit stateVersion;
+            username = "mustang";
+            system = "x86_64-linux";
+            modules = [
+              ./nix/hosts/venus/users/mustang.nix
+              inputs.cnvim.homeModule
+              inputs.nix-index-database.hmModules.nix-index
+            ];
+          };
         };
-      };
 
       devShells = forAllSystems (
         system:
