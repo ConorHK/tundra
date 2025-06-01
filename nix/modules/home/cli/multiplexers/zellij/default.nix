@@ -1,8 +1,8 @@
 {
+  self,
   pkgs,
   lib,
   config,
-  inputs,
   ...
 }:
 with lib;
@@ -74,7 +74,7 @@ in
           }
 
           plugins {
-            autolock location="file://${inputs.self.packages.${pkgs.system}.zellij-autolock}" {
+            autolock location="file://${self.packages.${pkgs.system}.zellij-autolock}" {
               triggers "nvim|vim|cnvim"
               watch_triggers "fzf|zoxide|atuin"
               watch_interval "1.0"

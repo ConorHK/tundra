@@ -1,7 +1,7 @@
-{ flake, pkgs, ... }:
+{ pkgs, ... }:
 {
   imports = [
-    flake.homeModules.roles
+    ../../../modules/home/roles.nix
     ../hyprland
   ];
 

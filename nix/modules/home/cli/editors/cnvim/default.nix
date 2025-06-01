@@ -1,6 +1,5 @@
 {
   config,
-  inputs,
   lib,
   ...
 }:
@@ -13,7 +12,6 @@ let
   };
 in
 {
-  imports = [ inputs.cnvim.homeModule ];
   options.cli.editors.cnvim = {
     enable = mkOption {
       default = false;

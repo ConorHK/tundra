@@ -5,7 +5,6 @@
 {
   config,
   inputs,
-  flake,
   lib,
   pkgs,
   ...
@@ -19,7 +18,8 @@ with lib;
     inputs.nixos-facter-modules.nixosModules.facter
     { config.facter.reportPath = ./facter.json; }
 
-    flake.nixosModules.roles
+    ../../modules/nixos/roles.nix
+    ../../modules/nixos/user.nix
   ];
 
   roles.nixos = {

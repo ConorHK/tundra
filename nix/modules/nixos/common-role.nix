@@ -1,7 +1,6 @@
 {
   config,
   inputs,
-  flake,
   lib,
   pkgs,
   ...
@@ -12,12 +11,12 @@ in
 with lib;
 {
   imports = [
-    flake.nixosModules.hardware
-    flake.nixosModules.security
-    flake.nixosModules.services
-    flake.nixosModules.styles
-    flake.nixosModules.system
-    flake.nixosModules.user
+    ./hardware
+    ./security
+    ./services
+    ./styles
+    ./system
+    ./user.nix
     inputs.nur.modules.nixos.default
     inputs.home-manager.nixosModules.default
   ];
@@ -32,12 +31,6 @@ with lib;
 
   config = mkIf cfg.enable {
     environment.defaultPackages = mkForce [ pkgs.vim ];
-    home-manager = {
-      extraSpecialArgs.inputs = inputs;
-      useGlobalPkgs = true;
-      useUserPackages = true;
-    };
-    nixpkgs.config.allowUnfree = true;
 
     security = {
       sudo = {

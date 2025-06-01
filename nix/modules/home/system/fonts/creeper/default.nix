@@ -1,7 +1,7 @@
 {
   config,
-  perSystem,
   lib,
+  inputs,
   ...
 }:
 let
@@ -20,14 +20,12 @@ with lib;
   config = mkIf cfg.enable {
     system.fonts = {
       monospace = "creeper";
-      # monospaceNerd = "Cozette";
       monospaceFallback = "Unifont";
     };
 
     home.packages = [
-      perSystem.self.creeper
-      # cozette
-      # unifont
+      inputs.self.packages.${pkgs.system}.creeper
+      unifont
     ];
   };
 }

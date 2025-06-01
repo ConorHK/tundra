@@ -3,7 +3,6 @@
   pkgs,
   config,
   inputs,
-  perSystem,
   ...
 }:
 let
@@ -90,16 +89,16 @@ with lib;
 
         serif = {
           name = "SFProDisplay Nerd Font";
-          package = perSystem.apple-fonts.sf-pro-nerd;
+          package = inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd;
         };
 
         sansSerif = {
           name = "SFProDisplay Nerd Font";
-          package = perSystem.apple-fonts.sf-pro-nerd;
+          package = inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd;
         };
 
         monospace = {
-          package = perSystem.self.creeper;
+          package = inputs.self.packages.${pkgs.system}.creeper;
           name = "Creeper";
         };
 

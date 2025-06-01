@@ -1,7 +1,7 @@
-{ flake, ... }:
+{ ... }:
 {
   imports = [
-    flake.homeModules.roles
+    ../../../modules/home/roles.nix
     ./hyprland
   ];
 

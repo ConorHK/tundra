@@ -1,7 +1,8 @@
 {
+  self,
   config,
   lib,
-  perSystem,
+  pkgs,
   ...
 }:
 with lib;
@@ -23,8 +24,10 @@ in
       settings = {
         ipc = "on";
         splash = false;
-        preload = mkDefault [ "${perSystem.self.wallpapers}/wallpapers/hashwall.png" ];
-        wallpaper = mkDefault [ ",tile:${perSystem.self.wallpapers}/wallpapers/hashwall.png" ];
+        preload = mkDefault [ "${self.packages.${pkgs.system}.wallpapers}/wallpapers/hashwall.png" ];
+        wallpaper = mkDefault [
+          ",tile:${self.packages.${pkgs.system}.wallpapers}/wallpapers/hashwall.png"
+        ];
       };
     };
   };

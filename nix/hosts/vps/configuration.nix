@@ -1,6 +1,5 @@
 {
   inputs,
-  flake,
   ...
 }:
 
@@ -12,7 +11,7 @@
     inputs.nixos-facter-modules.nixosModules.facter
     { config.facter.reportPath = ./facter.json; }
 
-    flake.nixosModules.roles
+    ../../modules/nixos/roles.nix
   ];
 
   styles.stylix.enableNixOs = false;
@@ -27,10 +26,12 @@
     };
   };
 
+  users.mutableUsers = true;
   users.users."driver".hashedPasswordFile = null;
   user = {
     name = "driver";
     extraOptions = {
+      initialPassword = "2";
       description = "admin";
       uid = 1000;
     };

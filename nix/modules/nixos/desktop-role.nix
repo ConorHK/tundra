@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  flake,
   lib,
   ...
 }:
@@ -11,9 +10,9 @@ in
 with lib;
 {
   imports = [
-    flake.nixosModules.desktop
-    flake.nixosModules.hardware
-    flake.nixosModules.security
+    ./desktop
+    ./hardware
+    ./security
   ];
   options.roles.nixos.desktop = with types; {
     enable = mkOption {

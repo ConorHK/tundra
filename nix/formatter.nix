@@ -1,9 +1,5 @@
+_:
 {
-  pkgs,
-  inputs,
-  ...
-}:
-inputs.treefmt-nix.lib.mkWrapper pkgs {
   projectRootFile = "flake.nix";
 
   settings.global.excludes = [

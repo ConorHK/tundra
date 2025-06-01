@@ -1,5 +1,4 @@
 {
-  inputs,
   config,
   lib,
   ...
@@ -18,9 +17,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    imports = [
-      inputs.nixcord.homeModules.nixcord
-    ];
     programs.nixcord = {
       enable = true;
     };

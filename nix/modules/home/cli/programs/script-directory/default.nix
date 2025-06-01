@@ -2,7 +2,6 @@
   inputs,
   config,
   lib,
-  pkgs,
   ...
 }:
 with lib;
@@ -26,11 +25,11 @@ in
     };
 
     home = {
-      sessionVariables.SD_ROOT = "$HOME/scripts";
-      sessionPath = [
-        "${config.home.homeDirectory}/scripts/.scripts"
-      ];
-      packages = [ inputs.script-directory.packages.${pkgs.system}.sd ];
+      # sessionVariables.SD_ROOT = "$HOME/scripts";
+      # sessionPath = [
+      #   "${config.home.homeDirectory}/scripts/.scripts"
+      # ];
+      # packages = [ inputs.script-directory.packages.${pkgs.system}.sd ];
     };
   };
 }

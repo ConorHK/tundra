@@ -1,5 +1,4 @@
 {
-  pkgs,
   config,
   lib,
   ...
@@ -49,11 +48,9 @@ in
       hashedPasswordFile =
         mkDefault
           config.sops.secrets."passwords/${config.networking.hostName}/${cfg.name}".path;
-      initialHashedPassword = "$6$f79qzkxCoh/mtZ3i$eCMzfhGpNx2evlRlY6Wyo5Tjw3700DvJ285pqbA6/WHoUAb6R3Z6.Idfld2ARH9/0n/KHQraMyWmpRd9Sr849.";
       ignoreShellProgramCheck = true;
 
       openssh.authorizedKeys.keys = mkDefault keysList;
-      shell = mkDefault pkgs.zsh;
       extraGroups = [
         "wheel"
         "audio"
@@ -68,6 +65,5 @@ in
       ] ++ cfg.extraGroups;
     } // cfg.extraOptions;
 
-    # programs.zsh.enable = true;
   };
 }

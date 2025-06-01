@@ -1,5 +1,4 @@
 {
-  inputs,
   lib,
   pkgs,
   config,
@@ -14,7 +13,6 @@ with lib;
     ./cli
     ./system
     ./styles
-    inputs.nix-index-database.hmModules.nix-index
   ];
 
   options.roles.home.common = {
@@ -46,9 +44,6 @@ with lib;
         warn-dirty = mkDefault false;
         trusted-users = [ config.home.username ];
       };
-
-      package = mkForce pkgs.nixVersions.stable;
-      registry = lib.mapAttrs (_: value: { flake = value; }) inputs;
     };
 
     cli = {
