@@ -1,7 +1,9 @@
 { inputs, ... }:
 {
   imports = [
-    ../../../modules/home/roles.nix
+    ../../../modules/home/common-role.nix
+    ../../../modules/home/development-role.nix
+    ../../../modules/home/work-role.nix
     inputs.stylix.homeModules.stylix
   ];
 

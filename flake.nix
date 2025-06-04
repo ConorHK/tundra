@@ -92,6 +92,11 @@
         }
       );
 
+      homeModules = {
+        common-role = import ./nix/modules/home/common-role.nix;
+        development-role = import ./nix/modules/home/development-role.nix;
+      };
+
       nixosConfigurations = {
         desktop = flakeLib.mkNixosHost {
           hostname = "desktop";
@@ -127,6 +132,15 @@
           pkgs = flakeLib.pkgsFor { system = "x86_64-linux"; };
           hostname = "venus";
           username = "mustang";
+          additionalModules = [
+            inputs.cnvim.homeModules.default
+            inputs.nix-index-database.hmModules.nix-index
+          ];
+        };
+        "knoconor@remote-dev" = flakeLib.mkHomeConfig {
+          pkgs = flakeLib.pkgsFor { system = "x86_64-linux"; };
+          hostname = "remote-dev";
+          username = "knoconor";
           additionalModules = [
             inputs.cnvim.homeModules.default
             inputs.nix-index-database.hmModules.nix-index
