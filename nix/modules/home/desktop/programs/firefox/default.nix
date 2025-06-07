@@ -38,6 +38,11 @@ with lib;
         };
       };
     };
+    textfox = {
+      enable = true;
+      profile = "default";
+      useLegacyExtensions = false;
+    };
     programs = {
       firefox = {
         enable = true;
@@ -154,7 +159,6 @@ with lib;
               bitwarden
               darkreader
               istilldontcareaboutcookies
-              sidebery
               skip-redirect
               sponsorblock
               ublock-origin

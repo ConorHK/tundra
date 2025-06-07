@@ -52,6 +52,11 @@
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+    textfox = {
+      url = "github:adriankarlen/textfox";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs =
@@ -103,6 +108,7 @@
             inputs.nix-index-database.hmModules.nix-index
             inputs.nixcord.homeModules.nixcord
             inputs.spicetify-nix.homeManagerModules.spicetify
+            inputs.textfox.homeManagerModules.default
           ];
         };
 
@@ -113,6 +119,7 @@
             inputs.nix-index-database.hmModules.nix-index
             inputs.nixcord.homeModules.nixcord
             inputs.spicetify-nix.homeManagerModules.spicetify
+            inputs.textfox.homeManagerModules.default
           ];
         };
 
