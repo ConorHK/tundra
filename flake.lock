@@ -76,11 +76,11 @@
         "plugins-alduin": "plugins-alduin"
       },
       "locked": {
-        "lastModified": 1748819141,
-        "narHash": "sha256-01QzpCG0IcOc+B+RcdB3ifSm+X4qlUymWFspJHrNWvE=",
+        "lastModified": 1749298965,
+        "narHash": "sha256-RcC3IqhGWe/LsEKoi35id3iTYG7P2VDGRL2VOeGvDd4=",
         "owner": "conorhk",
         "repo": "vimrc",
-        "rev": "d49b41dbb1ba10526cdae01e0cf45c8d4d1312c1",
+        "rev": "f13b1dab520471a34643557df8a88a493d61e8ba",
         "type": "github"
       },
       "original": {
