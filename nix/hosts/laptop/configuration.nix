@@ -49,10 +49,6 @@ with lib;
   };
 
   networking.hostName = "laptop";
-  networking.extraHosts = ''
-    100.66.244.3 goosebox.org
-    100.66.244.3 backup.goosebox.org
-  '';
 
   boot = {
     supportedFilesystems = mkForce [ "btrfs" ];
