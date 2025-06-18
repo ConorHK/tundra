@@ -39,6 +39,17 @@ with lib;
     };
 
     hardware.audio.enable = true;
+    fonts = {
+      enableDefaultPackages = true;
+      packages = with pkgs; [
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-emoji
+        liberation_ttf
+        dejavu_fonts
+        cantarell-fonts
+      ];
+    };
 
     environment.systemPackages = with pkgs; [
       wl-clipboard
