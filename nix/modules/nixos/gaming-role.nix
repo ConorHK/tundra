@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 let
@@ -9,6 +10,10 @@ let
 in
 with lib;
 {
+  imports = [
+    inputs.nix-gaming.nixosModules.pipewireLowLatency
+    inputs.nix-gaming.nixosModules.platformOptimizations
+  ];
   options.roles.nixos.gaming = {
     enable = mkOption {
       default = false;
@@ -36,11 +41,14 @@ with lib;
 
     services.ratbagd.enable = true;
 
+    services.pipewire.lowLatency.enable = true;
+
     programs = {
       gamemode.enable = true;
       gamescope.enable = true;
       steam = {
         enable = true;
+        platformOptimizations.enable = true;
         package = pkgs.steam.override {
           extraPkgs =
             p: with p; [
