@@ -8,6 +8,11 @@
 
   config = {
     roles.home.development.enable = true;
+    cli.shells.zsh.enable = false;
+    cli.shells.fish.enable = true;
+    programs.fish.shellAliases = {
+      ns = "nh home switch .";
+    };
     cli.programs.ssh = {
       extraHosts.fuji = {
         hostname = "fuji";
