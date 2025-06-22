@@ -39,6 +39,7 @@ in
           { command = [ "${lib.getExe pkgs.waybar}" ]; }
           { command = [ "${lib.getExe pkgs.hyprpaper}" ]; }
           { command = [ "${lib.getExe pkgs.xwayland-satellite}" ]; }
+          { command = [ "${lib.getExe pkgs.wlsunset}" ]; }
         ];
         xwayland-satellite = {
           enable = true;
