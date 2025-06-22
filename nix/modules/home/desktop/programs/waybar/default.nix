@@ -41,7 +41,10 @@ in
           position = "left";
           spacing = 5;
           modules-left = [ "clock" ];
-          modules-center = [ "hyprland/workspaces" "niri/workspaces" ];
+          modules-center = [
+            "hyprland/workspaces"
+            "niri/workspaces"
+          ];
           modules-right = [
             "wireplumber"
             "network"

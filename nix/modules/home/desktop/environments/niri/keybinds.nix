@@ -64,21 +64,21 @@ in
 
       "Mod+S".action = toggle-window-floating;
 
-      "Mod+WheelScrollDown" = { 
-        cooldown-ms=150;
-        action=focus-workspace-down;
+      "Mod+WheelScrollDown" = {
+        cooldown-ms = 150;
+        action = focus-workspace-down;
       };
-      "Mod+WheelScrollUp" = { 
-        cooldown-ms=150;
-        action=focus-workspace-up;
+      "Mod+WheelScrollUp" = {
+        cooldown-ms = 150;
+        action = focus-workspace-up;
       };
-      "Mod+WheelScrollRight" = { 
-        cooldown-ms=150;
-        action=focus-column-right;
+      "Mod+WheelScrollRight" = {
+        cooldown-ms = 150;
+        action = focus-column-right;
       };
-      "Mod+WheelScrollLeft" = { 
-        cooldown-ms=150;
-        action=focus-column-left;
+      "Mod+WheelScrollLeft" = {
+        cooldown-ms = 150;
+        action = focus-column-left;
       };
 
       "Print".action = screenshot;
