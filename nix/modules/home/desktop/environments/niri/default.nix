@@ -68,7 +68,7 @@ in
             accel-profile = "adaptive";
           };
           focus-follows-mouse.enable = true;
-          warp-mouse-to-focus = true;
+          warp-mouse-to-focus.enable = true;
           workspace-auto-back-and-forth = true;
         };
         screenshot-path = "~/media/pictures/screenshots/screenshot-%Y-%m-%d-%H-%M-%S.png";
@@ -106,6 +106,8 @@ in
         overview = {
           backdrop-color = "transparent";
         };
+
+        hotkey-overlay.skip-at-startup = true;
       };
     };
     desktop.programs = {

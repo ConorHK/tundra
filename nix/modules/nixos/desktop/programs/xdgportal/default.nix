@@ -19,6 +19,7 @@ in
 
   config = mkIf cfg.enable {
     xdg.portal = {
+      config.common.default = "*";
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
