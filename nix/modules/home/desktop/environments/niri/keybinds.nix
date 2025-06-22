@@ -27,8 +27,8 @@ in
       "Mod+Return".action = spawn "alacritty";
       "Mod+X".action = spawn "wlogout";
       "Mod+Q".action = close-window;
-      "Mod+F".action = maximize-column;
-      "Mod+Shift+F".action = expand-column-to-available-width;
+      "Mod+F".action = expand-column-to-available-width;
+      "Mod+Shift+F".action = maximize-column;
 
       "Mod+H".action = focus-column-left;
       "Mod+L".action = focus-column-right;
@@ -46,11 +46,42 @@ in
       "Mod+Shift+Right".action = move-column-right;
       "Mod+Shift+Down".action = move-column-to-workspace-down;
       "Mod+Shift+Up".action = move-column-to-workspace-up;
+      "Mod+Ctrl+Up".action = toggle-overview;
 
       "Mod+Comma".action = consume-window-into-column;
       "Mod+Period".action = expel-window-from-column;
       "Mod+C".action = center-visible-columns;
       "Mod+Tab".action = switch-focus-between-floating-and-tiling;
+
+      "Mod+R".action = switch-preset-column-width;
+      "Mod+Shift+R".action = switch-preset-window-height;
+      "Mod+Ctrl+R".action = reset-window-height;
+
+      "Mod+Minus".action = set-column-width "-10%";
+      "Mod+Equal".action = set-column-width "+10%";
+      "Mod+Shift+Minus".action = set-window-height "-10%";
+      "Mod+Shift+Equal".action = set-window-height "+10%";
+
+      "Mod+S".action = toggle-window-floating;
+
+      "Mod+WheelScrollDown" = { 
+        cooldown-ms=150;
+        action=focus-workspace-down;
+      };
+      "Mod+WheelScrollUp" = { 
+        cooldown-ms=150;
+        action=focus-workspace-up;
+      };
+      "Mod+WheelScrollRight" = { 
+        cooldown-ms=150;
+        action=focus-column-right;
+      };
+      "Mod+WheelScrollLeft" = { 
+        cooldown-ms=150;
+        action=focus-column-left;
+      };
+
+      "Print".action = screenshot;
     };
   };
 }

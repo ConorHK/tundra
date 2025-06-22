@@ -31,6 +31,7 @@ in
 
     environment.systemPackages = with pkgs; [
       pulsemixer
+      pavucontrol
     ];
   };
 }

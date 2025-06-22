@@ -7,6 +7,7 @@
 with lib;
 let
   cfg = config.desktop.environment.niri;
+  xwayland-satellite = "${pkgs.xwayland-satellite}/bin/xwayland-satellite";
 in
 {
   options.desktop.environment.niri = {

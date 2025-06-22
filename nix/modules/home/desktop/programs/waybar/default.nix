@@ -41,11 +41,18 @@ in
           position = "left";
           spacing = 5;
           modules-left = [ "clock" ];
-          modules-center = [ "hyprland/workspaces" ];
+          modules-center = [ "hyprland/workspaces" "niri/workspaces" ];
           modules-right = [
             "wireplumber"
             "network"
           ] ++ (optionals cfg.battery.enable [ "battery" ]);
+          "niri/workspaces" = {
+            format = "{icon}";
+            format-icons = {
+              active = "o";
+              default = "•";
+            };
+          };
           "hyprland/workspaces" = {
             disable-scroll = true;
             on-click = "activate";
@@ -80,6 +87,7 @@ in
             format = "v:{volume}%";
             max-volume = 100;
             scroll-step = 5;
+            on-click = "pavucontrol";
           };
           battery = {
             states = {

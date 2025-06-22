@@ -27,7 +27,7 @@ with lib;
   roles.nixos = {
     desktop = {
       enable = true;
-      windowManager = "hyprland";
+      windowManager = "niri";
     };
     gaming.enable = true;
   };
@@ -88,14 +88,14 @@ with lib;
       enableGameMode = pkgs.writeShellScriptBin "enable_game_mode" ''
         #!/usr/bin/env bash
 
-        hyprctl dispatch dpms toggle DP-2
+        niri msg output DP-2 off
         URL=$(cat ${config.sops.secrets."homeassistant/dim_lights".path})
         curl -X POST $URL
       '';
       disableGameMode = pkgs.writeShellScriptBin "disable_game_mode" ''
         #!/usr/bin/env bash
 
-        hyprctl dispatch dpms toggle DP-2
+        niri msg output DP-2 on
         URL=$(cat ${config.sops.secrets."homeassistant/raise_lights".path})
         curl -X POST $URL
       '';

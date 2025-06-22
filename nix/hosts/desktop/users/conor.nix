@@ -6,6 +6,7 @@
     ../../../modules/home/desktop-role.nix
     ../../../modules/home/gaming-role.nix
     ./hyprland
+    ./niri
   ];
 
   config = {
@@ -14,7 +15,7 @@
       development.enable = true;
       desktop = {
         enable = true;
-        windowManager = "hyprland";
+        windowManager = "niri";
       };
       gaming.enable = true;
     };

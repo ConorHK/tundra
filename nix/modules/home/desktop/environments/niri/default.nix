@@ -13,6 +13,7 @@ in
   imports = [
     ./keybinds.nix
     ./monitors.nix
+    ./windowrules.nix
     inputs.niri.homeModules.niri
   ];
   options.desktop.environment.niri = with types; {
@@ -34,14 +35,17 @@ in
       settings = {
         prefer-no-csd = true;
         spawn-at-startup = [
-          { command = [ "${pkgs.waybar}/bin/waybar" ]; }
+          { command = [ "${lib.getExe pkgs.dunst}" ]; }
+          { command = [ "${lib.getExe pkgs.waybar}" ]; }
+          { command = [ "${lib.getExe pkgs.hyprpaper}" ]; }
+          { command = [ "${lib.getExe pkgs.xwayland-satellite}" ]; }
         ];
         xwayland-satellite = {
           enable = true;
         };
         environment = {
           CLUTTER_BACKEND = "wayland";
-          DISPLAY = null;
+          DISPLAY = ":0";
           GDK_BACKEND = "wayland,x11";
           MOZ_ENABLE_WAYLAND = "1";
           NIXOS_OZONE_WL = "1";
@@ -97,6 +101,7 @@ in
             bottom = 0;
           };
         };
+
         overview = {
           backdrop-color = "transparent";
         };

@@ -17,7 +17,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    programs.nixcord = {
+    programs.vesktop = {
       enable = true;
     };
     xdg = {
