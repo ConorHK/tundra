@@ -20,7 +20,7 @@ with lib;
 
   roles.nixos.desktop = {
     enable = true;
-    windowManager = "hyprland";
+    windowManager = "niri";
   };
 
   hardware.bluetooth.enable = true;

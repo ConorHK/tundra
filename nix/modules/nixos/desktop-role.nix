@@ -36,6 +36,7 @@ with lib;
     desktop = {
       environment.gnome.enable = cfg.windowManager == "gnome";
       environment.hyprland.enable = cfg.windowManager == "hyprland";
+      environment.niri.enable = cfg.windowManager == "niri";
     };
 
     hardware.audio.enable = true;

@@ -28,6 +28,7 @@ with lib;
     desktop = {
       environment.gnome.enable = cfg.windowManager == "gnome";
       environment.hyprland.enable = cfg.windowManager == "hyprland";
+      environment.niri.enable = cfg.windowManager == "niri";
       programs = {
         alacritty.enable = true;
         firefox.enable = true;
