@@ -115,6 +115,9 @@
 
         laptop = flakeLib.mkNixosHost {
           hostname = "laptop";
+          additionalNixosModules = [
+            inputs.determinate.nixosModules.default
+          ];
           additionalHomeModules = [
             inputs.cnvim.homeModules.default
             inputs.nix-index-database.hmModules.nix-index
