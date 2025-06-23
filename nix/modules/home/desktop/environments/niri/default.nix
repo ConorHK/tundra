@@ -36,7 +36,6 @@ in
         prefer-no-csd = true;
         spawn-at-startup = [
           { command = [ "${lib.getExe pkgs.dunst}" ]; }
-          { command = [ "${lib.getExe pkgs.waybar}" ]; }
           { command = [ "${lib.getExe pkgs.hyprpaper}" ]; }
           { command = [ "${lib.getExe pkgs.xwayland-satellite}" ]; }
           { command = [ "${lib.getExe pkgs.wlsunset}" ]; }
@@ -53,6 +52,7 @@ in
           QT_QPA_PLATFORM = "wayland;xcb";
           QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
           SDL_VIDEODRIVER = "wayland";
+          XDG_CURRENT_DESKTOP = "niri";
         };
         input = {
           keyboard.xkb.layout = mkDefault "us";

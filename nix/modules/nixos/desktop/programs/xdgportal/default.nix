@@ -7,6 +7,7 @@
 with lib;
 let
   cfg = config.desktop.programs.xdgportal;
+  isHyprlandEnabled = config.desktop.environment.hyprland.enable;
 in
 {
   options.desktop.programs.xdgportal = {
@@ -19,7 +20,13 @@ in
 
   config = mkIf cfg.enable {
     xdg.portal = {
-      config.common.default = "*";
+      config.common = {
+        default = "gtk";
+        "org.freedesktop.impl.portal.ScreenCast" =
+          if isHyprlandEnabled == "hyprland" then "hyprland" else "gnome";
+        "org.freedesktop.impl.portal.Screenshot" =
+          if isHyprlandEnabled == "hyprland" then "hyprland" else "gnome";
+      };
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk

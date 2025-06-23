@@ -26,7 +26,7 @@ in
     desktop.programs = {
       greetd = {
         enable = true;
-        session = "${pkgs.niri}/bin/niri";
+        session = "${pkgs.niri}/bin/niri-session";
       };
       xdgportal.enable = true;
     };
