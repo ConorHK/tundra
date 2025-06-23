@@ -4,7 +4,7 @@
   ...
 }:
 let
-  inherit (config.cli.programs) script-directory;
+  inherit (config.cli.programs) script-directory ripgrep;
   cfg = config.roles.home.work;
 in
 with lib;
@@ -51,6 +51,7 @@ with lib;
         bbdev = "brazil-build develop";
         bb = "brazil-build";
         mcurl = "curl -L --cookie ~/.midway/cookie --cookie-jar ~/.midway/cookie";
+        rg = mkIf ripgrep.enable "/home/knoconor/.local/state/nix/profile/bin/rg";
       };
     };
 
