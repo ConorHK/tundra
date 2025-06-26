@@ -21,7 +21,6 @@
   home.sessionVariables.HOSTROLE = "dev";
   system.xdg.enable = true;
 
-
   cli = {
     multiplexers.zellij.enableAutoStart = true;
     shells = {

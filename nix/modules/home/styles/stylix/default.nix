@@ -34,6 +34,7 @@ with lib;
         firefox = mkIf wantFirefox {
           profileNames = [ "default" ];
         };
+        zellij.enable = false;
       };
       base16Scheme = {
         base00 = "#1c1c1c";
