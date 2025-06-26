@@ -135,6 +135,9 @@
         vps = flakeLib.mkNixosHost {
           hostname = "vps";
           username = "driver";
+          additionalNixosModules = [
+            inputs.determinate.nixosModules.default
+          ];
         };
       };
 
