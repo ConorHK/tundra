@@ -18,6 +18,11 @@ in
       type = with types; bool;
       description = "enable custom nvim package";
     };
+    categoryOverrides = mkOption {
+      type = with types; nullOr (attrsOf bool);
+      default = null;
+      description = "optional set of categories to enable/disable in neovim configuration";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -25,6 +30,11 @@ in
 
     cnvim = {
       enable = true;
+      packageDefinitions.replace = mkIf (cfg.categoryOverrides != null) {
+      cnvim = { ...}: {
+          categories = cfg.categoryOverrides;
+        };
+      };
       packageNames = [ "cnvim" ];
     };
 

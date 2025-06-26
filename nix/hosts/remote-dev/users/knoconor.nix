@@ -14,8 +14,6 @@
     work.enable = true;
   };
 
-  cli.shells.zsh.enable = false;
-  cli.shells.fish.enable = true;
   programs.fish.shellAliases = {
     ns = "home-manager switch --flake .#knoconor@remote-dev";
   };
@@ -23,18 +21,27 @@
   home.sessionVariables.HOSTROLE = "dev";
   system.xdg.enable = true;
 
-  cli.multiplexers.zellij.enableAutoStart = true;
 
-  # cli.shells.zsh = {
-  #   configExtras = {
-  #     pre-q = {
-  #       content = ". \"$HOME/.local/share/amazon-q/shell/zprofile.pre.zsh\"";
-  #       priority = 500;
-  #     };
-  #     post-q = {
-  #       content = ". \"$HOME/.local/share/amazon-q/shell/zprofile.post.zsh\"";
-  #       priority = 1500;
-  #     };
-  #   };
-  # };
+  cli = {
+    multiplexers.zellij.enableAutoStart = true;
+    shells = {
+      zsh.enable = false;
+      fish.enable = true;
+    };
+    editors.cnvim.categoryOverrides = {
+      bash = true;
+      diagnostics = true;
+      git = true;
+      java = true;
+      lsp = true;
+      lua = true;
+      nix = true;
+      python = true;
+      snippets = true;
+      surround = true;
+      treesitter = true;
+      typescript = true;
+      zellij = true;
+    };
+  };
 }
