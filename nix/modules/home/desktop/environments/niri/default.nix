@@ -76,6 +76,7 @@ in
           hot-corners.enable = true;
         };
         layout = {
+          always-center-single-column = true;
           focus-ring.enable = false;
           border = {
             enable = true;
