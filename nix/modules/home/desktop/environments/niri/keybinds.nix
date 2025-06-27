@@ -49,7 +49,7 @@ in
       "Mod+Ctrl+Up".action = toggle-overview;
 
       "Mod+Comma".action = consume-window-into-column;
-      "Mod+Period".action = expel-window-from-column;
+      "Mod+Period".action = consume-or-expel-window-left;
       "Mod+C".action = center-visible-columns;
       "Mod+Tab".action = switch-focus-between-floating-and-tiling;
 
