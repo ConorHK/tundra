@@ -31,11 +31,9 @@ in
     cnvim = {
       enable = true;
       packageDefinitions.replace = mkIf (cfg.categoryOverrides != null) {
-        cnvim =
-          _:
-          {
-            categories = cfg.categoryOverrides;
-          };
+        cnvim = _: {
+          categories = cfg.categoryOverrides;
+        };
       };
       packageNames = [ "cnvim" ];
     };
