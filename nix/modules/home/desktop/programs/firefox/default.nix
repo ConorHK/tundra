@@ -42,6 +42,9 @@ with lib;
       enable = true;
       profile = "default";
       useLegacyExtensions = false;
+      config = {
+        displayNavButtons = true;
+      };
     };
     programs = {
       firefox = {
