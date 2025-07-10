@@ -21,10 +21,18 @@
   home.sessionVariables.HOSTROLE = "dev";
   system.xdg.enable = true;
 
+  programs.zsh = {
+   enable = true;
+   initExtra = ''
+     if [ -z "$NO_INTERACTIVE" ] && [[ $- == *i* ]]; then
+       exec fish
+     fi
+   '';
+  };
+
   cli = {
     multiplexers.zellij.enableAutoStart = true;
     shells = {
-      zsh.enable = false;
       fish.enable = true;
     };
     editors.cnvim.categoryOverrides = {
