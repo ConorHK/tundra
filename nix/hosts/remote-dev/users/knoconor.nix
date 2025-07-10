@@ -22,12 +22,12 @@
   system.xdg.enable = true;
 
   programs.zsh = {
-   enable = true;
-   initExtra = ''
-     if [ -z "$NO_INTERACTIVE" ] && [[ $- == *i* ]]; then
-       exec fish
-     fi
-   '';
+    enable = true;
+    initExtra = ''
+      if [ -z "$NO_INTERACTIVE" ] && [[ $- == *i* ]]; then
+        exec fish
+      fi
+    '';
   };
 
   cli = {
