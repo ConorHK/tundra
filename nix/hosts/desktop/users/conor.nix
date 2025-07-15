@@ -15,7 +15,7 @@
       development.enable = true;
       desktop = {
         enable = true;
-        windowManager = "niri";
+        windowManager = "hyprland";
       };
       gaming.enable = true;
     };

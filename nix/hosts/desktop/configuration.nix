@@ -27,7 +27,7 @@ with lib;
   roles.nixos = {
     desktop = {
       enable = true;
-      windowManager = "niri";
+      windowManager = "hyprland";
     };
     gaming.enable = true;
   };
