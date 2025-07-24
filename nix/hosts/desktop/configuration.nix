@@ -40,7 +40,6 @@ with lib;
   };
 
   system.boot = {
-    plymouth = true;
     secureBoot = true;
   };
 
