@@ -139,6 +139,15 @@
             inputs.determinate.nixosModules.default
           ];
         };
+
+        satelite = flakeLib.mkNixosHost {
+          hostname = "satelite";
+          username = "driver";
+          additionalNixosModules = [
+            inputs.determinate.nixosModules.default
+          ];
+        };
+
       };
 
       homeConfigurations = {

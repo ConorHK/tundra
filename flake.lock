@@ -76,11 +76,11 @@
         "plugins-alduin": "plugins-alduin"
       },
       "locked": {
-        "lastModified": 1751363557,
-        "narHash": "sha256-q5lx/hnzfz3TLj0TnegR2q1Z9LJZp0d3IeyJilmLxYU=",
+        "lastModified": 1753614940,
+        "narHash": "sha256-Z27FFCoWVDmyEd5SW6XFiBf6tvzZ8yUzKYB7H6JGjQo=",
         "owner": "conorhk",
         "repo": "vimrc",
-        "rev": "9757cea16125c69f3c6be4532132792a441b5fbc",
+        "rev": "30a088a088ea3db125e2b8e7a8acf7ef6aae1020",
         "type": "github"
       },
       "original": {
@@ -709,11 +709,11 @@
     },
     "nixCats": {
       "locked": {
-        "lastModified": 1750385661,
-        "narHash": "sha256-JpIEf5IrOzMTjowkxB6kgh4AK3Dp9i/T9G4w2ZiKMgQ=",
+        "lastModified": 1753170780,
+        "narHash": "sha256-rxnjPhOu7kr3REU8AhbKwRYnXHWlRXBqgWOO9MD0HyY=",
         "owner": "BirdeeHub",
         "repo": "nixCats-nvim",
-        "rev": "04379fef2fbd4c9d8f4c9a6203cef135ab0b1acd",
+        "rev": "e0c3fd5c218c808ce31e29caa91df43c65d7dfc6",
         "type": "github"
       },
       "original": {
