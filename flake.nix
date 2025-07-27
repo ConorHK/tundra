@@ -76,6 +76,7 @@
       supportedSystems = [
         "x86_64-linux"
         "aarch64-darwin"
+        "aarch64-linux"
       ];
       flakeLib = import ./nix/lib/default.nix { inherit self inputs nixpkgs; };
 

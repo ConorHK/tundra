@@ -1,5 +1,6 @@
 {
   inputs,
+  pkgs,
   ...
 }:
 
@@ -25,6 +26,10 @@
       uid = 1000;
     };
   };
+  environment.systemPackages = with pkgs; [
+    libraspberrypi
+    raspberrypi-eeprom
+  ];
 
   networking.hostName = "satelite";
   system.stateVersion = "25.05";
