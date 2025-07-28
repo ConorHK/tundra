@@ -42,6 +42,7 @@ with lib;
   system.boot = {
     secureBoot = true;
   };
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   sops.secrets."passwords/${config.networking.hostName}/${config.user.name}" = {
     sopsFile = ../secrets.yaml;
@@ -120,6 +121,15 @@ with lib;
       disableGameMode
       toggleGameMode
     ];
+
+  programs.wireshark = {
+    enable = true;
+    package = pkgs.wireshark;
+    usbmon.enable = true;
+    dumpcap.enable = true;
+  };
+
+  users.groups.wireshark.members = [ "conor" ];
 
   system.stateVersion = "25.05";
 }
