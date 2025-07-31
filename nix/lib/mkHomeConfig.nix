@@ -19,7 +19,8 @@
           hostname
           username
           ;
-      } // additionalSpecialArgs;
+      }
+      // additionalSpecialArgs;
       modules = [
         ../hosts/${hostname}/users/${username}.nix
         {
@@ -29,6 +30,7 @@
           nix.package = pkgs.nix;
         }
         inputs.sops-nix.homeManagerModules.sops
-      ] ++ additionalModules;
+      ]
+      ++ additionalModules;
     };
 }

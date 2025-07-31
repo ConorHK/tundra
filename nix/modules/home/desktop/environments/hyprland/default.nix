@@ -85,7 +85,8 @@ in
           };
         exec-once = [
           "hyprctl dispatch workspace 1"
-        ] ++ cfg.execOnceExtras;
+        ]
+        ++ cfg.execOnceExtras;
       };
     };
   };

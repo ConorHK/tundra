@@ -48,7 +48,8 @@ in
           modules-right = [
             "wireplumber"
             "network"
-          ] ++ (optionals cfg.battery.enable [ "battery" ]);
+          ]
+          ++ (optionals cfg.battery.enable [ "battery" ]);
           "niri/workspaces" = {
             format = "{icon}";
             format-icons = {

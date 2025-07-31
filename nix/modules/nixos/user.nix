@@ -62,8 +62,10 @@ in
         "podman"
         "kvm"
         "libvirtd"
-      ] ++ cfg.extraGroups;
-    } // cfg.extraOptions;
+      ]
+      ++ cfg.extraGroups;
+    }
+    // cfg.extraOptions;
 
   };
 }

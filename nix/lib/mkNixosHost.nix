@@ -20,7 +20,8 @@
           username
           self
           ;
-      } // additionalSpecialArgs;
+      }
+      // additionalSpecialArgs;
       modules = [
         (_: {
           nixpkgs.config = {
@@ -48,13 +49,15 @@
                   inherit username stateVersion homeDirectory;
                 };
               })
-            ] ++ additionalHomeModules;
+            ]
+            ++ additionalHomeModules;
           };
         }
 
         inputs.disko.nixosModules.disko
         inputs.sops-nix.nixosModules.sops
         ../hosts/${hostname}/configuration.nix
-      ] ++ additionalNixosModules;
+      ]
+      ++ additionalNixosModules;
     };
 }
