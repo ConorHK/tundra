@@ -39,6 +39,8 @@ with lib;
     logitechMouse.enable = true;
   };
 
+  desktop.programs.qemu.enable = true;
+
   system.boot = {
     secureBoot = true;
   };
