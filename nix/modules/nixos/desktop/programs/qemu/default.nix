@@ -26,19 +26,24 @@ in
         swtpm.enable = true;
         ovmf = {
           enable = true;
-          packages = [(pkgs.OVMF.override {
+          packages = [
+            (pkgs.OVMF.override {
               secureBoot = true;
               tpmSupport = true;
-              }).fd];
+            }).fd
+          ];
         };
       };
-  };
-  programs.virt-manager.enable = true;
-  environment.systemPackages = with pkgs; [
-    qemu
-  ];
-  virtualisation.spiceUSBRedirection.enable = true;
-  boot.kernelModules = ["kvm-amd" "kvm-intel"];
-  boot.binfmt.emulatedSystems = ["aarch64-linux"];
+    };
+    programs.virt-manager.enable = true;
+    environment.systemPackages = with pkgs; [
+      qemu
+    ];
+    virtualisation.spiceUSBRedirection.enable = true;
+    boot.kernelModules = [
+      "kvm-amd"
+      "kvm-intel"
+    ];
+    boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   };
 }
