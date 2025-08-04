@@ -5,6 +5,7 @@
     ./impermanence
     ./locale
     ./nix
+    ./nixbuild
     ./power
     ./tailscale
   ];
