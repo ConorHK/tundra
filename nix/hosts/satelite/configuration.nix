@@ -24,6 +24,7 @@
   };
 
   users.users."driver".hashedPasswordFile = null;
+  users.users."driver".initialPassword = "password";
   user = {
     name = "driver";
     extraOptions = {
