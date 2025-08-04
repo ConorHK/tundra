@@ -10,10 +10,18 @@
     { config.facter.reportPath = ./facter.json; }
 
     ../../modules/nixos/common-role.nix
+    ./hardware-configuration.nix
   ];
 
   styles.stylix.enableNixOs = false;
-  system.boot.enable = true;
+
+  system.boot.enable = false;
+  boot.loader = {
+    systemd-boot.enable = false;
+    efi.canTouchEfiVariables = false;
+    generic-extlinux-compatible.enable = true;
+    grub.enable = false;
+  };
 
   users.users."driver".hashedPasswordFile = null;
   user = {
