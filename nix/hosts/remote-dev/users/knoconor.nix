@@ -1,10 +1,15 @@
 { inputs, ... }:
+let 
+in
 {
   imports = [
+    ./secrets.nix
+
     ../../../modules/home/common-role.nix
     ../../../modules/home/development-role.nix
     ../../../modules/home/work-role.nix
     inputs.stylix.homeModules.stylix
+    inputs.agenix.homeManagerModules.default
   ];
 
   home.username = "knoconor";
@@ -29,6 +34,8 @@
       fi
     '';
   };
+
+  system.agenix.enable = true;
 
   cli = {
     multiplexers.zellij.enableAutoStart = true;
