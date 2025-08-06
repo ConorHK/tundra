@@ -25,8 +25,7 @@ in
   };
   config = mkIf cfg.enable {
     # force use of fallback resolvers
-    networking.extraHosts =
-    ''
+    networking.extraHosts = ''
       0.0.0.0 apresolve.spotify.com
     '';
 
@@ -45,7 +44,7 @@ in
       extraGroups = [ "pipewire" ];
       group = "spotifyd";
     };
-    users.groups.spotifyd = {};
+    users.groups.spotifyd = { };
 
     networking.firewall.allowedTCPPorts = [
       57621
