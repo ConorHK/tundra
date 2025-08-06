@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  lib,
   ...
 }:
 
@@ -47,6 +48,19 @@
   ];
 
   system.nixbuild.enable = true;
+
+  services.pulseaudio.extraConfig = ''
+    unload-module module-suspend-on-idle
+  '';
+
+   system.activationScripts.asound = let
+    initialAsoundState = ./files/asound.state;
+  in ''
+    if [ ! -e "/var/lib/alsa/asound.state" ]; then
+      mkdir -p /var/lib/alsa
+      cp ${initialAsoundState} /var/lib/alsa/asound.state
+    fi
+  '';
 
   networking.hostName = "satelite";
   system.stateVersion = "25.05";
