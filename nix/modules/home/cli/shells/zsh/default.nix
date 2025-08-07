@@ -66,7 +66,7 @@ in
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       autocd = true;
-      dotDir = ".config/zsh";
+      dotDir = "${config.home.homeDirectory}/.config/zsh";
 
       initContent =
         let
