@@ -175,6 +175,16 @@
             inputs.nix-index-database.hmModules.nix-index
           ];
         };
+        "knoconor@bcd0744bec2c" = flakeLib.mkHomeConfig {
+          pkgs = flakeLib.pkgsFor { system = "aarch64-darwin"; };
+          hostname = "bcd0744bec2c";
+          username = "knoconor";
+          homeDirectory = "/Users/knoconor";
+          additionalModules = [
+            inputs.cnvim.homeModules.default
+            inputs.nix-index-database.hmModules.nix-index
+          ];
+        };
       };
 
       devShells = flakeLib.forAllSystems supportedSystems (

@@ -1,5 +1,4 @@
 {
-  flake,
   lib,
   inputs,
   ...
@@ -7,7 +6,8 @@
 with lib;
 {
   imports = [
-    flake.homeModules.roles
+    ../../../modules/home/common-role.nix
+    ../../../modules/home/development-role.nix
     inputs.stylix.homeModules.stylix
   ];
 
