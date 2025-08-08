@@ -58,8 +58,38 @@ let
         <form method="post">
             <input type="text" name="text" placeholder="Enter text to speak" required>
             <br><br>
+            <label>Voice:</label>
+            <select name="voice" style="background: #333; color: #fff; border: 1px solid #555; padding: 5px; font-family: monospace;">
+                <option value="en-gb-scotland">English_(Scotland)</option>
+                <option value="en-us">English_(America)</option>
+                <option value="en-gb">English_(Great_Britain)</option>
+                <option value="fr-fr">French_(France)</option>
+                <option value="de">German</option>
+                <option value="es">Spanish_(Spain)</option>
+                <option value="it">Italian</option>
+                <option value="ja">Japanese</option>
+                <option value="ru">Russian</option>
+                <option value="zh">Chinese_(Mandarin)</option>
+            </select>
+            <br><br>
+            <label>Speed:</label>
+            <input type="range" name="speed" min="80" max="300" value="140" style="width: 200px;">
+            <span id="speed-value">140</span>
+            <br><br>
+            <label>Volume:</label>
+            <input type="range" name="amplitude" min="10" max="80" value="50" style="width: 200px;">
+            <span id="amp-value">50</span>
+            <br><br>
             <button type="submit">Speak</button>
         </form>
+        <script>
+            document.querySelector('input[name="speed"]').oninput = function() {
+                document.getElementById('speed-value').textContent = this.value;
+            }
+            document.querySelector('input[name="amplitude"]').oninput = function() {
+                document.getElementById('amp-value').textContent = this.value;
+            }
+        </script>
         {% if message %}
         <p>{{ message }}</p>
         {% endif %}
@@ -72,12 +102,15 @@ let
         message = ""
         if request.method == "POST":
             text = request.form.get("text", "")
-            log(f"Received TTS request: '{text}'")
+            voice = request.form.get("voice", "en-gb-scotland")
+            speed = min(300, max(80, int(request.form.get("speed", "140"))))
+            amplitude = min(80, max(10, int(request.form.get("amplitude", "50"))))
+            log(f"TTS request: '{text}' voice={voice} speed={speed} amp={amplitude}")
             if text:
                 try:
                     log("Starting espeak-ng process")
                     espeak_proc = subprocess.Popen(
-                        ["${pkgs.espeak-ng}/bin/espeak-ng", "--stdout"],
+                        ["${pkgs.espeak-ng}/bin/espeak-ng", "--stdout", f"-v{voice}", f"-s{speed}", f"-a{amplitude}"],
                         stdin=subprocess.PIPE,
                         stdout=subprocess.PIPE,
                         stderr=subprocess.PIPE,
