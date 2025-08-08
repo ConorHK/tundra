@@ -73,6 +73,21 @@ let
                 cursor: pointer;
                 border: none;
             }
+            .control-row {
+                display: flex;
+                align-items: center;
+                margin: 10px 0;
+                justify-content: center;
+            }
+            .control-row label {
+                width: 80px;
+                text-align: right;
+                margin-right: 15px;
+            }
+            .control-row select, .control-row input[type="range"] {
+                width: 200px;
+                margin-right: 10px;
+            }
         </style>
     </head>
     <body>
@@ -80,28 +95,32 @@ let
         <form method="post">
             <input type="text" name="text" placeholder="Enter text to speak" required>
             <br><br>
-            <label>Voice:</label>
-            <select name="voice" style="background: #333; color: #fff; border: 1px solid #555; padding: 5px; font-family: monospace;">
-                <option value="en-gb-scotland">English_(Scotland)</option>
-                <option value="en-us">English_(America)</option>
-                <option value="en-gb">English_(Great_Britain)</option>
-                <option value="fr-fr">French_(France)</option>
-                <option value="de">German</option>
-                <option value="es">Spanish_(Spain)</option>
-                <option value="it">Italian</option>
-                <option value="ja">Japanese</option>
-                <option value="ru">Russian</option>
-                <option value="zh">Chinese_(Mandarin)</option>
-            </select>
-            <br><br>
-            <label>Speed:</label>
-            <input type="range" name="speed" min="80" max="300" value="140" style="width: 200px;">
-            <span id="speed-value">140</span>
-            <br><br>
-            <label>Volume:</label>
-            <input type="range" name="amplitude" min="10" max="80" value="50" style="width: 200px;">
-            <span id="amp-value">50</span>
-            <br><br>
+            <div class="control-row">
+                <label>Voice:</label>
+                <select name="voice" style="background: #333; color: #fff; border: 1px solid #555; padding: 5px; font-family: monospace;">
+                    <option value="en-gb-scotland">English_(Scotland)</option>
+                    <option value="en-us">English_(America)</option>
+                    <option value="en-gb">English_(Great_Britain)</option>
+                    <option value="fr-fr">French_(France)</option>
+                    <option value="de">German</option>
+                    <option value="es">Spanish_(Spain)</option>
+                    <option value="it">Italian</option>
+                    <option value="ja">Japanese</option>
+                    <option value="ru">Russian</option>
+                    <option value="zh">Chinese_(Mandarin)</option>
+                </select>
+            </div>
+            <div class="control-row">
+                <label>Speed:</label>
+                <input type="range" name="speed" min="80" max="300" value="140">
+                <span id="speed-value">140</span>
+            </div>
+            <div class="control-row">
+                <label>Volume:</label>
+                <input type="range" name="amplitude" min="10" max="80" value="50">
+                <span id="amp-value">50</span>
+            </div>
+            <br>
             <button type="submit">Speak</button>
         </form>
         <script>
