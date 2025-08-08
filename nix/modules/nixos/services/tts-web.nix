@@ -51,6 +51,28 @@ let
                 cursor: pointer; 
             }
             button:hover { background: #555; }
+            input[type="range"] {
+                -webkit-appearance: none;
+                background: #333;
+                height: 5px;
+                border-radius: 5px;
+            }
+            input[type="range"]::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                background: #e74c3c;
+                height: 20px;
+                width: 20px;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+            input[type="range"]::-moz-range-thumb {
+                background: #e74c3c;
+                height: 20px;
+                width: 20px;
+                border-radius: 50%;
+                cursor: pointer;
+                border: none;
+            }
         </style>
     </head>
     <body>
