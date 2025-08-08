@@ -4,7 +4,7 @@
     ./fail2ban
     ./spotifyd
     ./sshd
-    ./tts-web.nix
+    ./tts-web
     ./uptime-kuma
   ];
 }
