@@ -60,9 +60,7 @@ let
                     espeak_stdout, espeak_stderr = espeak_proc.communicate(input=text)
                     aplay_stdout, aplay_stderr = aplay_proc.communicate()
                     
-                    if espeak_proc.returncode != 0:
-                        message = f"Espeak error: {espeak_stderr}"
-                    elif aplay_proc.returncode != 0:
+                    if aplay_proc.returncode != 0:
                         message = f"Aplay error: {aplay_stderr.decode()}"
                     else:
                         message = f"Spoke: {text}"
@@ -99,7 +97,7 @@ in
     users.users.${cfg.user} = {
       isSystemUser = true;
       group = "audio";
-      extraGroups = [ "audio" "pulseaudio" ];
+      extraGroups = [ "audio" "pipewire" ];
     };
 
     systemd.services.tts-web = {
