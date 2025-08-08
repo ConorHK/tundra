@@ -10,7 +10,14 @@ with lib;
 let
   cfg = config.services.tts-web;
 
-  tts-web-script = pkgs.writeScriptBin "tts-web" ./tts-web.py;
+  tts-web-script = pkgs.writeScriptBin "tts-web" ''
+    #!${pkgs.bash}/bin/bash
+    export PYTHONPATH=${pkgs.python3.withPackages (ps: with ps; [ flask ])}/${pkgs.python3.sitePackages}
+    exec ${pkgs.python3}/bin/python3 ${./tts-web.py} \
+      --port ${toString cfg.port} \
+      --espeak-path ${pkgs.espeak-ng}/bin/espeak-ng \
+      --aplay-path ${pkgs.alsa-utils}/bin/aplay
+  '';
 in
 {
   options.services.tts-web = {

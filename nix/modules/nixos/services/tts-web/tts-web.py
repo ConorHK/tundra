@@ -1,12 +1,15 @@
-#!${pkgs.python3}/bin/python3
+#!/usr/bin/env python3
 from flask import Flask, request, render_template_string, redirect, url_for
 import subprocess
 import sys
+import argparse
 
 app = Flask(__name__)
 
+
 def log(msg):
     print(f"[TTS] {msg}", flush=True)
+
 
 HTML_TEMPLATE = """
 <!DOCTYPE html>
@@ -142,8 +145,13 @@ HTML_TEMPLATE = """
 </html>
 """
 
+
 @app.route("/", methods=["GET", "POST"])
 def index():
+    return handle_tts_request(app.config["ESPEAK_PATH"], app.config["APLAY_PATH"])
+
+
+def handle_tts_request(espeak_path, aplay_path):
     message = ""
     if request.method == "POST":
         text = request.form.get("text", "")
@@ -155,36 +163,52 @@ def index():
             try:
                 log("Starting espeak-ng process")
                 espeak_proc = subprocess.Popen(
-                    ["${pkgs.espeak-ng}/bin/espeak-ng", "--stdout", f"-v{voice}", f"-s{speed}", f"-a{amplitude}"],
+                    [
+                        espeak_path,
+                        "--stdout",
+                        f"-v{voice}",
+                        f"-s{speed}",
+                        f"-a{amplitude}",
+                    ],
                     stdin=subprocess.PIPE,
                     stdout=subprocess.PIPE,
                     stderr=subprocess.PIPE,
-                    text=True
+                    text=True,
                 )
-                
+
                 log("Starting aplay process")
                 aplay_proc = subprocess.Popen(
-                    ["${pkgs.alsa-utils}/bin/aplay"],
+                    [aplay_path],
                     stdin=espeak_proc.stdout,
                     stdout=subprocess.PIPE,
-                    stderr=subprocess.PIPE
+                    stderr=subprocess.PIPE,
                 )
-                
+
                 espeak_proc.stdout.close()
                 espeak_stdout, espeak_stderr = espeak_proc.communicate(input=text)
                 aplay_stdout, aplay_stderr = aplay_proc.communicate()
-                
+
                 if aplay_proc.returncode != 0:
                     message = f"Aplay error: {aplay_stderr.decode()}"
                 else:
                     message = f"Spoke: {text}"
             except Exception as e:
                 message = f"Error: {str(e)}"
-            
-            return redirect(url_for('index'))
-    
+
+            return redirect(url_for("index"))
+
     return render_template_string(HTML_TEMPLATE, message=message)
 
+
 if __name__ == "__main__":
-    log("Starting TTS web server on port ${toString cfg.port}")
-    app.run(host="0.0.0.0", port=${toString cfg.port})
+    parser = argparse.ArgumentParser(description="TTS Web Server")
+    parser.add_argument("--port", type=int, default=8080, help="Port to run on")
+    parser.add_argument("--espeak-path", default="espeak-ng", help="Path to espeak-ng")
+    parser.add_argument("--aplay-path", default="aplay", help="Path to aplay")
+    args = parser.parse_args()
+
+    app.config["ESPEAK_PATH"] = args.espeak_path
+    app.config["APLAY_PATH"] = args.aplay_path
+
+    log(f"Starting TTS web server on port {args.port}")
+    app.run(host="0.0.0.0", port=args.port)
