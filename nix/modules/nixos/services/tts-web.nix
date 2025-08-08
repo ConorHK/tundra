@@ -57,10 +57,15 @@ let
                     )
                     
                     espeak_proc.stdout.close()
-                    espeak_proc.communicate(input=text)
-                    aplay_proc.wait()
+                    espeak_stdout, espeak_stderr = espeak_proc.communicate(input=text)
+                    aplay_stdout, aplay_stderr = aplay_proc.communicate()
                     
-                    message = f"Spoke: {text}"
+                    if espeak_proc.returncode != 0:
+                        message = f"Espeak error: {espeak_stderr}"
+                    elif aplay_proc.returncode != 0:
+                        message = f"Aplay error: {aplay_stderr.decode()}"
+                    else:
+                        message = f"Spoke: {text}"
                 except Exception as e:
                     message = f"Error: {str(e)}"
         
@@ -89,10 +94,12 @@ in
   };
 
   config = mkIf cfg.enable {
+    networking.firewall.allowedTCPPorts = [ cfg.port ];
+
     users.users.${cfg.user} = {
       isSystemUser = true;
       group = "audio";
-      extraGroups = [ "audio" ];
+      extraGroups = [ "audio" "pulseaudio" ];
     };
 
     systemd.services.tts-web = {
