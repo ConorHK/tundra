@@ -32,6 +32,7 @@
   services = {
     sshd.enable = true;
     spotifydaemon.enable = true;
+    tts-web.enable = true;
   };
 
   hardware.audio.enable = true;
