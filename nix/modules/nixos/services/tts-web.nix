@@ -14,8 +14,12 @@ let
     #!${pkgs.python3}/bin/python3
     from flask import Flask, request, render_template_string
     import subprocess
+    import sys
 
     app = Flask(__name__)
+
+    def log(msg):
+        print(f"[TTS] {msg}", flush=True)
 
     HTML_TEMPLATE = """
     <!DOCTYPE html>
@@ -68,8 +72,10 @@ let
         message = ""
         if request.method == "POST":
             text = request.form.get("text", "")
+            log(f"Received TTS request: '{text}'")
             if text:
                 try:
+                    log("Starting espeak-ng process")
                     espeak_proc = subprocess.Popen(
                         ["${pkgs.espeak-ng}/bin/espeak-ng", "--stdout"],
                         stdin=subprocess.PIPE,
@@ -78,6 +84,7 @@ let
                         text=True
                     )
                     
+                    log("Starting aplay process")
                     aplay_proc = subprocess.Popen(
                         ["${pkgs.alsa-utils}/bin/aplay"],
                         stdin=espeak_proc.stdout,
@@ -99,6 +106,7 @@ let
         return render_template_string(HTML_TEMPLATE, message=message)
 
     if __name__ == "__main__":
+        log("Starting TTS web server on port ${toString cfg.port}")
         app.run(host="0.0.0.0", port=${toString cfg.port})
   '';
 
