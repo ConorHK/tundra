@@ -5,6 +5,10 @@
 }:
 
 {
+  # setup:
+  # nix run nixpkgs#nixos-generators -- -f sd-aarch64 --flake .#satelite --system aarch64-linux -o ./pi.sd
+  # unzstd -d nixos-image-sd-card-25.11.20250730.e44b8dc-aarch64-linux.img.zst -o /tmp/nixos-sd.img
+  # sudo dd if=/tmp/nixos-sd.img of=/dev/sda bs=1M status=progress
   imports = [
     inputs.disko.nixosModules.disko
 
