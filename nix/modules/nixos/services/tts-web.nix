@@ -20,11 +20,40 @@ let
     HTML_TEMPLATE = """
     <!DOCTYPE html>
     <html>
-    <head><title>TTS Server</title></head>
+    <head>
+        <title>TTS Server</title>
+        <style>
+            body { 
+                background: #1a1a1a; 
+                color: #fff; 
+                font-family: monospace; 
+                text-align: center; 
+                padding: 50px; 
+            }
+            input { 
+                background: #333; 
+                color: #fff; 
+                border: 1px solid #555; 
+                padding: 10px; 
+                font-family: monospace; 
+                width: 300px; 
+            }
+            button { 
+                background: #444; 
+                color: #fff; 
+                border: 1px solid #666; 
+                padding: 10px 20px; 
+                font-family: monospace; 
+                cursor: pointer; 
+            }
+            button:hover { background: #555; }
+        </style>
+    </head>
     <body>
         <h1>Text-to-Speech</h1>
         <form method="post">
-            <input type="text" name="text" placeholder="Enter text to speak" required style="width: 300px;">
+            <input type="text" name="text" placeholder="Enter text to speak" required>
+            <br><br>
             <button type="submit">Speak</button>
         </form>
         {% if message %}
