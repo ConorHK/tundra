@@ -12,7 +12,7 @@ let
 
   tts-web-script = pkgs.writeScriptBin "tts-web" ''
     #!${pkgs.python3}/bin/python3
-    from flask import Flask, request, render_template_string
+    from flask import Flask, request, render_template_string, redirect, url_for
     import subprocess
     import sys
 
@@ -26,6 +26,7 @@ let
     <html>
     <head>
         <title>TTS Server</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
             body { 
                 background: #1a1a1a; 
@@ -94,6 +95,14 @@ let
             .control-row span {
                 width: 30px;
                 text-align: left;
+            }
+            @media (max-width: 600px) {
+                body { padding: 20px; }
+                input[type="text"] { width: 90%; }
+                .control-row { flex-direction: column; align-items: center; }
+                .control-row label { width: auto; text-align: center; margin-right: 0; margin-bottom: 5px; }
+                .control-row select, .control-row input[type="range"] { width: 90%; margin-right: 0; }
+                .control-row span { margin-top: 5px; }
             }
         </style>
     </head>
@@ -184,6 +193,8 @@ let
                         message = f"Spoke: {text}"
                 except Exception as e:
                     message = f"Error: {str(e)}"
+                
+                return redirect(url_for('index'))
         
         return render_template_string(HTML_TEMPLATE, message=message)
 
