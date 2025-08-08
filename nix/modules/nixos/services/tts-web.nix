@@ -88,6 +88,13 @@ let
                 width: 200px;
                 margin-right: 10px;
             }
+            .control-row select {
+                height: 30px;
+            }
+            .control-row span {
+                width: 30px;
+                text-align: left;
+            }
         </style>
     </head>
     <body>
@@ -109,6 +116,7 @@ let
                     <option value="ru">Russian</option>
                     <option value="zh">Chinese_(Mandarin)</option>
                 </select>
+                <span></span>
             </div>
             <div class="control-row">
                 <label>Speed:</label>
