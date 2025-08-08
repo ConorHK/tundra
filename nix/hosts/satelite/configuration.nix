@@ -48,6 +48,7 @@
   environment.systemPackages = with pkgs; [
     libraspberrypi
     raspberrypi-eeprom
+    espeak-ng
   ];
 
   system.nixbuild.enable = true;
