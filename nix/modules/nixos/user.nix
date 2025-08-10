@@ -54,6 +54,7 @@ in
       extraGroups = [
         "wheel"
         "audio"
+        "pipewire"
         "sound"
         "video"
         "networkmanager"
