@@ -22,7 +22,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.sessionVariables.EDITOR = "cnvim";
+    home.sessionVariables.EDITOR = "nvim";
     home.packages = [ inputs.cnvim.packages.${pkgs.system}.nightly ];
 
     home.shellAliases = aliases;
