@@ -1,14 +1,15 @@
 {
+  pkgs,
   config,
   lib,
+  inputs,
   ...
 }:
 with lib;
 let
   cfg = config.cli.editors.cnvim;
-  shellCfg = config.cli.shells;
   aliases = {
-    vim = "cnvim";
+    vim = "nvim";
   };
 in
 {
@@ -18,29 +19,12 @@ in
       type = with types; bool;
       description = "enable custom nvim package";
     };
-    categoryOverrides = mkOption {
-      type = with types; nullOr (attrsOf bool);
-      default = null;
-      description = "optional set of categories to enable/disable in neovim configuration";
-    };
   };
 
   config = mkIf cfg.enable {
     home.sessionVariables.EDITOR = "cnvim";
+    home.packages = [ inputs.cnvim.packages.${pkgs.system}.nightly ];
 
-    cnvim = {
-      enable = true;
-      packageDefinitions.replace = mkIf (cfg.categoryOverrides != null) {
-        cnvim = _: {
-          categories = cfg.categoryOverrides;
-        };
-      };
-      packageNames = [ "cnvim" ];
-    };
-
-    programs = {
-      zsh.shellAliases = mkIf shellCfg.zsh.enable aliases;
-      fish.shellAliases = mkIf shellCfg.fish.enable aliases;
-    };
+    home.shellAliases = aliases;
   };
 }

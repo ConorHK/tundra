@@ -116,7 +116,6 @@
             inputs.determinate.nixosModules.default
           ];
           additionalHomeModules = [
-            inputs.cnvim.homeModules.default
             inputs.nix-index-database.hmModules.nix-index
             inputs.nixcord.homeModules.nixcord
             inputs.spicetify-nix.homeManagerModules.spicetify
@@ -130,7 +129,6 @@
             inputs.determinate.nixosModules.default
           ];
           additionalHomeModules = [
-            inputs.cnvim.homeModules.default
             inputs.nix-index-database.hmModules.nix-index
             inputs.nixcord.homeModules.nixcord
             inputs.spicetify-nix.homeManagerModules.spicetify
@@ -162,7 +160,6 @@
           hostname = "venus";
           username = "mustang";
           additionalModules = [
-            inputs.cnvim.homeModules.default
             inputs.nix-index-database.hmModules.nix-index
           ];
         };
@@ -171,7 +168,6 @@
           hostname = "remote-dev";
           username = "knoconor";
           additionalModules = [
-            inputs.cnvim.homeModules.default
             inputs.nix-index-database.hmModules.nix-index
           ];
         };
@@ -181,7 +177,6 @@
           username = "knoconor";
           homeDirectory = "/Users/knoconor";
           additionalModules = [
-            inputs.cnvim.homeModules.default
             inputs.nix-index-database.hmModules.nix-index
           ];
         };

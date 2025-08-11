@@ -40,20 +40,5 @@
     shells = {
       fish.enable = true;
     };
-    editors.cnvim.categoryOverrides = {
-      bash = true;
-      diagnostics = true;
-      git = true;
-      java = true;
-      lsp = true;
-      lua = true;
-      nix = true;
-      python = true;
-      snippets = true;
-      surround = true;
-      treesitter = true;
-      typescript = true;
-      zellij = true;
-    };
   };
 }
