@@ -70,6 +70,7 @@ with lib;
     };
   };
 
+  services.sunshine-server.enable = true;
   networking.hostName = "desktop";
 
   boot = {
