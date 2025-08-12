@@ -184,6 +184,13 @@
             )
           ];
         };
+        homebox = flakeLib.mkNixosHost {
+          hostname = "homebox";
+          username = "driver";
+          additionalNixosModules = [
+            inputs.determinate.nixosModules.default
+          ];
+        };
 
       };
 
