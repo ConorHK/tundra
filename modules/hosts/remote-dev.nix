@@ -12,10 +12,10 @@
         inputs.self.modules.homeManager.development
       ];
 
-      # Override git config for this output
       programs.git = {
         userName = "Conor Knowles";
         userEmail = "knoconor@amazon.com";
+        extraConfig.init.defaultBranch = "mainline";
       };
 
       home.username = "knoconor";
@@ -38,7 +38,7 @@
           if [ -z "$NO_INTERACTIVE" ] && [[ $- == *i* ]]; then
             exec fish
               fi
-              '';
+        '';
       };
 
       system.agenix.enable = true;

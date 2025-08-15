@@ -88,11 +88,12 @@
       imports = [
         inputs.flake-parts.flakeModules.modules
 
+        ./modules/atuin.nix
         ./modules/cnvim.nix
         ./modules/development.nix
         ./modules/git.nix
         ./modules/jq.nix
-        ./modules/remote-dev.nix
+        ./modules/hosts/remote-dev.nix
       ];
 
       perSystem =

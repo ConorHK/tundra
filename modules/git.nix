@@ -22,8 +22,11 @@
 
       programs.git = {
         enable = true;
+        userName = lib.mkDefault "Conor Knowles";
+        userEmail = lib.mkDefault "dev@conorknowles.com";
+
         extraConfig = {
-          init.defaultBranch = "main";
+          init.defaultBranch = lib.mkDefault "main";
           pull.rebase = true;
           merge.mergiraf = {
             name = "mergiraf";
