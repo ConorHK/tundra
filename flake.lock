@@ -423,6 +423,27 @@
     "flake-parts_10": {
       "inputs": {
         "nixpkgs-lib": [
+          "stylix",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1751413152,
+        "narHash": "sha256-Tyw1RjYEsp5scoigs1384gIg6e0GoBVjms4aXFfRssQ=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "77826244401ea9de6e3bac47c2db46005e1f30b5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_11": {
+      "inputs": {
+        "nixpkgs-lib": [
           "textfox",
           "nur",
           "nixpkgs"
@@ -510,6 +531,26 @@
     "flake-parts_5": {
       "inputs": {
         "nixpkgs-lib": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1754487366,
+        "narHash": "sha256-pHYj8gUBapuUzKV/kN/tR3Zvqc7o6gdFB9XKXIp1SQ8=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "af66ad14b28a127c5c0f3bbb298218fc63528a18",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_6": {
+      "inputs": {
+        "nixpkgs-lib": [
           "lanzaboote",
           "nixpkgs"
         ]
@@ -528,7 +569,7 @@
         "type": "github"
       }
     },
-    "flake-parts_6": {
+    "flake-parts_7": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib_2"
       },
@@ -546,7 +587,7 @@
         "type": "github"
       }
     },
-    "flake-parts_7": {
+    "flake-parts_8": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib_3"
       },
@@ -564,7 +605,7 @@
         "type": "github"
       }
     },
-    "flake-parts_8": {
+    "flake-parts_9": {
       "inputs": {
         "nixpkgs-lib": [
           "nur",
@@ -577,27 +618,6 @@
         "owner": "hercules-ci",
         "repo": "flake-parts",
         "rev": "205b12d8b7cd4802fbcb8e8ef6a0f1408781a4f9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "type": "github"
-      }
-    },
-    "flake-parts_9": {
-      "inputs": {
-        "nixpkgs-lib": [
-          "stylix",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1751413152,
-        "narHash": "sha256-Tyw1RjYEsp5scoigs1384gIg6e0GoBVjms4aXFfRssQ=",
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "rev": "77826244401ea9de6e3bac47c2db46005e1f30b5",
         "type": "github"
       },
       "original": {
@@ -838,7 +858,7 @@
       "inputs": {
         "crane": "crane",
         "flake-compat": "flake-compat_5",
-        "flake-parts": "flake-parts_5",
+        "flake-parts": "flake-parts_6",
         "nixpkgs": "nixpkgs_5",
         "pre-commit-hooks-nix": "pre-commit-hooks-nix",
         "rust-overlay": "rust-overlay"
@@ -1004,7 +1024,7 @@
     },
     "nix-gaming": {
       "inputs": {
-        "flake-parts": "flake-parts_6",
+        "flake-parts": "flake-parts_7",
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
@@ -1044,7 +1064,7 @@
     "nixcord": {
       "inputs": {
         "flake-compat": "flake-compat_6",
-        "flake-parts": "flake-parts_7",
+        "flake-parts": "flake-parts_8",
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
@@ -1375,7 +1395,7 @@
     },
     "nur": {
       "inputs": {
-        "flake-parts": "flake-parts_8",
+        "flake-parts": "flake-parts_9",
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -1421,7 +1441,7 @@
     },
     "nur_3": {
       "inputs": {
-        "flake-parts": "flake-parts_10",
+        "flake-parts": "flake-parts_11",
         "nixpkgs": "nixpkgs_12"
       },
       "locked": {
@@ -1507,6 +1527,7 @@
         "comma": "comma",
         "determinate": "determinate",
         "disko": "disko",
+        "flake-parts": "flake-parts_5",
         "home-manager": "home-manager_2",
         "impermanence": "impermanence",
         "lanzaboote": "lanzaboote",
@@ -1630,7 +1651,7 @@
         "base16-helix": "base16-helix",
         "base16-vim": "base16-vim",
         "firefox-gnome-theme": "firefox-gnome-theme",
-        "flake-parts": "flake-parts_9",
+        "flake-parts": "flake-parts_10",
         "gnome-shell": "gnome-shell",
         "nixpkgs": "nixpkgs_11",
         "nur": "nur_2",

@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
     nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
     disko = {
       url = "github:nix-community/disko";
@@ -72,156 +77,158 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      treefmt-nix,
-      pre-commit-hooks,
-      ...
-    }@inputs:
-    let
-      supportedSystems = [
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
         "x86_64-linux"
         "aarch64-darwin"
         "aarch64-linux"
       ];
-      flakeLib = import ./nix/lib/default.nix { inherit self inputs nixpkgs; };
 
-      treefmtEval = flakeLib.forAllSystems supportedSystems (
-        system: treefmt-nix.lib.evalModule (flakeLib.pkgsFor { inherit system; }) ./nix/formatter.nix
-      );
+      imports = [
+        ./modules/cnvim.nix
+      ];
 
-      pre-commit-check = flakeLib.forAllSystems supportedSystems (
-        system:
-        pre-commit-hooks.lib.${system}.run {
-          src = ./.;
-          hooks = {
-            treefmt.enable = true;
-            flake-checker.enable = true;
-          };
-        }
-      );
-    in
-    {
-      lib = flakeLib;
-
-      packages = flakeLib.forAllSystems supportedSystems (
-        system:
+      perSystem =
+        { system, ... }:
         let
+          flakeLib = import ./nix/lib/default.nix {
+            inherit (inputs) self nixpkgs;
+            inherit inputs;
+          };
           pkgs = flakeLib.pkgsFor { inherit system; };
+
+          treefmtEval = inputs.treefmt-nix.lib.evalModule pkgs ./nix/formatter.nix;
+
+          pre-commit-check = inputs.pre-commit-hooks.lib.${system}.run {
+            src = ./.;
+            hooks = {
+              treefmt = {
+                enable = true;
+                package = treefmtEval.config.build.wrapper;
+              };
+              flake-checker.enable = true;
+            };
+          };
         in
         {
-          creeper = import ./nix/packages/creeper { inherit pkgs; };
-          wallpapers = import ./nix/packages/wallpapers { inherit pkgs; };
-          zellij-autolock = import ./nix/packages/zellij-autolock { inherit pkgs; };
-        }
-      );
+          packages = {
+            creeper = import ./nix/packages/creeper { inherit pkgs; };
+            wallpapers = import ./nix/packages/wallpapers { inherit pkgs; };
+            zellij-autolock = import ./nix/packages/zellij-autolock { inherit pkgs; };
+          };
 
-      homeModules = {
-        common-role = import ./nix/modules/home/common-role.nix;
-        development-role = import ./nix/modules/home/development-role.nix;
-      };
+          devShells.default = pkgs.mkShell {
+            inherit (pre-commit-check) shellHook;
+            buildInputs =
+              with pkgs;
+              [
+                inputs.home-manager.packages.${system}.default
+                nh
+                sops
+                age
+                ssh-to-age
+                git
+              ]
+              ++ pre-commit-check.enabledPackages;
+          };
 
-      nixosConfigurations = {
-        desktop = flakeLib.mkNixosHost {
-          hostname = "desktop";
-          additionalNixosModules = [
-            inputs.determinate.nixosModules.default
-          ];
-          additionalHomeModules = [
-            inputs.nix-index-database.hmModules.nix-index
-            inputs.nixcord.homeModules.nixcord
-            inputs.spicetify-nix.homeManagerModules.spicetify
-            inputs.textfox.homeManagerModules.default
-          ];
+          formatter = treefmtEval.config.build.wrapper;
+
+          checks = {
+            formatting = treefmtEval.config.build.check inputs.self;
+            inherit pre-commit-check;
+          };
         };
 
-        laptop = flakeLib.mkNixosHost {
-          hostname = "laptop";
-          additionalNixosModules = [
-            inputs.determinate.nixosModules.default
-          ];
-          additionalHomeModules = [
-            inputs.nix-index-database.hmModules.nix-index
-            inputs.nixcord.homeModules.nixcord
-            inputs.spicetify-nix.homeManagerModules.spicetify
-            inputs.textfox.homeManagerModules.default
-          ];
-        };
-
-        vps = flakeLib.mkNixosHost {
-          hostname = "vps";
-          username = "driver";
-          additionalNixosModules = [
-            inputs.determinate.nixosModules.default
-          ];
-        };
-
-        satelite = flakeLib.mkNixosHost {
-          hostname = "satelite";
-          username = "driver";
-          additionalNixosModules = [
-            inputs.determinate.nixosModules.default
-          ];
-        };
-
-      };
-
-      homeConfigurations = {
-        "mustang@venus" = flakeLib.mkHomeConfig {
-          pkgs = flakeLib.pkgsFor { system = "x86_64-linux"; };
-          hostname = "venus";
-          username = "mustang";
-          additionalModules = [
-            inputs.nix-index-database.hmModules.nix-index
-          ];
-        };
-        "knoconor@remote-dev" = flakeLib.mkHomeConfig {
-          pkgs = flakeLib.pkgsFor { system = "x86_64-linux"; };
-          hostname = "remote-dev";
-          username = "knoconor";
-          additionalModules = [
-            inputs.nix-index-database.hmModules.nix-index
-          ];
-        };
-        "knoconor@bcd0744bec2c" = flakeLib.mkHomeConfig {
-          pkgs = flakeLib.pkgsFor { system = "aarch64-darwin"; };
-          hostname = "bcd0744bec2c";
-          username = "knoconor";
-          homeDirectory = "/Users/knoconor";
-          additionalModules = [
-            inputs.nix-index-database.hmModules.nix-index
-          ];
-        };
-      };
-
-      devShells = flakeLib.forAllSystems supportedSystems (
-        system:
+      flake =
         let
-          pkgs = flakeLib.pkgsFor { inherit system; };
+          flakeLib = import ./nix/lib/default.nix {
+            inherit (inputs) self nixpkgs;
+            inherit inputs;
+          };
         in
         {
-          default = pkgs.mkShell {
-            inherit (pre-commit-check.${system}) shellHook;
-            buildInputs = with pkgs; [
-              home-manager
-              nh
-              sops
-              age
-              ssh-to-age
-              git
-            ] ++ pre-commit-check.${system}.enabledPackages;
+          lib = flakeLib;
+
+          homeModules = {
+            common-role = import ./nix/modules/home/common-role.nix;
+            development-role = import ./nix/modules/home/development-role.nix;
           };
-        }
-      );
 
-      formatter = flakeLib.forAllSystems supportedSystems (
-        system: treefmtEval.${system}.config.build.wrapper
-      );
+          nixosConfigurations = {
+            desktop = flakeLib.mkNixosHost {
+              hostname = "desktop";
+              additionalNixosModules = [
+                inputs.determinate.nixosModules.default
+              ];
+              additionalHomeModules = [
+                inputs.nix-index-database.hmModules.nix-index
+                inputs.nixcord.homeModules.nixcord
+                inputs.spicetify-nix.homeManagerModules.spicetify
+                inputs.textfox.homeManagerModules.default
+              ];
+            };
 
-      checks = flakeLib.forAllSystems supportedSystems (system: {
-        formatting = treefmtEval.${system}.config.build.check self;
-        pre-commit-check = pre-commit-check.${system};
-      });
+            laptop = flakeLib.mkNixosHost {
+              hostname = "laptop";
+              additionalNixosModules = [
+                inputs.determinate.nixosModules.default
+              ];
+              additionalHomeModules = [
+                inputs.nix-index-database.hmModules.nix-index
+                inputs.nixcord.homeModules.nixcord
+                inputs.spicetify-nix.homeManagerModules.spicetify
+                inputs.textfox.homeManagerModules.default
+              ];
+            };
+
+            vps = flakeLib.mkNixosHost {
+              hostname = "vps";
+              username = "driver";
+              additionalNixosModules = [
+                inputs.determinate.nixosModules.default
+              ];
+            };
+
+            satelite = flakeLib.mkNixosHost {
+              hostname = "satelite";
+              username = "driver";
+              additionalNixosModules = [
+                inputs.determinate.nixosModules.default
+              ];
+            };
+          };
+
+          homeConfigurations = {
+            "mustang@venus" = flakeLib.mkHomeConfig {
+              pkgs = flakeLib.pkgsFor { system = "x86_64-linux"; };
+              hostname = "venus";
+              username = "mustang";
+              additionalModules = [
+                inputs.nix-index-database.hmModules.nix-index
+              ];
+            };
+            "knoconor@remote-dev" = flakeLib.mkHomeConfig {
+              pkgs = flakeLib.pkgsFor { system = "x86_64-linux"; };
+              hostname = "remote-dev";
+              username = "knoconor";
+              additionalModules = [
+                inputs.nix-index-database.hmModules.nix-index
+                inputs.self.modules.homeManager.development
+              ];
+            };
+            "knoconor@bcd0744bec2c" = flakeLib.mkHomeConfig {
+              pkgs = flakeLib.pkgsFor { system = "aarch64-darwin"; };
+              hostname = "bcd0744bec2c";
+              username = "knoconor";
+              homeDirectory = "/Users/knoconor";
+              additionalModules = [
+                inputs.nix-index-database.hmModules.nix-index
+                inputs.self.modules.homeManager.development
+              ];
+            };
+          };
+        };
     };
 }

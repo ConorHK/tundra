@@ -17,7 +17,6 @@ with lib;
   };
   config = mkIf cfg.enable {
     cli = {
-      editors.cnvim.enable = true;
       multiplexers.zellij.enable = true;
 
       programs = {
