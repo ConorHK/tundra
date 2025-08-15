@@ -1,8 +1,19 @@
-_:
+{ lib, ... }:
 {
   flake.modules.homeManager.git =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
+      assertions = [
+        {
+          assertion = config.programs.git.userName != "";
+          message = "git module requires programs.git.userName to be set";
+        }
+        {
+          assertion = config.programs.git.userEmail != "";
+          message = "git module requires programs.git.userEmail to be set";
+        }
+      ];
+
       home.packages = with pkgs; [
         mergiraf
         difftastic
@@ -11,8 +22,6 @@ _:
 
       programs.git = {
         enable = true;
-        userName = "Conor Knowles";
-        userEmail = ""; # TODO: configure per host
         extraConfig = {
           init.defaultBranch = "main";
           pull.rebase = true;

@@ -87,9 +87,12 @@
 
       imports = [
         inputs.flake-parts.flakeModules.modules
+
         ./modules/cnvim.nix
-        ./modules/git.nix
         ./modules/development.nix
+        ./modules/git.nix
+        ./modules/jq.nix
+        ./modules/remote-dev.nix
       ];
 
       perSystem =
@@ -219,6 +222,7 @@
               additionalModules = [
                 inputs.nix-index-database.hmModules.nix-index
                 inputs.self.modules.homeManager.development
+                inputs.self.modules.homeManager.remote-dev
               ];
             };
             "knoconor@bcd0744bec2c" = flakeLib.mkHomeConfig {

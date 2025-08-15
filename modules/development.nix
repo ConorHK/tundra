@@ -6,6 +6,7 @@
       imports = [
         inputs.self.modules.homeManager.cnvim
         inputs.self.modules.homeManager.git
+        inputs.self.modules.homeManager.jq
       ];
     };
 }

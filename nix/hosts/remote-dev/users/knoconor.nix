@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ config, inputs, ... }:
 {
   imports = [
     ./secrets.nix
@@ -10,35 +10,37 @@
     inputs.agenix.homeManagerModules.default
   ];
 
-  home.username = "knoconor";
-  home.homeDirectory = "/home/knoconor";
-  roles.home = {
-    development.enable = true;
-    work.enable = true;
-  };
+  config = {
+    home.username = "knoconor";
+    home.homeDirectory = "/home/knoconor";
+    roles.home = {
+      development.enable = true;
+      work.enable = true;
+    };
 
-  programs.fish.shellAliases = {
-    ns = "home-manager switch --flake .#knoconor@remote-dev";
-  };
+    programs.fish.shellAliases = {
+      ns = "home-manager switch --flake .#knoconor@remote-dev";
+    };
 
-  home.sessionVariables.HOSTROLE = "dev";
-  system.xdg.enable = true;
+    home.sessionVariables.HOSTROLE = "dev";
+    system.xdg.enable = true;
 
-  programs.zsh = {
-    enable = true;
-    initExtra = ''
-      if [ -z "$NO_INTERACTIVE" ] && [[ $- == *i* ]]; then
-        exec fish
-      fi
-    '';
-  };
+    programs.zsh = {
+      enable = true;
+      initExtra = ''
+        if [ -z "$NO_INTERACTIVE" ] && [[ $- == *i* ]]; then
+          exec fish
+        fi
+      '';
+    };
 
-  system.agenix.enable = true;
+    system.agenix.enable = true;
 
-  cli = {
-    multiplexers.zellij.enableAutoStart = true;
-    shells = {
-      fish.enable = true;
+    cli = {
+      multiplexers.zellij.enableAutoStart = true;
+      shells = {
+        fish.enable = true;
+      };
     };
   };
 }

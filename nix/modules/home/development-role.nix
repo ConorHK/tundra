@@ -21,9 +21,7 @@ with lib;
 
       programs = {
         atuin.enable = false; # TODO: fix mis-inserts
-        git.enable = true;
         gpg.enable = true;
-        jq.enable = true;
         jujutsu.enable = true;
         networking-tools.enable = true;
         nix-your-shell.enable = true;
