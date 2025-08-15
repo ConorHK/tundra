@@ -166,6 +166,18 @@ in
             scroll {
               bind "Esc" { SwitchToMode "Normal"; }
               bind "Enter" { SwitchToMode "Normal"; }
+
+              bind "j" "Down" { ScrollDown; }
+              bind "k" "Up" { ScrollUp; }
+              bind "h" "Left" { PageScrollUp; }
+              bind "l" "Right" { PageScrollDown; }
+              bind "Ctrl d" { HalfPageScrollDown; }
+              bind "Ctrl u" { HalfPageScrollUp; }
+              bind "g" { ScrollToTop; }
+              bind "G" { ScrollToBottom; }
+              bind "Space" { PageScrollDown; }
+              bind "v" { EditScrollback; }
+              bind "Space" { EditScrollback; }
             }
             session {
               bind "Esc" { SwitchToMode "Normal"; }
