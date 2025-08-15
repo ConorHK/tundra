@@ -86,7 +86,10 @@
       ];
 
       imports = [
+        inputs.flake-parts.flakeModules.modules
         ./modules/cnvim.nix
+        ./modules/git.nix
+        ./modules/development.nix
       ];
 
       perSystem =

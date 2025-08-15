@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.modules.homeManager.development =
+  flake.modules.homeManager.cnvim =
     { pkgs, ... }:
     {
       home.sessionVariables.EDITOR = "nvim";
