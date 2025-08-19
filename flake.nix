@@ -56,7 +56,6 @@
     };
 
     treefmt-nix.url = "github:numtide/treefmt-nix";
-    pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     textfox = {
       url = "github:adriankarlen/textfox";
@@ -81,7 +80,6 @@
       self,
       nixpkgs,
       treefmt-nix,
-      pre-commit-hooks,
       ...
     }@inputs:
     let
@@ -96,16 +94,6 @@
         system: treefmt-nix.lib.evalModule (flakeLib.pkgsFor { inherit system; }) ./nix/formatter.nix
       );
 
-      pre-commit-check = flakeLib.forAllSystems supportedSystems (
-        system:
-        pre-commit-hooks.lib.${system}.run {
-          src = ./.;
-          hooks = {
-            treefmt.enable = true;
-            flake-checker.enable = true;
-          };
-        }
-      );
     in
     {
       lib = flakeLib;
@@ -229,18 +217,14 @@
         in
         {
           default = pkgs.mkShell {
-            inherit (pre-commit-check.${system}) shellHook;
-            buildInputs =
-              with pkgs;
-              [
-                home-manager
-                nh
-                sops
-                age
-                ssh-to-age
-                git
-              ]
-              ++ pre-commit-check.${system}.enabledPackages;
+            buildInputs = with pkgs; [
+              home-manager
+              nh
+              sops
+              age
+              ssh-to-age
+              git
+            ];
           };
         }
       );
@@ -251,7 +235,6 @@
 
       checks = flakeLib.forAllSystems supportedSystems (system: {
         formatting = treefmtEval.${system}.config.build.check self;
-        pre-commit-check = pre-commit-check.${system};
       });
     };
 }
