@@ -165,6 +165,26 @@
           ];
         };
 
+        x86Iso = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            (
+              { pkgs, modulesPath, ... }:
+              {
+                imports = [ (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix") ];
+                environment.systemPackages = [
+                  inputs.cnvim.packages.${pkgs.system}.default
+                  pkgs.git
+                ];
+                systemd.services.sshd.wantedBy = pkgs.lib.mkForce [ "multi-user.target" ];
+                users.users.root.openssh.authorizedKeys.keys = [
+                  "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM8okOt7lHfTjmabxdIruqIMxz0SwJuHSiGiC/so5IrM"
+                ];
+              }
+            )
+          ];
+        };
+
       };
 
       homeConfigurations = {
@@ -203,14 +223,17 @@
         {
           default = pkgs.mkShell {
             inherit (pre-commit-check.${system}) shellHook;
-            buildInputs = with pkgs; [
-              home-manager
-              nh
-              sops
-              age
-              ssh-to-age
-              git
-            ] ++ pre-commit-check.${system}.enabledPackages;
+            buildInputs =
+              with pkgs;
+              [
+                home-manager
+                nh
+                sops
+                age
+                ssh-to-age
+                git
+              ]
+              ++ pre-commit-check.${system}.enabledPackages;
           };
         }
       );
