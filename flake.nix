@@ -69,6 +69,11 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -114,6 +119,20 @@
           creeper = import ./nix/packages/creeper { inherit pkgs; };
           wallpapers = import ./nix/packages/wallpapers { inherit pkgs; };
           zellij-autolock = import ./nix/packages/zellij-autolock { inherit pkgs; };
+          iso = inputs.nixos-generators.nixosGenerate {
+            system = "x86_64-linux";
+            format = "install-iso";
+            specialArgs = {
+              inherit inputs;
+            };
+            modules = [
+              "${inputs.nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
+              ./nix/images/iso.nix
+              {
+                system.stateVersion = "25.05";
+              }
+            ];
+          };
         }
       );
 
@@ -165,25 +184,6 @@
           ];
         };
 
-        x86Iso = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            (
-              { pkgs, modulesPath, ... }:
-              {
-                imports = [ (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix") ];
-                environment.systemPackages = [
-                  inputs.cnvim.packages.${pkgs.system}.default
-                  pkgs.git
-                ];
-                systemd.services.sshd.wantedBy = pkgs.lib.mkForce [ "multi-user.target" ];
-                users.users.root.openssh.authorizedKeys.keys = [
-                  "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM8okOt7lHfTjmabxdIruqIMxz0SwJuHSiGiC/so5IrM"
-                ];
-              }
-            )
-          ];
-        };
         homebox = flakeLib.mkNixosHost {
           hostname = "homebox";
           username = "driver";
