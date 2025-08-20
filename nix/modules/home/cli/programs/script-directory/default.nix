@@ -21,7 +21,13 @@ in
   config = mkIf cfg.enable {
     programs.zsh = {
       initContent = ''
-        fpath+="${inputs.script-directory}/share/zsh/site-functions"
+        fpath+="${inputs.script-directory.packages.${pkgs.system}.sd}/share/zsh/site-functions"
+      '';
+    };
+
+    programs.fish = {
+      interactiveShellInit = ''
+        source ${inputs.script-directory.packages.${pkgs.system}.sd}/share/fish/vendor_completions.d/sd.fish
       '';
     };
 
