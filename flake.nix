@@ -136,7 +136,7 @@
             inputs.determinate.nixosModules.default
           ];
           additionalHomeModules = [
-            inputs.nix-index-database.hmModules.nix-index
+            inputs.nix-index-database.homeModules.nix-index
             inputs.nixcord.homeModules.nixcord
             inputs.spicetify-nix.homeManagerModules.spicetify
             inputs.textfox.homeManagerModules.default
@@ -149,7 +149,7 @@
             inputs.determinate.nixosModules.default
           ];
           additionalHomeModules = [
-            inputs.nix-index-database.hmModules.nix-index
+            inputs.nix-index-database.homeModules.nix-index
             inputs.nixcord.homeModules.nixcord
             inputs.spicetify-nix.homeManagerModules.spicetify
             inputs.textfox.homeManagerModules.default
@@ -188,7 +188,7 @@
           hostname = "venus";
           username = "mustang";
           additionalModules = [
-            inputs.nix-index-database.hmModules.nix-index
+            inputs.nix-index-database.homeModules.nix-index
           ];
         };
         "knoconor@remote-dev" = flakeLib.mkHomeConfig {
@@ -196,7 +196,7 @@
           hostname = "remote-dev";
           username = "knoconor";
           additionalModules = [
-            inputs.nix-index-database.hmModules.nix-index
+            inputs.nix-index-database.homeModules.nix-index
           ];
         };
         "knoconor@bcd0744bec2c" = flakeLib.mkHomeConfig {
@@ -205,7 +205,7 @@
           username = "knoconor";
           homeDirectory = "/Users/knoconor";
           additionalModules = [
-            inputs.nix-index-database.hmModules.nix-index
+            inputs.nix-index-database.homeModules.nix-index
           ];
         };
       };

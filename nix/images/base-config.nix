@@ -36,7 +36,6 @@
     "nixos" = {
       isNormalUser = true;
       home = "/home/nixos";
-      password = "";
       uid = 1000;
       extraGroups = [
         "systemd-journal"
@@ -65,7 +64,7 @@
 
   services.avahi = {
     enable = true;
-    nssmdns = true;
+    nssmdns4 = true;
     publish.addresses = true;
     publish.domain = true;
     publish.enable = true;

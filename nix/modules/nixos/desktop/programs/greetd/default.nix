@@ -7,7 +7,7 @@
 with lib;
 let
   cfg = config.desktop.programs.greetd;
-  tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+  tuigreet = "${pkgs.tuigreet}/bin/tuigreet";
 in
 {
   options.desktop.programs.greetd = {
