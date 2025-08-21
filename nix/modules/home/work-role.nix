@@ -60,7 +60,7 @@ with lib;
         defaultBranch = "mainline";
         email = "knoconor@amazon.com";
       };
-      ssh.enable = mkForce false;
+      ssh.disable = mkForce true;
     };
   };
 }

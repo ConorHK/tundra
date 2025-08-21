@@ -9,6 +9,7 @@
 
     modules.homeManager.remote-dev = {
       imports = [
+        inputs.self.modules.homeManager.common
         inputs.self.modules.homeManager.development
       ];
 

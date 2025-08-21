@@ -18,17 +18,6 @@ with lib;
   config = mkIf cfg.enable {
     cli = {
       multiplexers.zellij.enable = true;
-
-      programs = {
-        atuin.enable = false; # TODO: fix mis-inserts
-        gpg.enable = true;
-        jujutsu.enable = true;
-        networking-tools.enable = true;
-        nix-your-shell.enable = true;
-        ripgrep.enable = true;
-        script-directory.enable = true;
-        wget.enable = true;
-      };
     };
   };
 }

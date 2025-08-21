@@ -89,11 +89,32 @@
         inputs.flake-parts.flakeModules.modules
 
         ./modules/atuin.nix
+        ./modules/bat.nix
+        ./modules/btop.nix
         ./modules/cnvim.nix
-        ./modules/development.nix
+        ./modules/comma.nix
+        ./modules/duf.nix
+        ./modules/dust.nix
+        ./modules/eza.nix
+        ./modules/fzf.nix
         ./modules/git.nix
-        ./modules/jq.nix
+        ./modules/gpg.nix
         ./modules/hosts/remote-dev.nix
+        ./modules/htop.nix
+        ./modules/jq.nix
+        ./modules/jujutsu.nix
+        ./modules/less.nix
+        ./modules/networking-tools.nix
+        ./modules/nh.nix
+        ./modules/nix-your-shell.nix
+        ./modules/qmk.nix
+        ./modules/ripgrep.nix
+        ./modules/roles/common.nix
+        ./modules/roles/development.nix
+        ./modules/script-directory.nix
+        ./modules/ssh.nix
+        ./modules/zoxide.nix
+        ./modules/wget.nix
       ];
 
       perSystem =
@@ -222,7 +243,6 @@
               username = "knoconor";
               additionalModules = [
                 inputs.nix-index-database.hmModules.nix-index
-                inputs.self.modules.homeManager.development
                 inputs.self.modules.homeManager.remote-dev
               ];
             };
@@ -233,7 +253,6 @@
               homeDirectory = "/Users/knoconor";
               additionalModules = [
                 inputs.nix-index-database.hmModules.nix-index
-                inputs.self.modules.homeManager.development
               ];
             };
           };
