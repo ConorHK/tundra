@@ -10,6 +10,7 @@
         inputs.self.modules.homeManager.duf
         inputs.self.modules.homeManager.dust
         inputs.self.modules.homeManager.eza
+        inputs.self.modules.homeManager.fish
         inputs.self.modules.homeManager.fzf
         inputs.self.modules.homeManager.less
         inputs.self.modules.homeManager.nh

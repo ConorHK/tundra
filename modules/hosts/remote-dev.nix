@@ -21,10 +21,6 @@
 
       home.username = "knoconor";
       home.homeDirectory = "/home/knoconor";
-      roles.home = {
-        development.enable = true;
-        work.enable = true;
-      };
 
       programs.fish.shellAliases = {
         ns = "home-manager switch --flake .#knoconor@remote-dev";
@@ -46,9 +42,6 @@
 
       cli = {
         multiplexers.zellij.enableAutoStart = true;
-        shells = {
-          fish.enable = true;
-        };
       };
     };
   };

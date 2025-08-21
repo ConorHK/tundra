@@ -96,6 +96,7 @@
         ./modules/duf.nix
         ./modules/dust.nix
         ./modules/eza.nix
+        ./modules/fish.nix
         ./modules/fzf.nix
         ./modules/git.nix
         ./modules/gpg.nix
@@ -113,8 +114,8 @@
         ./modules/roles/development.nix
         ./modules/script-directory.nix
         ./modules/ssh.nix
-        ./modules/zoxide.nix
         ./modules/wget.nix
+        ./modules/zoxide.nix
       ];
 
       perSystem =
