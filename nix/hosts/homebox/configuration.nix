@@ -1,5 +1,6 @@
 {
   inputs,
+  lib,
   ...
 }:
 
@@ -16,7 +17,15 @@
 
   styles.stylix.enableNixOs = false;
 
-  system.boot.enable = true;
+  # TODO: make UEFI and BIOS boot modules
+  system.boot.enable = false;
+  boot.loader.grub = {
+    enable = true;
+    version = 2;
+    devices = lib.mkForce ["/dev/sda"];
+    efiSupport = false;
+    useOSProber = false;
+  };
 
   services = {
     sshd.enable = true;

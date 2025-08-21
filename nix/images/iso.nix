@@ -14,8 +14,8 @@
     ./base-config.nix
   ];
 
-  isoImage.volumeID = lib.mkForce "my-nixos-live";
-  image.fileName = lib.mkForce "my-nixos-live.iso";
+  isoImage.volumeID = lib.mkForce "nixos-live";
+  image.fileName = lib.mkForce "nixos-live.iso";
   # Use zstd instead of xz for compressing the liveUSB image, it's 6x faster and 15% bigger.
   isoImage.squashfsCompression = "zstd -Xcompression-level 6";
 }
