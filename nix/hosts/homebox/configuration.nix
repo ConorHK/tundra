@@ -22,7 +22,7 @@
   boot.loader.grub = {
     enable = true;
     version = 2;
-    devices = lib.mkForce ["/dev/sda"];
+    devices = lib.mkForce [ "/dev/sda" ];
     efiSupport = false;
     useOSProber = false;
   };
@@ -43,4 +43,6 @@
 
   networking.hostName = "homebox";
   system.stateVersion = "25.05";
+
+  services.homeassistant.enable = true;
 }
