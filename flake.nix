@@ -88,7 +88,9 @@
       imports = [
         inputs.flake-parts.flakeModules.modules
 
+        ./modules/zellij.nix
         ./modules/atuin.nix
+        ./modules/agenix.nix
         ./modules/bat.nix
         ./modules/btop.nix
         ./modules/cnvim.nix
@@ -115,6 +117,7 @@
         ./modules/script-directory.nix
         ./modules/ssh.nix
         ./modules/wget.nix
+        ./modules/zellij-autolock.nix
         ./modules/zoxide.nix
       ];
 
@@ -144,7 +147,6 @@
           packages = {
             creeper = import ./nix/packages/creeper { inherit pkgs; };
             wallpapers = import ./nix/packages/wallpapers { inherit pkgs; };
-            zellij-autolock = import ./nix/packages/zellij-autolock { inherit pkgs; };
           };
 
           devShells.default = pkgs.mkShell {

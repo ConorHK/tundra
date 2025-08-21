@@ -1,6 +1,6 @@
 _: {
   flake.modules.homeManager.gpg =
-    { pkgs, ... }:
+    _:
     {
       programs.gpg.enable = true;
       services.gpg-agent = {

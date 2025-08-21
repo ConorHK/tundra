@@ -8,9 +8,10 @@
     };
 
     modules.homeManager.remote-dev = {
-      imports = [
-        inputs.self.modules.homeManager.common
-        inputs.self.modules.homeManager.development
+      imports = with inputs.self.modules.homeManager; [
+        common
+        development
+        agenix
       ];
 
       programs.git = {
@@ -36,12 +37,6 @@
             exec fish
               fi
         '';
-      };
-
-      system.agenix.enable = true;
-
-      cli = {
-        multiplexers.zellij.enableAutoStart = true;
       };
     };
   };
