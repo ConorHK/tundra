@@ -15,6 +15,7 @@
         inputs.self.modules.homeManager.less
         inputs.self.modules.homeManager.nh
         inputs.self.modules.homeManager.ssh
+        inputs.self.modules.homeManager.zellij
         inputs.self.modules.homeManager.zoxide
       ];
     };

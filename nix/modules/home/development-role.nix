@@ -16,8 +16,5 @@ with lib;
     };
   };
   config = mkIf cfg.enable {
-    cli = {
-      multiplexers.zellij.enable = true;
-    };
   };
 }

@@ -35,7 +35,7 @@
         initExtra = ''
           if [ -z "$NO_INTERACTIVE" ] && [[ $- == *i* ]]; then
             exec fish
-              fi
+          fi
         '';
       };
     };

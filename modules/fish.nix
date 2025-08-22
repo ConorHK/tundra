@@ -1,11 +1,31 @@
 _: {
   flake.modules.homeManager.fish =
-    { pkgs, lib, ... }:
+    { pkgs, lib, config, ... }:
+    let
+      cfg = config.cli.shells.fish;
+    in
     {
+      
+      options.cli.shells.fish = {
+        interactiveShellOnly = lib.mkOption {
+          default = false;
+          type = lib.types.bool;
+          description = "use fish as interactive shell only";
+        };
+      };
+      config = {
       home.sessionVariables = {
         SHELL = "${pkgs.fish}/bin/fish";
       };
       programs = {
+        zsh = lib.mkIf cfg.interactiveShellOnly {
+          enable = true;
+          initExtra = ''
+            if [ -z "$NO_INTERACTIVE" ] && [[ $- == *i* ]]; then
+              exec fish
+            fi
+          '';
+        };
         carapace = {
           enable = true;
           enableFishIntegration = true;
@@ -117,5 +137,6 @@ _: {
           };
         };
       };
+    };
     };
 }
