@@ -10,6 +10,7 @@
     ./hyprlock
     ./hyprpaper
     ./rofi
+    ./signal
     ./spotify
     ./vintagestory
     ./waybar

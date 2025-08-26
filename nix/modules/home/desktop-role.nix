@@ -33,6 +33,7 @@ with lib;
         alacritty.enable = true;
         firefox.enable = true;
         spotify.enable = true;
+        signal.enable = true;
       };
     };
 
