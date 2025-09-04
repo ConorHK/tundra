@@ -34,6 +34,7 @@ with lib;
         firefox.enable = true;
         spotify.enable = true;
         signal.enable = true;
+        gromit-mpx.enable = true;
       };
     };
 

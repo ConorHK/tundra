@@ -63,6 +63,16 @@ in
       xwayland.enable = true;
       settings = {
         input.kb_layout = mkDefault "us";
+        windowrulev2 = [
+          "noblur, class:(Gromit-mpx)"
+          "noshadow, class:(Gromit-mpx)"
+          "opacity 1.0 override, class:(Gromit-mpx)"
+          "size 100% 100%, class:(Gromit-mpx)"
+        ];
+
+        workspace = [
+          "special:gromit, gapsin:0, gapsout:0, on-created-empty: gromit-mpx -a"
+        ];
         animation = [
           "windows, 1, 3, default, slide"
           "workspaces, 0, 1, default, slidefade"

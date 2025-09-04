@@ -5,6 +5,7 @@
     ./discord
     ./dunst
     ./firefox
+    ./gromit-mpx
     ./heroic
     ./hypridle
     ./hyprlock
