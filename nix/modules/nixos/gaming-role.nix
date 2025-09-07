@@ -41,10 +41,40 @@ with lib;
 
     services.ratbagd.enable = true;
 
+    chaotic.mesa-git.enable = true;
+    chaotic.mesa-git.fallbackSpecialisation = false;
+    chaotic.hdr.enable = true;
+    chaotic.hdr.specialisation.enable = false;
+
     services.pipewire.lowLatency.enable = true;
+    services.ananicy = {
+      enable = true;
+      package = pkgs.ananicy-cpp;
+      rulesProvider = pkgs.ananicy-rules-cachyos_git;
+    };
 
     programs = {
-      gamemode.enable = true;
+      gamemode = {
+        enable = true;
+        settings = {
+          general = {
+            softrealtime = "auto";
+            renice = 15;
+          };
+
+          gpu = {
+            apply_gpu_optimisations = "accept-responsibility";
+            gpu_device = 0;
+            amd_performance_level = "high";
+          };
+
+          custom = {
+            start = "${lib.getExe pkgs.libnotify} 'GameMode started'";
+            end = "${lib.getExe pkgs.libnotify} 'GameMode ended'";
+          };
+        };
+
+      };
       gamescope.enable = true;
       steam = {
         enable = true;

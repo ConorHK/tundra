@@ -135,6 +135,7 @@ with lib;
   users.groups.wireshark.members = [ "conor" ];
 
   system.nixbuild.enable = true;
+  chaotic.nyx.cache.enable = true;
 
   system.stateVersion = "25.05";
 }
