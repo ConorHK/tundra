@@ -27,7 +27,10 @@ in
         "org.freedesktop.impl.portal.Screenshot" =
           if isHyprlandEnabled == "hyprland" then "hyprland" else "gnome";
       };
-      config.hyprland.default = ["gtk" "hyprland"];
+      config.hyprland.default = [
+        "gtk"
+        "hyprland"
+      ];
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk

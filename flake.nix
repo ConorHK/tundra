@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
     disko = {
@@ -80,6 +81,7 @@
       self,
       nixpkgs,
       treefmt-nix,
+      chaotic,
       ...
     }@inputs:
     let
@@ -134,6 +136,7 @@
           hostname = "desktop";
           additionalNixosModules = [
             inputs.determinate.nixosModules.default
+            chaotic.nixosModules.default
           ];
           additionalHomeModules = [
             inputs.nix-index-database.homeModules.nix-index

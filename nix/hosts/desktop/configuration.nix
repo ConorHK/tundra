@@ -82,7 +82,7 @@ with lib;
     resumeDevice = "/dev/disk/by-label/nixos";
 
     supportedFilesystems = mkForce [ "btrfs" ];
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_cachyos-lto;
   };
 
   environment.systemPackages =

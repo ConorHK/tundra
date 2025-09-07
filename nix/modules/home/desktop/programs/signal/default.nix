@@ -17,8 +17,8 @@ in
     };
   };
   config = mkIf cfg.enable {
-      home.packages = [
-        pkgs.signal-desktop
-      ];
-      };
-      }
+    home.packages = [
+      pkgs.signal-desktop
+    ];
+  };
+}
