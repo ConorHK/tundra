@@ -19,7 +19,7 @@ in
   config = mkIf cfg.enable {
     programs.rofi = {
       enable = true;
-      package = mkDefault pkgs.rofi-wayland;
+      package = mkDefault pkgs.rofi;
       terminal = "${pkgs.alacritty}/bin/alacritty";
       extraConfig = {
         modi = "drun";

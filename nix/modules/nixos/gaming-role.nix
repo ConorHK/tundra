@@ -47,11 +47,11 @@ with lib;
     chaotic.hdr.specialisation.enable = false;
 
     services.pipewire.lowLatency.enable = true;
-    services.ananicy = {
-      enable = true;
-      package = pkgs.ananicy-cpp;
-      rulesProvider = pkgs.ananicy-rules-cachyos_git;
-    };
+    # services.ananicy = {
+    #   enable = true;
+    #   package = pkgs.ananicy-cpp;
+    #   rulesProvider = pkgs.ananicy-rules-cachyos_git;
+    # };
 
     programs = {
       gamemode = {
