@@ -23,6 +23,7 @@
         position = "0,0";
       }
     ];
+    desktop.programs.waybar.battery.enable = true;
     home.packages = with pkgs; [
       brightnessctl
     ];
