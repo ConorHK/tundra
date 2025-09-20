@@ -43,15 +43,8 @@ with lib;
 
     chaotic.mesa-git.enable = true;
     chaotic.mesa-git.fallbackSpecialisation = false;
-    chaotic.hdr.enable = true;
-    chaotic.hdr.specialisation.enable = false;
 
     services.pipewire.lowLatency.enable = true;
-    # services.ananicy = {
-    #   enable = true;
-    #   package = pkgs.ananicy-cpp;
-    #   rulesProvider = pkgs.ananicy-rules-cachyos_git;
-    # };
 
     programs = {
       gamemode = {
