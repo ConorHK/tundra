@@ -2,9 +2,10 @@
 {
   imports = [
     ./fail2ban
+    ./home-assistant
+    ./shell-web
     ./spotifyd
     ./sshd
-    ./home-assistant
     ./sunshine
     ./tts-web
     ./uptime-kuma
