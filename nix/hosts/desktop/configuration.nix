@@ -71,6 +71,18 @@ with lib;
   };
 
   services.sunshine-server.enable = true;
+  services.shell-web = {
+    enable = true;
+    scriptUser = "conor";
+    scripts = {
+      say-hello = ''
+        ${pkgs.curl}/bin/curl -X POST https://speak.goosebox.org -H "Content-Type: application/x-www-form-urlencoded" -d "text='Hello'"
+      '';
+      restart-service = ''
+        /run/wrappers/bin/sudo systemctl restart shell-web
+      '';
+    };
+  };
   networking.hostName = "desktop";
 
   boot = {
@@ -82,7 +94,7 @@ with lib;
     resumeDevice = "/dev/disk/by-label/nixos";
 
     supportedFilesystems = mkForce [ "btrfs" ];
-    kernelPackages = pkgs.linuxPackages_cachyos-lto;
+    kernelPackages = pkgs.linuxPackages_latest;
   };
 
   environment.systemPackages =
