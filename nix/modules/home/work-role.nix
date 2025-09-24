@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -18,6 +19,9 @@ with lib;
   };
   config = mkIf cfg.enable {
     home = {
+      packages = [
+        pkgs.pdsh
+      ];
       sessionVariables = {
         BRAZILPYTHON_FAST_FAIL = "true";
         BRAZILPYTHON_I_KNOW_THAT_I_NEED_TO_READ_THE_ERROR_MESSAGE_CAREFULLY_AND_CHECK_THE_FAQ = "true";
