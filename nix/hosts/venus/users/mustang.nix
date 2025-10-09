@@ -19,7 +19,7 @@
         if [ -z "$NO_INTERACTIVE" ] && [[ $- == *i* ]]; then
           exec fish
             fi
-            '';
+      '';
     };
     cli.programs.ssh = {
       extraHosts.fuji = {
