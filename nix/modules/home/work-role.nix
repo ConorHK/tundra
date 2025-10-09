@@ -21,6 +21,7 @@ with lib;
     home = {
       packages = [
         pkgs.pdsh
+        pkgs.claude-code
       ];
       sessionVariables = {
         BRAZILPYTHON_FAST_FAIL = "true";
