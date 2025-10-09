@@ -89,6 +89,10 @@ with lib;
           "*.ts merge=mergiraf"
           "*.py merge=mergiraf"
         ];
+        ignores = [
+          "CLAUDE.md"
+          ".claude"
+        ];
         lfs.enable = true;
       };
 
